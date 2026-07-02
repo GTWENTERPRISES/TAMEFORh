@@ -40,7 +40,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative h-[70vh] flex items-center overflow-hidden">
+    <section className="relative flex items-center overflow-hidden py-16 md:py-20 lg:py-24">
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e3a5f] to-[#0f4c3a]" />
       
@@ -140,8 +140,8 @@ export function HeroSection() {
               </motion.div>
             </motion.div>
 
-            {/* Slide Content Container with Fixed Height */}
-            <div className="h-[320px]">
+            {/* Slide Content Container */}
+            <div className="min-h-[300px] md:min-h-[320px]">
               <AnimatePresence mode="wait">
                 <motion.div 
                   key={currentSlide}
