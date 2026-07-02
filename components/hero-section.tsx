@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight, Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { IconBadge } from "@/components/ui/IconBadge"
 
@@ -169,19 +170,23 @@ export function HeroSection() {
                     transition={{ delay: 0.3, duration: 0.6 }}
                   >
                     {/* Primary CTA Button */}
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button size="lg" className="bg-[#3d9a8b] hover:bg-[#358578] text-white rounded-full px-10 py-5 group font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 text-lg">
-                        Únete Hoy
-                        <ArrowRight className="ml-2 h-5 w-6 group-hover:translate-x-2 transition-transform" />
-                      </Button>
-                    </motion.div>
+                    <Link href="/miembros">
+                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                        <Button size="lg" className="bg-[#3d9a8b] hover:bg-[#358578] text-white rounded-full px-10 py-5 group font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 text-lg">
+                          Únete Hoy
+                          <ArrowRight className="ml-2 h-5 w-6 group-hover:translate-x-2 transition-transform" />
+                        </Button>
+                      </motion.div>
+                    </Link>
                     
                     {/* Secondary CTA Button */}
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button size="lg" variant="secondary" className="bg-transparent border-2 border-primary-foreground hover:bg-primary-foreground/10 text-primary-foreground rounded-full px-10 py-5 font-semibold transition-all duration-300 text-lg">
-                        Conocer Más
-                      </Button>
-                    </motion.div>
+                    <Link href="/nosotros">
+                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                        <Button size="lg" variant="secondary" className="bg-transparent border-2 border-primary-foreground hover:bg-primary-foreground/10 text-primary-foreground rounded-full px-10 py-5 font-semibold transition-all duration-300 text-lg">
+                          Conocer Más
+                        </Button>
+                      </motion.div>
+                    </Link>
                   </motion.div>
                 </motion.div>
               </AnimatePresence>

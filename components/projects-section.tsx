@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 
@@ -90,12 +91,14 @@ export function ProjectsSection() {
             </h2>
           </div>
           <div className="mt-6 lg:mt-0">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="bg-[#3d9a8b] hover:bg-[#1a3a5c] text-white rounded-full px-8 py-3 font-semibold text-lg group transition-all duration-300 shadow-lg hover:shadow-xl">
-                Ver Todos los Proyectos
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </motion.div>
+            <Link href="/proyectos">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button className="bg-[#3d9a8b] hover:bg-[#1a3a5c] text-white rounded-full px-8 py-3 font-semibold text-lg group transition-all duration-300 shadow-lg hover:shadow-xl">
+                  Ver Todos los Proyectos
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </motion.div>
+            </Link>
           </div>
         </motion.div>
 
@@ -149,13 +152,15 @@ export function ProjectsSection() {
                 >
                   <div className="bg-white rounded-2xl p-6 shadow-xl">
                     <h3 className="font-sans text-lg font-bold text-[#1a3a5c] mb-3">{project.title}</h3>
-                    <p className="text-white text-sm mb-4 font-medium">{project.description}</p>
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                      <Button className="w-full bg-[#3d9a8b] hover:bg-[#1a3a5c] text-white rounded-full font-semibold group/btn transition-all duration-300">
-                        Ver Proyecto
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                      </Button>
-                    </motion.div>
+                    <p className="text-[#1a3a5c]/70 text-sm mb-4 font-medium">{project.description}</p>
+                    <Link href="/proyectos">
+                      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                        <Button className="w-full bg-[#3d9a8b] hover:bg-[#1a3a5c] text-white rounded-full font-semibold group/btn transition-all duration-300">
+                          Ver Proyecto
+                          <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                        </Button>
+                      </motion.div>
+                    </Link>
                   </div>
                 </motion.div>
 

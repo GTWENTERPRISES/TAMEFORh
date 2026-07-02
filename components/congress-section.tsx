@@ -2,6 +2,15 @@
 
 import { Calendar, MapPin, Clock, Users, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import Link from "next/link"
 import Image from "next/image"
 
 export function CongressSection() {
@@ -93,10 +102,56 @@ export function CongressSection() {
                 </div>
               </div>
 
-              <Button className="bg-[#3d9a8b] hover:bg-[#2d7a6b] text-white rounded-full px-8 py-3 group font-semibold text-base">
-                Más Información
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="bg-[#3d9a8b] hover:bg-[#2d7a6b] text-white rounded-full px-8 py-3 group font-semibold text-base">
+                    Más Información
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-lg">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl text-[#1a3a5c]">Congreso Internacional TAMEFOR 2025</DialogTitle>
+                    <DialogDescription>
+                      Gestión y Ciencia Forestal Sostenible
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="space-y-4 py-2">
+                    <div className="flex items-start gap-3">
+                      <Calendar className="h-5 w-5 text-[#3d9a8b] mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-semibold text-[#1a3a5c] text-sm">Fechas</p>
+                        <p className="text-sm text-muted-foreground">20-22 de Abril, 2026</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <MapPin className="h-5 w-5 text-[#3d9a8b] mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-semibold text-[#1a3a5c] text-sm">Ubicación</p>
+                        <p className="text-sm text-muted-foreground">Quevedo, Los Ríos, Ecuador</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Users className="h-5 w-5 text-[#3d9a8b] mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-semibold text-[#1a3a5c] text-sm">Participantes</p>
+                        <p className="text-sm text-muted-foreground">Más de 500 profesionales esperados</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed pt-2">
+                      Conferencias magistrales, talleres prácticos y networking profesional con expertos
+                      nacionales e internacionales del sector forestal. Escríbenos para recibir el programa
+                      completo e información de inscripción.
+                    </p>
+                  </div>
+                  <Link href="/contacto">
+                    <Button className="w-full bg-[#3d9a8b] hover:bg-[#2d7a6b] text-white rounded-full font-semibold group">
+                      Solicitar Información
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>

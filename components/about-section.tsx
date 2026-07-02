@@ -4,7 +4,14 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Check, ArrowRight, Play, TrendingUp, Lightbulb, ThumbsUp, Users, Leaf, Award } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { SectionHeader, StatCard, IconBadge } from "@/components/ui"
 import { containerVariants, itemVariants, imageVariants, hoverLiftVariants, slideInFromLeftVariants, slideInFromRightVariants } from "@/lib/animations"
 
@@ -46,6 +53,7 @@ const stats = [
 
 export function AboutSection() {
   const [activeTab, setActiveTab] = useState("Nuestra Historia")
+  const [videoOpen, setVideoOpen] = useState(false)
 
   return (
     <section id="about" className="section-padding bg-[#1a3a5c] text-white relative overflow-hidden">
@@ -136,6 +144,8 @@ export function AboutSection() {
               {/* Play Button - Enhanced */}
               <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/40 to-transparent hover:from-black/60 transition-all">
                 <motion.button 
+                  onClick={() => setVideoOpen(true)}
+                  aria-label="Reproducir video de presentación"
                   className="w-16 h-16 bg-gradient-to-br from-[#3d9a8b] to-[#2d7a6b] rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-shadow"
                   whileHover={{ scale: 1.15 }}
                   whileTap={{ scale: 0.95 }}
@@ -279,10 +289,12 @@ export function AboutSection() {
                 transition={{ delay: 0.7 }}
                 viewport={{ once: true }}
               >
-                <Button className="bg-gradient-to-r from-[#3d9a8b] to-[#2d7a6b] hover:from-[#3d9a8b]/90 hover:to-[#2d7a6b]/90 text-[#1a3a5c] rounded-full px-8 py-3 font-bold group shadow-lg hover:shadow-xl transition-all">
-                  Explorar Más
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <Link href="/nosotros">
+                  <Button className="bg-gradient-to-r from-[#3d9a8b] to-[#2d7a6b] hover:from-[#3d9a8b]/90 hover:to-[#2d7a6b]/90 text-[#1a3a5c] rounded-full px-8 py-3 font-bold group shadow-lg hover:shadow-xl transition-all">
+                    Explorar Más
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </motion.div>
               
               <motion.div 
@@ -341,6 +353,26 @@ export function AboutSection() {
           ))}
         </motion.div>
       </div>
+
+      {/* Video Modal */}
+      <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
+        <DialogContent className="sm:max-w-3xl p-0 overflow-hidden bg-black border-0">
+          <DialogHeader className="sr-only">
+            <DialogTitle>Video de presentación TAMEFOR</DialogTitle>
+          </DialogHeader>
+          <div className="relative aspect-video w-full">
+            {videoOpen && (
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube-nocookie.com/embed/HTTxbC1B2wg?autoplay=1&rel=0"
+                title="Video de presentación TAMEFOR"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }

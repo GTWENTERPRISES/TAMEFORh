@@ -1,12 +1,27 @@
 "use client"
 
-import { MapPin, Mail, Phone, Clock, ArrowRight } from "lucide-react"
+import { useState } from "react"
+import { MapPin, Mail, Phone, Clock, ArrowRight, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { motion } from "framer-motion"
 
 export function ContactSection() {
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" })
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setSubmitted(true)
+    setForm({ name: "", email: "", subject: "", message: "" })
+    setTimeout(() => setSubmitted(false), 5000)
+  }
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

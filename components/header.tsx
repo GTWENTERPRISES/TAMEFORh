@@ -124,11 +124,13 @@ export function Header() {
                 </Button>
               </motion.div>
             </Link>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="rounded-full px-8 bg-[#1a3a5c] hover:bg-[#1a3a5c]/90 text-white font-semibold shadow-md hover:shadow-lg transition-smooth">
-                Únete
-              </Button>
-            </motion.div>
+            <Link href="/miembros">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button className="rounded-full px-8 bg-[#1a3a5c] hover:bg-[#1a3a5c]/90 text-white font-semibold shadow-md hover:shadow-lg transition-smooth">
+                  Únete
+                </Button>
+              </motion.div>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -181,11 +183,13 @@ export function Header() {
                     </Button>
                   </motion.div>
                 </Link>
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Button className="w-full rounded-full bg-[#1a3a5c] hover:bg-[#1a3a5c]/90 text-white font-semibold shadow-md hover:shadow-lg transition-smooth">
-                    Únete
-                  </Button>
-                </motion.div>
+                <Link href="/miembros" className="w-full" onClick={() => setMobileMenuOpen(false)}>
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Button className="w-full rounded-full bg-[#1a3a5c] hover:bg-[#1a3a5c]/90 text-white font-semibold shadow-md hover:shadow-lg transition-smooth">
+                      Únete
+                    </Button>
+                  </motion.div>
+                </Link>
               </div>
             </div>
           </motion.div>
