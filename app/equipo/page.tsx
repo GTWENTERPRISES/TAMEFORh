@@ -1,20 +1,20 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { DirectivaPageClient } from "@/components/pages/DirectivaPageClient"
+import { EquipoPageClient } from "@/components/pages/EquipoPageClient"
 import { CampaignsSection } from "@/components/campaigns-section"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Directiva | TAMEFOR Los Ríos',
-  description: 'Conoce a los profesionales que lideran el Colegio de Ingenieros Forestales de Los Ríos.',
+  title: 'Equipo de Trabajo | TAMEFOR',
+  description: 'Conoce a los profesionales que conforman el equipo de TAMEFOR S.A.S B.I.C.',
 }
 
-export default function DirectivaPage() {
+export default function EquipoPage() {
   return (
     <main className="min-h-screen bg-background">
       <Header />
       <CampaignsSection />
-      <DirectivaPageClient />
+      <EquipoPageClient />
       <Footer />
     </main>
   )

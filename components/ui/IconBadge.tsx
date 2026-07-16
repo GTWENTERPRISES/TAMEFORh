@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -9,6 +10,7 @@ interface IconBadgeProps {
   size?: "sm" | "md" | "lg"
   className?: string
   animated?: boolean
+  href?: string
 }
 
 const sizeClasses = {
@@ -36,11 +38,12 @@ export function IconBadge({
   size = "md",
   className,
   animated = true,
+  href,
 }: IconBadgeProps) {
   const content = (
     <div
       className={cn(
-        "rounded-full flex items-center justify-center transition-all duration-300",
+        "rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer",
         sizeClasses[size],
         variantClasses[variant],
         className
@@ -50,37 +53,56 @@ export function IconBadge({
     </div>
   )
 
+  const wrappedContent = (inner: React.ReactNode) => {
+    if (href) {
+      return (
+        <Link
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {inner}
+        </Link>
+      )
+    }
+    return inner
+  }
+
   if (!animated) {
-    return label ? (
-      <div className="flex items-center gap-2">
-        {content}
-        {label && <span className="text-sm font-medium">{label}</span>}
-      </div>
-    ) : (
-      content
+    return wrappedContent(
+      label ? (
+        <div className="flex items-center gap-2">
+          {content}
+          {label && <span className="text-sm font-medium">{label}</span>}
+        </div>
+      ) : (
+        content
+      )
     )
   }
 
-  return label ? (
-    <motion.div
-      className="flex items-center gap-2"
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.3 }}
-    >
+  return wrappedContent(
+    label ? (
+      <motion.div
+        className="flex items-center gap-2"
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.3 }}
+      >
+        <motion.div
+          whileHover={{ rotate: 360 }}
+          transition={{ duration: 0.6 }}
+        >
+          {content}
+        </motion.div>
+        {label && <span className="text-sm font-medium">{label}</span>}
+      </motion.div>
+    ) : (
       <motion.div
         whileHover={{ rotate: 360 }}
         transition={{ duration: 0.6 }}
       >
         {content}
       </motion.div>
-      {label && <span className="text-sm font-medium">{label}</span>}
-    </motion.div>
-  ) : (
-    <motion.div
-      whileHover={{ rotate: 360 }}
-      transition={{ duration: 0.6 }}
-    >
-      {content}
-    </motion.div>
+    )
   )
 }

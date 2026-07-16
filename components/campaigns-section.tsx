@@ -21,12 +21,12 @@ export function CampaignsSection() {
           <motion.div className="max-w-2xl" variants={itemVariants}>
             {/* Badge */}
             <motion.div 
-              className="inline-flex items-center gap-2 bg-[#3d9a8b] text-white px-6 py-2 rounded-full font-bold uppercase tracking-wider text-sm mb-6 shadow-lg"
+              className="inline-flex items-center gap-2 bg-[#3d9a8b] text-white px-6 py-2 font-bold uppercase tracking-wider text-sm mb-6"
               variants={itemVariants}
               whileHover={{ scale: 1.05, y: -2 }}
             >
               <Sparkles className="w-4 h-4" />
-              <span>Evento Principal</span>
+              <span>Feria Anual</span>
             </motion.div>
 
             {/* Title */}
@@ -34,8 +34,8 @@ export function CampaignsSection() {
               className="text-5xl md:text-6xl text-[#1a3a5c] font-bold leading-tight mb-4"
               variants={itemVariants}
             >
-              Congreso<br />
-              <span className="text-[#3d9a8b]">Internacional</span>
+              Expo Forestal<br />
+              <span className="text-[#3d9a8b]">TAMEFOR 2026</span>
             </motion.h2>
 
             {/* Subtitle */}
@@ -43,7 +43,7 @@ export function CampaignsSection() {
               className="text-2xl md:text-3xl text-[#1a3a5c]/80 mb-6 font-semibold"
               variants={itemVariants}
             >
-              Gestión y Ciencia Forestal Sostenible
+              Feria de Innovación y Sostenibilidad Ambiental
             </motion.h3>
 
             {/* Description */}
@@ -51,7 +51,7 @@ export function CampaignsSection() {
               className="text-[#1a3a5c]/70 text-lg md:text-xl mb-12 leading-relaxed"
               variants={itemVariants}
             >
-              Únete al evento más importante del sector forestal en Los Ríos. Conferencias magistrales, talleres prácticos y networking profesional con expertos nacionales e internacionales.
+              La feria más grande de tecnología forestal, maquinaria, insumos y servicios ambientales. Encuentra proveedores, descubre innovaciones y establece alianzas estratégicas para tu negocio.
             </motion.p>
 
             {/* Event Details */}
@@ -64,58 +64,46 @@ export function CampaignsSection() {
             >
               {/* Dates */}
               <motion.div 
-                className="flex items-start gap-4 p-4 rounded-xl bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 hover:border-[#3d9a8b]/50 transition-all duration-300"
+                className="flex items-start gap-4 p-4 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b] hover:border-[#3d9a8b] transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ x: 5 }}
               >
-                <motion.div
-                  className="w-10 h-10 rounded-full bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0"
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                >
+                <div className="w-10 h-10 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                   <CalendarIcon className="w-5 h-5 text-[#3d9a8b]" />
-                </motion.div>
+                </div>
                 <div>
                   <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Fechas</p>
-                  <p className="text-[#1a3a5c] font-bold text-base">20-22 de Abril, 2026</p>
+                  <p className="text-[#1a3a5c] font-bold text-base">15-17 de Septiembre, 2026</p>
                 </div>
               </motion.div>
 
               {/* Location */}
               <motion.div 
-                className="flex items-start gap-4 p-4 rounded-xl bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 hover:border-[#3d9a8b]/50 transition-all duration-300"
+                className="flex items-start gap-4 p-4 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b] hover:border-[#3d9a8b] transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ x: 5 }}
               >
-                <motion.div
-                  className="w-10 h-10 rounded-full bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0"
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                >
+                <div className="w-10 h-10 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-5 h-5 text-[#3d9a8b]" />
-                </motion.div>
+                </div>
                 <div>
                   <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Ubicación</p>
-                  <p className="text-[#1a3a5c] font-bold text-base">Quevedo, Los Ríos, Ecuador</p>
+                  <p className="text-[#1a3a5c] font-bold text-base">Centro de Convenciones, Quevedo</p>
                 </div>
               </motion.div>
 
               {/* Participants */}
               <motion.div 
-                className="flex items-start gap-4 p-4 rounded-xl bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 hover:border-[#3d9a8b]/50 transition-all duration-300"
+                className="flex items-start gap-4 p-4 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b] hover:border-[#3d9a8b] transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ x: 5 }}
               >
-                <motion.div
-                  className="w-10 h-10 rounded-full bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0"
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                >
+                <div className="w-10 h-10 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                   <Users className="w-5 h-5 text-[#3d9a8b]" />
-                </motion.div>
+                </div>
                 <div>
-                  <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Participantes</p>
-                  <p className="text-[#1a3a5c] font-bold text-base">Más de 500 profesionales</p>
+                  <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Expositores</p>
+                  <p className="text-[#1a3a5c] font-bold text-base">+80 empresas del sector forestal</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -129,14 +117,14 @@ export function CampaignsSection() {
               variants={containerVariants}
             >
               <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button className="bg-[#3d9a8b] hover:bg-[#3d9a8b]/90 text-white rounded-full px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl">
+                <Button className="bg-[#1a3a5c] hover:bg-[#163250] text-white rounded-none px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#1a3a5c]">
                   Más Información
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </motion.div>
               <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button className="bg-[#1a3a5c] hover:bg-[#1a3a5c]/90 text-white rounded-full px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl">
-                  Registrarse
+                <Button className="bg-[#3d9a8b] hover:bg-[#358578] text-white rounded-none px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#3d9a8b]">
+                  Inscríbete
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </motion.div>
@@ -145,13 +133,13 @@ export function CampaignsSection() {
 
           {/* Right Image */}
           <motion.div 
-            className="relative h-96 lg:h-full min-h-96 rounded-2xl overflow-hidden shadow-2xl"
+            className="relative h-96 lg:h-full min-h-96 overflow-hidden shadow-2xl border-4 border-[#3d9a8b]/30"
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070"
-              alt="Congreso Internacional"
+              src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2000"
+              alt="Expo Forestal TAMEFOR 2026"
               fill
               className="object-cover"
               priority
@@ -167,22 +155,6 @@ export function CampaignsSection() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Decorative elements */}
-      <motion.div 
-        className="absolute top-0 right-0 w-96 h-96 bg-[#3d9a8b]/5 rounded-full blur-3xl -mr-48 -mt-48"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-      />
-      <motion.div 
-        className="absolute bottom-0 left-0 w-96 h-96 bg-[#3d9a8b]/5 rounded-full blur-3xl -ml-48 -mb-48"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.2 }}
-        viewport={{ once: true }}
-      />
     </section>
   )
 }

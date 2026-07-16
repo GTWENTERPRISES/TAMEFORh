@@ -20,34 +20,27 @@ export function StatCard({
   return (
     <motion.div
       className={cn(
-        "relative text-center p-8 rounded-3xl bg-gradient-to-br from-[#1a3a5c]/40 to-[#1a3a5c]/20 border border-[#3d9a8b]/30 backdrop-blur-md shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group",
+        "relative text-center p-8 bg-white/10 border-l-4 border-[#3d9a8b] backdrop-blur-md hover:shadow-xl transition-all duration-300 overflow-hidden",
         className
       )}
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
-      whileHover={{ y: -8, scale: 1.05 }}
+      whileHover={{ y: -5 }}
     >
-      {/* Decorative background gradient */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-[#3d9a8b]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-      />
-
       {/* Content */}
       <div className="relative z-10">
         {/* Icon Badge */}
         <motion.div
-          className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3d9a8b] to-[#2d7a6b] mb-6 shadow-lg"
-          whileHover={{ rotate: 360, scale: 1.1 }}
-          transition={{ duration: 0.6 }}
+          className="inline-flex items-center justify-center w-14 h-14 bg-[#3d9a8b]/20 mb-6 border border-[#3d9a8b]/30"
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.3 }}
           initial={{ opacity: 0, scale: 0 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
         >
-          <Icon className="w-8 h-8 text-white" />
+          <Icon className="w-7 h-7 text-[#3d9a8b]" />
         </motion.div>
 
         {/* Value */}
@@ -58,9 +51,7 @@ export function StatCard({
           transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <span className="bg-gradient-to-r from-[#3d9a8b] to-[#5db8a3] bg-clip-text text-transparent">
-            {value}
-          </span>
+          {value}
         </motion.div>
 
         {/* Label */}
@@ -74,13 +65,6 @@ export function StatCard({
           {label}
         </motion.p>
       </div>
-
-      {/* Border accent on hover */}
-      <motion.div
-        className="absolute inset-0 rounded-3xl border-2 border-[#3d9a8b] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-      />
     </motion.div>
   )
 }

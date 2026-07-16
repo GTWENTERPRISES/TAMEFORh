@@ -5,8 +5,17 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { motion } from "framer-motion"
+import { useState } from "react"
 
 export function ContactSection() {
+  const [showModal, setShowModal] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -47,52 +56,50 @@ export function ContactSection() {
     }
   ]
 
-  return (
-    <section id="contact" className="py-20 bg-white relative overflow-hidden">
-      {/* Decorative background elements */}
-      <motion.div 
-        className="absolute top-0 right-0 w-96 h-96 bg-[#3d9a8b]/5 rounded-full blur-3xl -mr-48 -mt-48"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-      />
-      <motion.div 
-        className="absolute bottom-0 left-0 w-96 h-96 bg-[#3d9a8b]/5 rounded-full blur-3xl -ml-48 -mb-48"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.2 }}
-        viewport={{ once: true }}
-      />
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('Formulario enviado:', formData)
+    setShowModal(true)
+  }
 
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    })
+    setShowModal(false)
+  }
+
+  return (
+    <section id="contact" className="py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <svg className="w-5 h-5 text-[#3d9a8b]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C13.5 2 15 3.5 15 5C15 6.5 13.5 8 12 8C10.5 8 9 6.5 9 5C9 3.5 10.5 2 12 2ZM17 7C17 7 21 10 21 14C21 18 17 22 12 22C7 22 3 18 3 14C3 10 7 7 7 7" />
-            </svg>
-            <span className="text-[#3d9a8b] font-medium uppercase tracking-wider text-sm">Contáctanos</span>
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <div className="w-12 h-[2px] bg-[#3d9a8b]" />
+            <span className="text-[#3d9a8b] font-semibold uppercase tracking-[0.2em] text-sm">Información de Contacto</span>
+            <div className="w-12 h-[2px] bg-[#3d9a8b]" />
           </div>
-          <h2 className="font-sans text-4xl md:text-5xl lg:text-6xl text-[#1a3a5c] leading-tight font-bold mb-4">
-            Estamos Aquí<br />
-            <span className="text-[#3d9a8b]">Para Ayudarte</span>
+          <h2 className="font-sans text-4xl md:text-5xl text-[#1a3a5c] leading-tight font-bold mb-6">
+            Conecta<br />
+            <span className="text-[#3d9a8b]">Con Nosotros</span>
           </h2>
+          <div className="w-24 h-1 bg-[#3d9a8b] mx-auto mb-6" />
           <p className="text-[#1a3a5c]/70 max-w-2xl mx-auto text-lg">
-            Ponte en contacto con nosotros para más información sobre nuestros servicios
+            Estamos listos para atender tus consultas y brindarte la información que necesites sobre nuestros servicios profesionales
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Información de contacto */}
+        <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
           <motion.div 
-            className="space-y-8"
+            className="lg:col-span-1 space-y-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -101,100 +108,121 @@ export function ContactSection() {
             {contactItems.map((item, index) => (
               <motion.div 
                 key={index} 
-                className="flex items-start gap-6 group"
+                className="flex items-start gap-6 bg-white p-6 border-l-4 border-[#3d9a8b]"
                 variants={itemVariants}
-                whileHover={{ x: 10 }}
               >
-                <motion.div 
-                  className="w-20 h-20 rounded-full bg-[#3d9a8b]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#3d9a8b] transition-all duration-300 shadow-lg"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <item.icon className="h-8 w-8 text-[#3d9a8b] group-hover:text-white transition-colors" />
-                </motion.div>
-                <div>
-                  <h3 className="font-sans font-bold text-[#1a3a5c] mb-2 text-xl">{item.title}</h3>
+                <div className="w-16 h-16 bg-[#1a3a5c] flex items-center justify-center flex-shrink-0 border-t-4 border-[#3d9a8b]">
+                  <item.icon className="h-7 w-7 text-[#3d9a8b]" />
+                </div>
+                <div className="pt-2">
+                  <h3 className="font-sans font-bold text-[#1a3a5c] mb-3 text-lg">{item.title}</h3>
                   {item.href ? (
-                    <a href={item.href} className="text-[#3d9a8b] hover:text-[#1a3a5c] transition-colors font-medium">
+                    <a href={item.href} className="text-[#1a3a5c]/80 hover:text-[#3d9a8b] transition-colors font-medium">
                       {item.content}
                     </a>
                   ) : (
-                    <p className="text-[#1a3a5c]/70 font-medium">{item.content}</p>
+                    <p className="text-[#1a3a5c]/80 font-medium">{item.content}</p>
                   )}
                 </div>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Formulario de contacto */}
           <motion.div 
-            className="bg-gradient-to-br from-[#1a3a5c] to-[#0f2a45] rounded-3xl shadow-2xl p-10 border border-[#3d9a8b]/20"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            className="lg:col-span-2 bg-white p-10 border-l-4 border-[#3d9a8b]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            whileHover={{ boxShadow: "0 25px 50px -12px rgba(61, 154, 139, 0.3)" }}
           >
-            <motion.h3 
-              className="text-3xl font-sans font-bold text-white mb-8"
-              initial={{ opacity: 0, y: -10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              viewport={{ once: true }}
-            >
+            <h3 className="text-2xl font-sans font-bold text-[#1a3a5c] mb-8">
               Enviar Mensaje
-            </motion.h3>
-            <form className="space-y-5">
+            </h3>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-[#1a3a5c] font-semibold mb-3">Nombre completo</label>
+                  <Input 
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Ingrese su nombre completo" 
+                    className="w-full bg-white !bg-white border-[#3d9a8b]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-[#1a3a5c] font-semibold mb-3">Correo electrónico</label>
+                  <Input 
+                    type="email" 
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="correo@ejemplo.com" 
+                    className="w-full bg-white !bg-white border-[#3d9a8b]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none" 
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-[#1a3a5c] font-semibold mb-3">Asunto</label>
+                <Input 
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  placeholder="Ingrese el asunto de su consulta" 
+                  className="w-full bg-white !bg-white border-[#3d9a8b]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none" 
+                />
+              </div>
+              <div>
+                <label className="block text-[#1a3a5c] font-semibold mb-3">Mensaje</label>
+                <Textarea 
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Escriba su mensaje detalladamente" 
+                  rows={5} 
+                  className="w-full bg-white !bg-white border-[#3d9a8b]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none resize-none" 
+                />
+              </div>
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <Input placeholder="Nombre completo" className="w-full bg-white border-white text-[#1a3a5c] placeholder:text-white font-medium rounded-lg h-12" />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35, duration: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <Input type="email" placeholder="Correo electrónico" className="w-full bg-white border-white text-[#1a3a5c] placeholder:text-white font-medium rounded-lg h-12" />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <Input placeholder="Asunto" className="w-full bg-white border-white text-[#1a3a5c] placeholder:text-white font-medium rounded-lg h-12" />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45, duration: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <Textarea placeholder="Mensaje" rows={5} className="w-full bg-white border-white text-[#1a3a5c] placeholder:text-white font-medium rounded-lg" />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.4 }}
-                viewport={{ once: true }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Button className="w-full bg-[#3d9a8b] hover:bg-white text-white hover:text-[#1a3a5c] rounded-full font-bold py-3 text-lg group transition-all duration-300 shadow-lg hover:shadow-xl">
+                <Button className="w-full bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white rounded-none py-4 font-semibold text-base transition-all duration-300 shadow-none border-2 border-[#1a3a5c] hover:border-[#3d9a8b]">
                   Enviar Mensaje
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-3 h-4 w-4" />
                 </Button>
               </motion.div>
             </form>
           </motion.div>
         </div>
       </div>
+
+      {/* Modal de Confirmación */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white max-w-md w-full p-8 border-l-4 border-[#3d9a8b]">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-[#3d9a8b] flex items-center justify-center">
+                <ArrowRight className="w-6 h-6 text-white rotate-[-90deg]" />
+              </div>
+              <div>
+                <h3 className="font-sans text-2xl text-[#1a3a5c] font-bold">¡Mensaje Enviado!</h3>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <p className="text-[#1a3a5c]/80 text-base">
+              Gracias por contactarnos. Su mensaje ha sido recibido exitosamente.</p>
+              <p className="text-[#1a3a5c]/80 text-base">
+                Nos pondremos en contacto con usted a la brevedad posible.
+              </p>
+            </div>
+            <div className="mt-8">
+              <Button
+                onClick={resetForm}
+                className="w-full bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white py-3 font-bold text-lg transition-all duration-300 border-2 border-[#1a3a5c] hover:border-[#3d9a8b]"
+              >
+                Aceptar
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
-
-

@@ -1,9 +1,9 @@
 'use client'
 
 import { Calendar, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { newsData } from "@/lib/newsData"
-import Image from "next/image"
 import { motion } from "framer-motion"
 
 const containerVariants = {
@@ -36,10 +36,10 @@ const headerVariants = {
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
-    scale: 1,
+    y: 0,
     transition: { duration: 0.6, ease: "easeOut" },
   },
 }
@@ -48,37 +48,27 @@ export function NoticiasPageClient() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070"
-            alt="Noticias"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1a3a5c]/95 via-[#1a3a5c]/80 to-[#1a3a5c]/60" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-24 bg-gradient-to-r from-[#1a3a5c] via-[#163250] to-[#0f2a45]">
+        <div className="container mx-auto px-4">
           <motion.div
-            className="max-w-3xl"
+            className="max-w-4xl"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
           >
             <motion.div className="flex items-center gap-2 mb-6" variants={itemVariants}>
-              <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C13.5 2 15 3.5 15 5C15 6.5 13.5 8 12 8C10.5 8 9 6.5 9 5C9 3.5 10.5 2 12 2ZM17 7C17 7 21 10 21 14C21 18 17 22 12 22C7 22 3 18 3 14C3 10 7 7 7 7" />
-              </svg>
-              <span className="text-white font-medium">Actualidad Forestal</span>
+              <div className="w-8 h-1 bg-[#3d9a8b]" />
+              <span className="text-[#3d9a8b] font-semibold uppercase tracking-wider text-sm">Actualidad Forestal</span>
+              <div className="w-8 h-1 bg-[#3d9a8b]" />
             </motion.div>
             <motion.h1
-              className="font-sans text-5xl md:text-6xl text-white font-bold leading-tight mb-6"
+              className="font-sans text-4xl md:text-5xl text-white font-bold leading-tight mb-6"
               variants={headerVariants}
             >
               Últimas Noticias<br />
-              <span className="text-white">Del Sector</span>
+              <span className="text-[#3d9a8b]">Del Sector</span>
             </motion.h1>
-            <motion.p className="text-white/80 text-xl" variants={itemVariants}>
+            <motion.p className="text-white/80 text-lg" variants={itemVariants}>
               Mantente informado sobre las novedades y desarrollos en el ámbito forestal
             </motion.p>
           </motion.div>
@@ -86,12 +76,8 @@ export function NoticiasPageClient() {
       </section>
 
       {/* News Grid */}
-      <section className="py-20 bg-white relative overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#3d9a8b]/5 rounded-full blur-3xl -mr-48 -mt-48" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#3d9a8b]/5 rounded-full blur-3xl -ml-48 -mb-48" />
-
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
           {/* Section Header */}
           <motion.div
             className="text-center mb-16"
@@ -100,20 +86,20 @@ export function NoticiasPageClient() {
             viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
           >
-            <motion.div className="flex items-center justify-center gap-2 mb-4" variants={itemVariants}>
-              <svg className="w-5 h-5 text-[#3d9a8b]" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C13.5 2 15 3.5 15 5C15 6.5 13.5 8 12 8C10.5 8 9 6.5 9 5C9 3.5 10.5 2 12 2ZM17 7C17 7 21 10 21 14C21 18 17 22 12 22C7 22 3 18 3 14C3 10 7 7 7 7" />
-              </svg>
-              <span className="text-[#3d9a8b] font-medium uppercase tracking-wider text-sm">Actualidad Forestal</span>
+            <motion.div className="flex items-center justify-center gap-2 mb-6" variants={itemVariants}>
+              <div className="w-8 h-1 bg-[#3d9a8b]" />
+              <span className="text-[#3d9a8b] font-semibold uppercase tracking-wider text-sm">Actualidad Forestal</span>
+              <div className="w-8 h-1 bg-[#3d9a8b]" />
             </motion.div>
             <motion.h2
-              className="font-sans text-4xl md:text-5xl lg:text-6xl text-[#1a3a5c] leading-tight font-bold mb-4"
+              className="font-sans text-4xl md:text-5xl text-[#1a3a5c] leading-tight font-bold mb-4"
               variants={headerVariants}
             >
               Últimas Noticias<br />
               <span className="text-[#3d9a8b]">Del Sector</span>
             </motion.h2>
-            <motion.p className="text-[#1a3a5c]/70 max-w-2xl mx-auto text-lg font-medium" variants={itemVariants}>
+            <div className="w-24 h-1 bg-[#3d9a8b] mx-auto mb-6" />
+            <motion.p className="text-[#1a3a5c]/70 max-w-2xl mx-auto text-lg" variants={itemVariants}>
               Mantente informado sobre las novedades y desarrollos en el ámbito forestal
             </motion.p>
           </motion.div>
@@ -128,83 +114,52 @@ export function NoticiasPageClient() {
             {newsData.map((article, index) => (
               <motion.div
                 key={article.id}
-                className="group relative h-[520px] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-[#3d9a8b] bg-white"
                 variants={cardVariants}
                 whileHover={{ y: -10 }}
               >
-                {/* Background Image */}
-                <Image
-                  src={article.featuredImage}
-                  alt={article.title}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a5c]/99 via-[#1a3a5c]/75 to-[#1a3a5c]/20" />
-                
-                {/* Category Badge */}
-                <motion.div
-                  className="absolute top-6 left-6"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05, duration: 0.4 }}
-                  viewport={{ once: true }}
-                >
-                  <span className="bg-[#3d9a8b] text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg">
-                    {article.category.toUpperCase()}
-                  </span>
-                </motion.div>
+                {/* Article Image */}
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={article.featuredImage}
+                    alt={article.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
                 
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col h-full justify-end">
-                  <motion.div
-                    className="flex items-center gap-3 text-sm text-white/80 mb-4"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 + 0.1, duration: 0.4 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                      <Calendar className="h-4 w-4 text-white" />
+                <div className="p-8">
+                  {/* Badges */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="bg-[#1a3a5c] text-white text-xs font-bold px-3 py-1.5 uppercase tracking-wider">
+                      {article.category.toUpperCase()}
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 text-sm text-[#1a3a5c] mb-4">
+                    <div className="w-7 h-7 bg-[#1a3a5c] flex items-center justify-center flex-shrink-0 border-t-2 border-[#3d9a8b]">
+                      <Calendar className="h-3.5 w-3.5 text-[#3d9a8b]" />
                     </div>
                     <span className="font-medium">{new Date(article.publishDate).toLocaleDateString('es-ES', { 
                       day: 'numeric', 
                       month: 'short', 
                       year: 'numeric' 
                     })}</span>
-                  </motion.div>
-                  <motion.h3
-                    className="font-sans text-2xl lg:text-3xl text-white mb-3 line-clamp-2 font-bold leading-tight"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 + 0.15, duration: 0.4 }}
-                    viewport={{ once: true }}
-                  >
+                  </div>
+                  
+                  <h3 className="font-sans text-2xl text-[#1a3a5c] mb-3 font-bold leading-tight">
                     {article.title}
-                  </motion.h3>
-                  <motion.p
-                    className="text-white/95 text-sm mb-6 line-clamp-3 font-medium leading-relaxed"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: index * 0.05 + 0.2, duration: 0.4 }}
-                    viewport={{ once: true }}
-                  >
+                  </h3>
+                  <p className="text-[#1a3a5c]/70 text-sm mb-6 leading-relaxed">
                     {article.excerpt}
-                  </motion.p>
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 + 0.25, duration: 0.4 }}
-                    viewport={{ once: true }}
-                  >
-                    <Link href={`/noticias/${article.slug}`}>
-                      <span className="text-white hover:text-[#3d9a8b] font-bold inline-flex items-center group/link transition-colors">
-                        Leer Más
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
-                      </span>
-                    </Link>
-                  </motion.div>
+                  </p>
+
+                  <Link href={`/noticias/${article.slug}`}>
+                    <Button className="w-full bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white font-semibold py-3 transition-all duration-300 shadow-none border-2 border-[#1a3a5c] hover:border-[#3d9a8b]">
+                      Leer Más
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </div>
               </motion.div>
             ))}

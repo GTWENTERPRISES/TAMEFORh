@@ -37,38 +37,37 @@ export function ContactoPageClient() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden">
+      <section className="relative py-32 overflow-hidden bg-gradient-to-r from-[#1a3a5c] via-[#163250] to-[#0f2a45]">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070"
+            src="https://images.unsplash.com/photo-1554266573-199031e79153?q=80&w=2070"
             alt="Contacto"
             fill
-            className="object-cover"
+            className="object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1a3a5c]/95 via-[#1a3a5c]/80 to-[#1a3a5c]/60" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
-            className="max-w-3xl"
+            className="max-w-4xl mx-auto text-center"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
           >
-            <motion.div className="flex items-center gap-2 mb-6" variants={itemVariants}>
-              <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C13.5 2 15 3.5 15 5C15 6.5 13.5 8 12 8C10.5 8 9 6.5 9 5C9 3.5 10.5 2 12 2ZM17 7C17 7 21 10 21 14C21 18 17 22 12 22C7 22 3 18 3 14C3 10 7 7 7 7" />
-              </svg>
-              <span className="text-white font-medium uppercase tracking-wider text-sm">Contáctanos</span>
+            <motion.div className="flex items-center justify-center gap-2 mb-8" variants={itemVariants}>
+              <div className="w-12 h-[2px] bg-[#3d9a8b]" />
+              <span className="text-[#3d9a8b] font-semibold uppercase tracking-wider text-sm">Contáctanos</span>
+              <div className="w-12 h-[2px] bg-[#3d9a8b]" />
             </motion.div>
             <motion.h1
               className="font-sans text-5xl md:text-6xl text-white font-bold leading-tight mb-6"
               variants={headerVariants}
             >
-              Contacto<br />
-              <span className="text-white">Estamos Aquí Para Ayudarte</span>
+              Atención al Cliente<br />
+              <span className="text-[#3d9a8b]">TAMEFOR S.A.S B.I.C</span>
             </motion.h1>
-            <motion.p className="text-white/80 text-xl" variants={itemVariants}>
-              Ponte en contacto con nosotros para más información sobre nuestros servicios
+            <div className="w-24 h-1 bg-[#3d9a8b] mx-auto mb-8" />
+            <motion.p className="text-white/80 text-xl max-w-2xl mx-auto" variants={itemVariants}>
+              Estamos comprometidos con la excelencia en nuestro servicio. Ponte en contacto con nosotros para recibir información detallada sobre nuestros programas y servicios.
             </motion.p>
           </motion.div>
         </div>

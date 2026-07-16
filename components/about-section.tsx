@@ -41,7 +41,7 @@ const stats = [
   { icon: TrendingUp, value: "2025", label: "Año de Fundación" },
   { icon: Lightbulb, value: "ISO", label: "Certificaciones 14001 y 9001" },
   { icon: ThumbsUp, value: "B.I.C", label: "Empresa de Beneficio Colectivo" },
-  { icon: Users, value: "100%", label: "Proyectos con Respaldo Legal" },
+  { icon: Leaf, value: "500+", label: "Proyectos Ambientales Realizados" },
 ]
 
 export function AboutSection() {
@@ -49,22 +49,6 @@ export function AboutSection() {
 
   return (
     <section id="about" className="section-padding bg-[#1a3a5c] text-white relative overflow-hidden">
-      {/* Decorative background elements */}
-      <motion.div 
-        className="absolute top-0 right-0 w-96 h-96 bg-[#3d9a8b]/5 rounded-full blur-3xl -mr-48 -mt-48"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-      />
-      <motion.div 
-        className="absolute bottom-0 left-0 w-96 h-96 bg-[#3d9a8b]/5 rounded-full blur-3xl -ml-48 -mb-48"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.2 }}
-        viewport={{ once: true }}
-      />
-
       <div className="container-max relative z-10">
         <motion.div 
           className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
@@ -73,110 +57,77 @@ export function AboutSection() {
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
         >
-          {/* Image Side - Enhanced */}
-          <motion.div className="relative h-96 lg:h-full flex items-center justify-center" variants={slideInFromLeftVariants}>
-            {/* Decorative background circle */}
+          {/* Image Side - Formal Design */}
+          <motion.div className="relative h-[450px] lg:h-full flex items-center justify-center" variants={slideInFromLeftVariants}>
+            {/* Decorative background - Formal */}
             <motion.div 
-              className="absolute inset-0 bg-gradient-to-br from-[#3d9a8b]/10 to-transparent rounded-full blur-2xl"
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
+              className="absolute -bottom-10 -left-10 w-72 h-72 border-2 border-[#3d9a8b]/30"
+              initial={{ opacity: 0, x: -20, y: 20 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             />
-
-            {/* Main Image */}
             <motion.div 
-              className="relative z-10 w-64 h-80 rounded-3xl overflow-hidden border-4 border-[#3d9a8b] shadow-2xl"
-              whileHover={{ scale: 1.05, y: -10 }}
+              className="absolute -top-10 -right-10 w-72 h-72 border-2 border-[#3d9a8b]/20"
+              initial={{ opacity: 0, x: 20, y: -20 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            />
+
+            {/* Main Image - Formal */}
+            <motion.div 
+              className="relative z-10 w-full max-w-md h-[400px] overflow-hidden shadow-xl border-2 border-[#1a3a5c]/10"
+              whileHover={{ y: -5 }}
               transition={{ duration: 0.3 }}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
             >
               <Image
-                src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=2074"
-                alt="Voluntario ambiental"
+                src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?q=80&w=1200"
+                alt="Equipo TAMEFOR"
                 fill
                 className="object-cover"
+                priority
               />
-              {/* Award Badge - Enhanced */}
+              {/* Overlay Gradient - Formal */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a5c]/80 via-transparent to-transparent" />
+              
+              {/* Award Badge - Formal */}
               <motion.div 
-                className="absolute bottom-4 left-4 right-4 bg-gradient-to-r from-[#3d9a8b] to-[#2d7a6b] rounded-2xl p-4 flex items-center gap-3 shadow-xl border border-[#3d9a8b]/50"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
+                className="absolute bottom-6 left-6 bg-white text-[#1a3a5c] p-5 shadow-lg border-l-4 border-[#3d9a8b]"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
               >
-                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
-                  <Award className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <p className="text-white text-sm font-bold leading-tight">2024 - Somos los</p>
-                  <p className="text-white/90 text-xs font-semibold">mejores ganadores</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-[#3d9a8b]/10 flex items-center justify-center flex-shrink-0">
+                    <Award className="w-5 h-5 text-[#3d9a8b]" />
+                  </div>
+                  <div>
+                    <p className="text-[#1a3a5c] text-sm font-bold leading-tight">2026 - Reconocimiento</p>
+                    <p className="text-[#1a3a5c]/70 text-xs font-medium">Excelencia Ambiental</p>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
 
-            {/* Secondary Image with Play Button - Enhanced */}
+            {/* Trust Badge - Formal */}
             <motion.div 
-              className="absolute top-16 left-40 w-56 h-72 rounded-full overflow-hidden border-4 border-[#3d9a8b] shadow-2xl z-20"
-              initial={{ opacity: 0, scale: 0.8, x: -50 }}
-              whileInView={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              className="absolute -top-5 -right-5 bg-white text-[#1a3a5c] p-6 z-30 shadow-xl border-2 border-[#3d9a8b]"
+              initial={{ opacity: 0, scale: 0.8, y: -20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.08, y: -10 }}
             >
-              <Image
-                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013"
-                alt="Persona con planta"
-                fill
-                className="object-cover"
-              />
-              {/* Play Button - Enhanced */}
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/40 to-transparent hover:from-black/60 transition-all">
-                <motion.button 
-                  className="w-16 h-16 bg-gradient-to-br from-[#3d9a8b] to-[#2d7a6b] rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-shadow"
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Play className="w-6 h-6 text-white fill-white ml-1" />
-                </motion.button>
+              <div className="text-center">
+                <div className="text-5xl font-black text-[#3d9a8b] mb-1">500+</div>
+                <div className="text-[#1a3a5c] text-xs font-semibold uppercase tracking-wider">Proyectos<br/>Completados</div>
               </div>
             </motion.div>
 
-            {/* Years Experience Badge - Enhanced */}
-            <motion.div 
-              className="absolute -top-4 right-8 bg-gradient-to-br from-[#3d9a8b] to-[#2d7a6b] rounded-3xl p-5 z-30 shadow-xl border border-[#3d9a8b]/50"
-              initial={{ opacity: 0, scale: 0.8, y: -20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.1, y: -5 }}
-            >
-              <div className="text-5xl font-bold text-white">29<span className="text-2xl">+</span></div>
-              <div className="text-white text-sm font-bold mt-1">Años de<br/>experiencia</div>
-            </motion.div>
-
-            {/* Decorative dots */}
-            <motion.div 
-              className="absolute bottom-0 left-0 grid grid-cols-6 gap-2"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              {Array.from({ length: 18 }).map((_, i) => (
-                <motion.div 
-                  key={i} 
-                  className="w-3 h-3 rounded-full bg-[#3d9a8b]/40 hover:bg-[#3d9a8b]/80 transition-colors"
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5 + i * 0.05, duration: 0.3 }}
-                  viewport={{ once: true }}
-                />
-              ))}
-            </motion.div>
           </motion.div>
 
           {/* Content Side - Enhanced */}
@@ -185,47 +136,47 @@ export function AboutSection() {
             <motion.div variants={itemVariants}>
               <SectionHeader
                 icon={Leaf}
+                subtitle="Sobre Nosotros"
                 title="Construyendo un Futuro"
-                titleHighlight="Más Verde Juntos"
+                titleHighlight="Forestal Sostenible"
                 centered={false}
+                dark={true}
+                description="Conoce a TAMEFOR S.A.S B.I.C - Consultoría forestal y ambiental"
               />
             </motion.div>
 
-            {/* Tabs - Enhanced */}
+            {/* Tabs - Formal */}
             <motion.div 
-              className="flex flex-wrap gap-3"
+              className="flex flex-wrap gap-4 border-b border-[#3d9a8b]/30 pb-2"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
               viewport={{ once: true }}
             >
               {tabs.map((tab, idx) => (
-                <motion.div 
-                  key={tab} 
-                  whileHover={{ scale: 1.05 }} 
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                <motion.button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-6 py-3 text-sm font-semibold transition-all border-b-2 ${
+                    activeTab === tab
+                      ? "text-[#3d9a8b] border-[#3d9a8b]"
+                      : "text-white/70 border-transparent hover:text-white hover:border-[#3d9a8b]/50"
+                  }`}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + idx * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Button
-                    onClick={() => setActiveTab(tab)}
-                    className={`rounded-full text-sm font-bold transition-all shadow-md ${
-                      activeTab === tab 
-                        ? "bg-[#3d9a8b] text-[#1a3a5c] hover:bg-[#3d9a8b]/90 shadow-lg" 
-                        : "bg-white text-[#1a3a5c] hover:bg-white/90 border-2 border-white shadow-md"
-                    }`}
-                  >
-                    {tab}
-                  </Button>
-                </motion.div>
+                  {tab}
+                </motion.button>
               ))}
             </motion.div>
 
-            {/* Tab Content - Enhanced */}
+            {/* Tab Content - Formal */}
             <motion.div 
-              className="space-y-6 bg-gradient-to-br from-[#1a3a5c]/60 to-[#1a3a5c]/40 rounded-3xl p-8 border border-[#3d9a8b]/30 backdrop-blur-md shadow-lg"
+              className="space-y-6 pt-6"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
@@ -233,82 +184,52 @@ export function AboutSection() {
               key={activeTab}
             >
               <motion.p 
-                className="text-white/95 leading-relaxed text-base font-medium"
+                className="text-white/90 leading-relaxed text-base"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4 }}
               >
                 {tabContent[activeTab as keyof typeof tabContent].text}
               </motion.p>
-              <ul className="space-y-4">
+              <ul className="space-y-3 pt-2">
                 {tabContent[activeTab as keyof typeof tabContent].points.map((point, index) => (
                   <motion.li 
                     key={index} 
-                    className="flex items-start gap-4"
+                    className="flex items-start gap-3"
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
                     viewport={{ once: true }}
                   >
-                    <motion.div 
-                      className="bg-[#3d9a8b]/40 rounded-full p-2 mt-0.5 flex-shrink-0 border border-[#3d9a8b]/50"
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      <Check className="h-5 w-5 text-[#3d9a8b]" />
-                    </motion.div>
-                    <span className="text-white/90 text-sm leading-relaxed">{point}</span>
+                    <div className="w-6 h-6 border-2 border-[#3d9a8b] flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <Check className="h-3.5 w-3.5 text-[#3d9a8b]" />
+                    </div>
+                    <span className="text-white/80 text-sm leading-relaxed">{point}</span>
                   </motion.li>
                 ))}
               </ul>
             </motion.div>
 
-            {/* CTA and Trustpilot - Enhanced */}
+            {/* CTA - Formal */}
             <motion.div 
-              className="flex flex-wrap items-center gap-6 pt-6"
+              className="pt-8"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.5 }}
               viewport={{ once: true }}
             >
               <motion.div 
-                whileHover={{ scale: 1.05 }} 
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }} 
+                whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.7 }}
                 viewport={{ once: true }}
               >
-                <Button className="bg-gradient-to-r from-[#3d9a8b] to-[#2d7a6b] hover:from-[#3d9a8b]/90 hover:to-[#2d7a6b]/90 text-[#1a3a5c] rounded-full px-8 py-3 font-bold group shadow-lg hover:shadow-xl transition-all">
-                  Explorar Más
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <Button className="bg-[#3d9a8b] hover:bg-[#3d9a8b]/90 text-white rounded-none px-10 py-4 font-semibold shadow-md transition-all text-base border-2 border-[#3d9a8b]">
+                  Conocer Más
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </motion.div>
-              
-              <motion.div 
-                className="flex items-center gap-3 bg-gradient-to-r from-[#1a3a5c]/60 to-[#1a3a5c]/40 rounded-full px-5 py-3 border border-[#3d9a8b]/30 backdrop-blur-md shadow-md"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.7 }}
-                viewport={{ once: true }}
-              >
-                <span className="text-white font-bold text-sm">Trustpilot</span>
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <motion.div 
-                      key={i} 
-                      className="w-5 h-5 bg-[#3d9a8b]"
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <svg viewBox="0 0 20 20" fill="white" className="w-full h-full p-0.5">
-                        <path d="M10 1L12.39 6.86H18.66L13.63 10.64L15.52 16.5L10 12.72L4.48 16.5L6.37 10.64L1.34 6.86H7.61L10 1Z" />
-                      </svg>
-                    </motion.div>
-                  ))}
-                </div>
-                <span className="text-[#3d9a8b] text-sm font-bold">Excelente 4.9 de 5</span>
               </motion.div>
             </motion.div>
           </motion.div>

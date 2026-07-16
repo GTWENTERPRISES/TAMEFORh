@@ -45,7 +45,7 @@ export const projectsData: Project[] = [
     status: 'en-curso',
     budget: '$150,000',
     beneficiaries: '500 familias, 2,500 hectáreas',
-    images: ['/placeholder.jpg'],
+    images: ['https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2070'],
     objectives: [
       'Reforestar 2,500 hectáreas con especies nativas',
       'Restaurar el ecosistema ribereño',
@@ -110,7 +110,7 @@ export const projectsData: Project[] = [
     status: 'en-curso',
     budget: '$200,000',
     beneficiaries: '300 productores, 5,000 hectáreas',
-    images: ['/placeholder.jpg'],
+    images: ['https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2070'],
     objectives: [
       'Capacitar a 300 productores forestales',
       'Implementar prácticas sostenibles',
@@ -166,7 +166,7 @@ export const projectsData: Project[] = [
     status: 'en-curso',
     budget: '$120,000',
     beneficiaries: 'Comunidad científica, 1,000 hectáreas',
-    images: ['/placeholder.jpg'],
+    images: ['https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2070'],
     objectives: [
       'Inventariar especies de flora y fauna',
       'Evaluar servicios ecosistémicos',
@@ -222,7 +222,7 @@ export const projectsData: Project[] = [
     status: 'en-curso',
     budget: '$180,000',
     beneficiaries: '3,000 hectáreas protegidas',
-    images: ['/placeholder.jpg'],
+    images: ['https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2070'],
     objectives: [
       'Proteger 3,000 hectáreas de bosque',
       'Reducir deforestación',

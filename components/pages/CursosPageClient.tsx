@@ -1,12 +1,11 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { Calendar, Clock, MapPin, ArrowRight, BookOpen, Users, Award } from "lucide-react"
+import { Clock, MapPin, ArrowRight, BookOpen, Users, Award } from "lucide-react"
 import Link from "next/link"
 import { coursesData } from "@/lib/coursesData"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { useState } from "react"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -46,49 +45,31 @@ const cardVariants = {
   },
 }
 
-const categoryFilters = [
-  { value: 'todos', label: 'Todos los Cursos' },
-  { value: 'administracion-general', label: 'Administración General' },
-  { value: 'gestion-impacto-ambiental', label: 'Gestión Ambiental' },
-  { value: 'legislacion', label: 'Legislación' },
-  { value: 'manejo-recursos-naturales', label: 'Recursos Naturales' },
-  { value: 'produccion-limpia', label: 'Producción Limpia' },
-]
-
-const categoryColors: Record<string, { bg: string; text: string; gradient: string }> = {
-  'administracion-general': { 
-    bg: 'bg-amber-500/20', 
-    text: 'text-amber-300',
-    gradient: 'from-[#1a3a5c] via-[#2d4a6c] to-amber-700'
+const categoryColors: Record<string, { bar: string; badge: string }> = {
+  'administracion-general': {
+    bar: 'bg-[#1a3a5c]',
+    badge: 'bg-[#1a3a5c]/10 text-[#1a3a5c]',
   },
-  'gestion-impacto-ambiental': { 
-    bg: 'bg-emerald-500/20', 
-    text: 'text-emerald-300',
-    gradient: 'from-[#1a3a5c] via-[#1a3a5c] to-[#3d9a8b]'
+  'gestion-impacto-ambiental': {
+    bar: 'bg-[#3d9a8b]',
+    badge: 'bg-[#3d9a8b]/10 text-[#3d9a8b]',
   },
-  'legislacion': { 
-    bg: 'bg-violet-500/20', 
-    text: 'text-violet-300',
-    gradient: 'from-[#1a3a5c] via-[#2d3a6c] to-violet-700'
+  'legislacion': {
+    bar: 'bg-[#1a3a5c]',
+    badge: 'bg-[#1a3a5c]/10 text-[#1a3a5c]',
   },
-  'manejo-recursos-naturales': { 
-    bg: 'bg-teal-500/20', 
-    text: 'text-teal-300',
-    gradient: 'from-[#1a3a5c] via-[#1a4a5c] to-teal-700'
+  'manejo-recursos-naturales': {
+    bar: 'bg-[#3d9a8b]',
+    badge: 'bg-[#3d9a8b]/10 text-[#3d9a8b]',
   },
-  'produccion-limpia': { 
-    bg: 'bg-lime-500/20', 
-    text: 'text-lime-300',
-    gradient: 'from-[#1a3a5c] via-[#2a4a3c] to-lime-800'
+  'produccion-limpia': {
+    bar: 'bg-[#1a3a5c]',
+    badge: 'bg-[#1a3a5c]/10 text-[#1a3a5c]',
   },
 }
 
 export function CursosPageClient() {
-  const [activeFilter, setActiveFilter] = useState('todos')
-
-  const filteredCourses = activeFilter === 'todos' 
-    ? coursesData 
-    : coursesData.filter(course => course.category === activeFilter)
+  const filteredCourses = coursesData
 
   return (
     <>
@@ -111,8 +92,8 @@ export function CursosPageClient() {
             variants={containerVariants}
           >
             <motion.div className="flex items-center gap-2 mb-6" variants={itemVariants}>
-              <BookOpen className="w-5 h-5 text-[#3d9a8b]" />
-              <span className="text-[#3d9a8b] font-medium uppercase tracking-wider text-sm">Capacitación Continua</span>
+              <div className="w-8 h-1 bg-[#3d9a8b]" />
+              <span className="text-white font-semibold uppercase tracking-wider text-sm">Capacitación Continua</span>
             </motion.div>
             <motion.h1
               className="font-sans text-5xl md:text-6xl text-white font-bold leading-tight mb-6"
@@ -129,7 +110,7 @@ export function CursosPageClient() {
             {/* Stats */}
             <motion.div className="flex flex-wrap gap-8" variants={itemVariants}>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-[#3d9a8b]/20 flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#3d9a8b]/20 border border-[#3d9a8b]/30 flex items-center justify-center">
                   <BookOpen className="w-6 h-6 text-[#3d9a8b]" />
                 </div>
                 <div>
@@ -138,7 +119,7 @@ export function CursosPageClient() {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-[#3d9a8b]/20 flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#3d9a8b]/20 border border-[#3d9a8b]/30 flex items-center justify-center">
                   <Clock className="w-6 h-6 text-[#3d9a8b]" />
                 </div>
                 <div>
@@ -147,7 +128,7 @@ export function CursosPageClient() {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-[#3d9a8b]/20 flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#3d9a8b]/20 border border-[#3d9a8b]/30 flex items-center justify-center">
                   <Award className="w-6 h-6 text-[#3d9a8b]" />
                 </div>
                 <div>
@@ -163,8 +144,8 @@ export function CursosPageClient() {
       {/* Courses Grid */}
       <section className="py-20 bg-white relative overflow-hidden">
         {/* Decorative background elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#3d9a8b]/5 rounded-full blur-3xl -mr-48 -mt-48" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#3d9a8b]/5 rounded-full blur-3xl -ml-48 -mb-48" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#3d9a8b]/5 blur-3xl -mr-48 -mt-48" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#3d9a8b]/5 blur-3xl -ml-48 -mb-48" />
 
         <div className="container mx-auto px-4 relative z-10">
           {/* Section Header */}
@@ -176,8 +157,9 @@ export function CursosPageClient() {
             variants={containerVariants}
           >
             <motion.div className="flex items-center justify-center gap-2 mb-4" variants={itemVariants}>
-              <BookOpen className="w-5 h-5 text-[#3d9a8b]" />
-              <span className="text-[#3d9a8b] font-medium uppercase tracking-wider text-sm">Cursos por Capacitación Continua</span>
+              <div className="w-8 h-1 bg-[#3d9a8b]" />
+              <span className="text-[#3d9a8b] font-semibold uppercase tracking-wider text-sm">Cursos por Capacitación Continua</span>
+              <div className="w-8 h-1 bg-[#3d9a8b]" />
             </motion.div>
             <motion.h2
               className="font-sans text-4xl md:text-5xl lg:text-6xl text-[#1a3a5c] leading-tight font-bold mb-4"
@@ -186,35 +168,9 @@ export function CursosPageClient() {
               Explora Nuestra<br />
               <span className="text-[#3d9a8b]">Oferta Académica</span>
             </motion.h2>
-            <motion.p className="text-[#1a3a5c]/70 max-w-2xl mx-auto text-lg font-medium" variants={itemVariants}>
+            <motion.p className="text-[#1a3a5c]/70 max-w-2xl mx-auto text-lg" variants={itemVariants}>
               Todos los cursos son modalidad virtual, con una carga horaria de 120 horas y certificación avalada por SENECYT
             </motion.p>
-          </motion.div>
-
-          {/* Category Filters */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-3 mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            {categoryFilters.map((filter) => (
-              <motion.button
-                key={filter.value}
-                onClick={() => setActiveFilter(filter.value)}
-                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  activeFilter === filter.value
-                    ? 'bg-[#1a3a5c] text-white shadow-lg shadow-[#1a3a5c]/30 scale-105'
-                    : 'bg-gray-100 text-[#1a3a5c]/70 hover:bg-[#3d9a8b]/10 hover:text-[#3d9a8b]'
-                }`}
-                variants={itemVariants}
-                whileHover={{ scale: activeFilter === filter.value ? 1.05 : 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {filter.label}
-              </motion.button>
-            ))}
           </motion.div>
 
           <motion.div
@@ -229,151 +185,72 @@ export function CursosPageClient() {
               return (
                 <motion.div
                   key={course.id}
-                  className="group relative h-[560px] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                  className="group relative h-full flex flex-col bg-white border border-[#3d9a8b]/20 hover:border-[#3d9a8b] transition-all duration-300"
                   variants={cardVariants}
                   whileHover={{ y: -10 }}
                   layout
                 >
-                  {/* Background with gradient */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient}`} />
-                  
-                  {/* Decorative pattern */}
-                  <div className="absolute top-0 right-0 w-40 h-40 opacity-10">
-                    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="100" cy="100" r="80" stroke="white" strokeWidth="2" />
-                      <circle cx="100" cy="100" r="60" stroke="white" strokeWidth="1.5" />
-                      <circle cx="100" cy="100" r="40" stroke="white" strokeWidth="1" />
-                    </svg>
-                  </div>
-                  
+                  {/* Top accent bar by category */}
+                  <div className={`h-1.5 w-full ${colors.bar}`} />
+
                   {/* Content */}
-                  <div className="relative h-full p-8 flex flex-col">
+                  <div className="relative flex flex-col flex-1 p-8">
                     <div className="flex-1">
-                      {/* Category & Area Badges */}
+                      {/* Category & Code Badges */}
                       <div className="flex flex-wrap gap-2 mb-4">
-                        <motion.div
-                          className={`${colors.bg} ${colors.text} rounded-full px-3 py-1.5 text-xs font-bold inline-block uppercase tracking-wider backdrop-blur-sm`}
-                          initial={{ opacity: 0, scale: 0 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.05, duration: 0.4 }}
-                          viewport={{ once: true }}
-                        >
+                        <span className={`${colors.badge} px-3 py-1.5 text-xs font-bold uppercase tracking-wider`}>
                           {course.categoryLabel}
-                        </motion.div>
-                        <motion.div
-                          className="bg-white/10 text-white/80 rounded-full px-3 py-1.5 text-xs font-semibold inline-block backdrop-blur-sm"
-                          initial={{ opacity: 0, scale: 0 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.05 + 0.05, duration: 0.4 }}
-                          viewport={{ once: true }}
-                        >
+                        </span>
+                        <span className="bg-[#1a3a5c]/5 text-[#1a3a5c]/70 px-3 py-1.5 text-xs font-semibold">
                           {course.codigoEspecialidad}
-                        </motion.div>
+                        </span>
                       </div>
 
-                      <motion.h3
-                        className="font-sans text-xl lg:text-2xl text-white mb-2 line-clamp-2 font-bold leading-tight"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.05 + 0.1, duration: 0.4 }}
-                        viewport={{ once: true }}
-                      >
+                      <h3 className="font-sans text-xl lg:text-2xl text-[#1a3a5c] mb-2 line-clamp-2 font-bold leading-tight">
                         {course.title}
-                      </motion.h3>
+                      </h3>
                       {course.subtitle && (
-                        <motion.p
-                          className="text-white/90 text-sm mb-3 line-clamp-1 font-medium"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: index * 0.05 + 0.15, duration: 0.4 }}
-                          viewport={{ once: true }}
-                        >
+                        <p className="text-[#3d9a8b] text-sm mb-3 line-clamp-1 font-semibold">
                           {course.subtitle}
-                        </motion.p>
+                        </p>
                       )}
-                      <motion.p
-                        className="text-white/70 text-sm line-clamp-3 mb-4"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ delay: index * 0.05 + 0.2, duration: 0.4 }}
-                        viewport={{ once: true }}
-                      >
+                      <p className="text-[#1a3a5c]/70 text-sm line-clamp-3 mb-6 leading-relaxed">
                         {course.shortDescription}
-                      </motion.p>
+                      </p>
                     </div>
-                    
+
                     {/* Course Info */}
-                    <motion.div
-                      className="space-y-3 mb-6 text-sm"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: index * 0.05 + 0.25, duration: 0.4 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className="flex items-center gap-3 text-white/90">
-                        <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
-                          <Clock className="h-4 w-4 text-white" />
+                    <div className="space-y-3 mb-6 text-sm border-t border-[#3d9a8b]/15 pt-5">
+                      <div className="flex items-center gap-3 text-[#1a3a5c]/80">
+                        <div className="w-8 h-8 bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
+                          <Clock className="h-4 w-4 text-[#3d9a8b]" />
                         </div>
                         <span className="font-medium">{course.cargaHoraria} horas</span>
                       </div>
-                      <div className="flex items-center gap-3 text-white/90">
-                        <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
-                          <MapPin className="h-4 w-4 text-white" />
+                      <div className="flex items-center gap-3 text-[#1a3a5c]/80">
+                        <div className="w-8 h-8 bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
+                          <MapPin className="h-4 w-4 text-[#3d9a8b]" />
                         </div>
                         <span className="font-medium">{course.modality.join(", ")}</span>
                       </div>
-                      <div className="flex items-center gap-3 text-white/90">
-                        <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
-                          <Users className="h-4 w-4 text-white" />
+                      <div className="flex items-center gap-3 text-[#1a3a5c]/80">
+                        <div className="w-8 h-8 bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
+                          <Users className="h-4 w-4 text-[#3d9a8b]" />
                         </div>
                         <span className="font-medium">{course.tipoParticipante}</span>
                       </div>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 + 0.3, duration: 0.4 }}
-                      viewport={{ once: true }}
-                    >
-                      <Link href={`/cursos/${course.slug}`}>
-                        <Button className="w-full bg-white hover:bg-[#3d9a8b] text-[#1a3a5c] hover:text-white rounded-full font-bold py-3 transition-all duration-300 shadow-lg hover:shadow-xl group/btn hover:scale-105">
-                          Ver Detalles del Curso
-                          <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                        </Button>
-                      </Link>
-                    </motion.div>
+                    <Link href={`/cursos/${course.slug}`}>
+                      <Button className="w-full bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white font-semibold py-2.5 transition-all duration-300 shadow-lg hover:shadow-xl group/btn border-2 border-[#1a3a5c] hover:border-[#3d9a8b]">
+                        Ver Detalles del Curso
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
                   </div>
                 </motion.div>
               )
             })}
-          </motion.div>
-
-          {/* Bottom CTA */}
-          <motion.div
-            className="mt-16 text-center"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            <motion.div 
-              className="bg-gradient-to-r from-[#1a3a5c] to-[#3d9a8b] rounded-3xl p-10 max-w-4xl mx-auto"
-              variants={itemVariants}
-            >
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                ¿Necesitas más información?
-              </h3>
-              <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                Contáctanos para conocer sobre descuentos para miembros TAMEFOR, afiliados CONIFOR y estudiantes.
-              </p>
-              <Link href="/contacto">
-                <Button className="bg-white hover:bg-white/90 text-[#1a3a5c] rounded-full font-bold px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                  Contáctanos
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </motion.div>
           </motion.div>
         </div>
       </section>

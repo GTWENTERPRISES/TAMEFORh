@@ -3,44 +3,52 @@
 import { motion } from "framer-motion"
 import { containerVariants, itemVariants, slideInFromBottomVariants } from "@/lib/animations"
 import { SectionHeader, ServiceCard } from "@/components/ui"
-import { Leaf } from "lucide-react"
+import { Leaf, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const services = [
   {
     number: "01",
-    title: "Sistemas de Gestión Ambiental",
-    description: "Implementación de sistemas bajo normas ISO 14001 e ISO 9001 para tu empresa",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070"
+    title: "Certificación Profesional",
+    description: "Proceso de certificación y registro profesional para ingenieros forestales, cumpliendo con los estándares del SENECYT y el Ministerio del Trabajo.",
+    features: ["Registro profesional oficial", "Certificación de competencias", "Actualización de credenciales"],
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200"
   },
   {
     number: "02",
-    title: "Plantaciones Comerciales",
-    description: "Establecimiento y manejo profesional de plantaciones forestales comerciales",
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013"
+    title: "Consultoría Técnica",
+    description: "Servicios de consultoría especializada en proyectos forestales, ambientales y de desarrollo sostenible.",
+    features: ["Evaluaciones técnicas", "Planes de manejo forestal", "Estudios de impacto ambiental"],
+    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200"
   },
   {
     number: "03",
-    title: "Valoración de Cobertura Vegetal",
-    description: "Evaluación técnica para servidumbres en líneas de transmisión eléctrica",
-    image: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=2070"
+    title: "Capacitación y Desarrollo",
+    description: "Programas de capacitación continua, cursos especializados y desarrollo profesional para miembros y profesionales del sector.",
+    features: ["Cursos de actualización", "Talleres especializados", "Seminarios y conferencias"],
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200"
   },
   {
     number: "04",
-    title: "Capacitaciones Certificadas",
-    description: "Formación certificada por Ministerio de Trabajo y SENECYT",
-    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070"
+    title: "Asesoría Legal y Normativa",
+    description: "Orientación en aspectos legales, normativos y regulatorios relacionados con el ejercicio profesional forestal.",
+    features: ["Asesoría legal especializada", "Interpretación normativa", "Representación profesional"],
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1200"
   },
   {
     number: "05",
-    title: "Peritajes Judiciales",
-    description: "Peritajes en impacto ambiental, topografía e ingeniería forestal",
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070"
+    title: "Gestión Forestal",
+    description: "Planificación y gestión sostenible de bosques y recursos forestales con metodologías avanzadas.",
+    features: ["Inventarios forestales", "Planes de manejo", "Monitoreo y evaluación"],
+    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200"
   },
   {
     number: "06",
-    title: "Levantamientos Topográficos",
-    description: "Topografía con respaldo técnico y normativo para proyectos",
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070"
+    title: "Conservación y Restauración",
+    description: "Programas de conservación y restauración de ecosistemas forestales y biodiversidad.",
+    features: ["Restauración ecológica", "Conservación de biodiversidad", "Reforestación"],
+    image: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=1200"
   },
 ]
 
@@ -104,7 +112,7 @@ export function ServicesSection() {
           </motion.p>
         </motion.div>
 
-        {/* Services Grid */}
+        {/* Services Grid - Only 3 */}
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mt-20"
           initial="hidden"
@@ -112,7 +120,7 @@ export function ServicesSection() {
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
         >
-          {services.map((service, index) => (
+          {services.slice(0, 3).map((service, index) => (
             <motion.div
               key={service.number}
               variants={slideInFromBottomVariants}
@@ -125,11 +133,30 @@ export function ServicesSection() {
                 number={service.number}
                 title={service.title}
                 description={service.description}
+                features={service.features}
                 image={service.image}
                 index={index}
               />
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* CTA Button */}
+        <motion.div 
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <Link href="/servicios">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+              <Button className="bg-[#3d9a8b] hover:bg-[#3d9a8b]/90 text-white rounded-full px-10 py-5 font-semibold shadow-lg hover:shadow-xl transition-all text-base">
+                Ver Todos los Servicios
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </motion.div>
+          </Link>
         </motion.div>
       </div>
     </section>

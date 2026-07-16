@@ -9,6 +9,7 @@ interface SectionHeaderProps {
   titleHighlight?: string
   description?: string
   centered?: boolean
+  dark?: boolean
   className?: string
 }
 
@@ -19,6 +20,7 @@ export function SectionHeader({
   titleHighlight,
   description,
   centered = true,
+  dark = false,
   className = "",
 }: SectionHeaderProps) {
   return (
@@ -28,8 +30,8 @@ export function SectionHeader({
     >
       {Icon && (
         <motion.div
-          className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#3d9a8b]/20 mb-4 ${centered ? "" : ""}`}
-          whileHover={{ rotate: 360 }}
+          className={`inline-flex items-center justify-center w-12 h-12 bg-[#3d9a8b]/20 mb-4 ${centered ? "" : ""} ${dark ? "rounded-none" : "rounded-full"}`}
+          whileHover={{ rotate: dark ? 0 : 360 }}
           transition={{ duration: 0.6 }}
         >
           <Icon className="w-6 h-6 text-[#3d9a8b]" />
@@ -37,12 +39,12 @@ export function SectionHeader({
       )}
 
       {subtitle && (
-        <p className="text-sm font-semibold text-[#3d9a8b] uppercase tracking-wider mb-2">
+        <p className={`text-sm font-semibold text-[#3d9a8b] uppercase tracking-wider mb-2`}>
           {subtitle}
         </p>
       )}
 
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a3a5c] mb-4">
+      <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${dark ? "text-white" : "text-[#1a3a5c]"}`}>
         {title}
         {titleHighlight && (
           <span className="text-[#3d9a8b]"> {titleHighlight}</span>
@@ -50,7 +52,7 @@ export function SectionHeader({
       </h2>
 
       {description && (
-        <p className="text-lg text-[#1a3a5c]/70 max-w-2xl mx-auto">
+        <p className={`text-lg max-w-2xl ${dark ? "text-white/70" : "text-[#1a3a5c]/70"} ${centered ? "mx-auto" : ""}`}>
           {description}
         </p>
       )}

@@ -9,7 +9,7 @@ import { IconBadge } from "@/components/ui/IconBadge"
 
 const quickLinks = [
   { label: "Nosotros", href: "/nosotros" },
-  { label: "Directiva", href: "/directiva" },
+  { label: "Equipo", href: "/equipo" },
   { label: "Servicios", href: "/servicios" },
   { label: "Cursos", href: "/cursos" },
   { label: "Proyectos", href: "/proyectos" },
@@ -27,10 +27,10 @@ const services = [
 ]
 
 const socialLinks = [
-  { icon: Facebook, href: "#" },
-  { icon: Twitter, href: "#" },
-  { icon: Instagram, href: "#" },
-  { icon: Linkedin, href: "#" },
+  { icon: Facebook, href: "https://facebook.com" },
+  { icon: Twitter, href: "https://twitter.com" },
+  { icon: Instagram, href: "https://instagram.com" },
+  { icon: Linkedin, href: "https://linkedin.com" },
 ]
 
 export function Footer() {
@@ -74,6 +74,8 @@ export function Footer() {
                 <motion.div key={i} whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-[#3d9a8b]/20 flex items-center justify-center hover:bg-[#3d9a8b] transition-smooth"
                   >
                     <social.icon className="h-4 w-4 text-white" />
@@ -161,14 +163,18 @@ export function Footer() {
                 <Mail className="h-5 w-5 text-[#3d9a8b] flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-sm font-semibold text-white">Email</p>
-                  <p className="text-sm text-white/70">info@tamefor.com</p>
+                  <Link href="mailto:info@tamefor.com" className="text-sm text-white/70 hover:text-[#3d9a8b] transition-smooth">
+                    info@tamefor.com
+                  </Link>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="h-5 w-5 text-[#3d9a8b] flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-sm font-semibold text-white">Teléfono</p>
-                  <p className="text-sm text-white/70">+593 96 226 5426</p>
+                  <Link href="tel:+593962265426" className="text-sm text-white/70 hover:text-[#3d9a8b] transition-smooth">
+                    +593 96 226 5426
+                  </Link>
                 </div>
               </div>
             </div>

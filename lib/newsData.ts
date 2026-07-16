@@ -46,7 +46,7 @@ El evento contó con la participación activa de profesionales forestales, acad�
       name: 'TAMEFOR Los Ríos',
       role: 'Asociación Profesional Forestal'
     },
-    featuredImage: '/placeholder.jpg',
+    featuredImage: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071',
     tags: ['normativas', 'MAE', 'control forestal', 'sostenibilidad'],
     featured: true,
     published: true
@@ -74,7 +74,7 @@ El evento fortaleció las redes de colaboración entre profesionales y generó i
       name: 'Comité Organizador',
       role: 'TAMEFOR'
     },
-    featuredImage: '/placeholder.jpg',
+    featuredImage: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=2041',
     tags: ['congreso', 'forestal', 'eventos'],
     featured: true,
     published: true
@@ -101,7 +101,7 @@ Los profesionales certificados obtendrán reconocimiento oficial y acceso a opor
       name: 'Dirección Académica',
       role: 'TAMEFOR'
     },
-    featuredImage: '/placeholder.jpg',
+    featuredImage: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013',
     tags: ['certificación', 'capacitación', 'manejo sostenible'],
     featured: false,
     published: true
