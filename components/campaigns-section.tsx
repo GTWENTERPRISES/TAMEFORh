@@ -255,6 +255,23 @@ export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps)
         >
           {/* Left Content */}
           <motion.div className="max-w-2xl" variants={itemVariants}>
+            {/* Title */}
+            <motion.h2 
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#1a3a5c] font-bold leading-tight mb-3 sm:mb-4"
+              variants={itemVariants}
+            >
+              Expo Forestal<br />
+              <span className="text-[#3d9a8b]">TAMEFOR</span>
+            </motion.h2>
+
+            {/* Subtitle */}
+            <motion.h3 
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#1a3a5c]/80 mb-6 sm:mb-7 md:mb-8 font-semibold"
+              variants={itemVariants}
+            >
+              Feria de Innovación y Sostenibilidad Ambiental
+            </motion.h3>
+
             {/* Badge */}
             <motion.div 
               className="inline-flex items-center gap-2 bg-[#3d9a8b] text-white px-4 sm:px-5 md:px-6 py-2 font-bold uppercase tracking-wider text-xs sm:text-sm mb-5 sm:mb-6"
@@ -265,22 +282,14 @@ export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps)
               <span>Feria Anual</span>
             </motion.div>
 
-            {/* Title */}
-            <motion.h2 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#1a3a5c] font-bold leading-tight mb-3 sm:mb-4"
+            {/* Event Name */}
+            <motion.h4 
+              className="text-2xl sm:text-3xl md:text-4xl text-[#1a3a5c] font-bold leading-tight mb-4 sm:mb-5"
               variants={itemVariants}
             >
               Expo Forestal<br />
               <span className="text-[#3d9a8b]">TAMEFOR 2026</span>
-            </motion.h2>
-
-            {/* Subtitle */}
-            <motion.h3 
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#1a3a5c]/80 mb-4 sm:mb-5 md:mb-6 font-semibold"
-              variants={itemVariants}
-            >
-              Feria de Innovación y Sostenibilidad Ambiental
-            </motion.h3>
+            </motion.h4>
 
             {/* Description */}
             <motion.p 
@@ -378,7 +387,7 @@ export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps)
             whileHover={{ scale: 1.02 }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013"
+              src="/arboles.webp"
               alt="Expo Forestal TAMEFOR 2026 - Bosque sostenible"
               fill
               className="object-cover"
