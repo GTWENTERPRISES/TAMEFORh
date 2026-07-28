@@ -2,7 +2,6 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import type { Metadata } from 'next'
 import { NosotrosPageClient } from "@/components/pages/NosotrosPageClient"
-import { CampaignsSection } from "@/components/campaigns-section"
 
 export const metadata: Metadata = {
   title: 'Nosotros | TAMEFOR Los Ríos',
@@ -13,7 +12,6 @@ export default function NosotrosPage() {
   return (
     <main className="min-h-screen bg-background">
       <Header />
-      <CampaignsSection />
       <NosotrosPageClient />
       <Footer />
     </main>

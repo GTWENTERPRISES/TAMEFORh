@@ -3,15 +3,19 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ArrowRight, Mail } from "lucide-react"
+import { ArrowRight, Mail, Check } from "lucide-react"
 import Image from "next/image"
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("")
+  const [subscribed, setSubscribed] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    console.log("Suscripción al boletín:", email)
+    setSubscribed(true)
     setEmail("")
+    setTimeout(() => setSubscribed(false), 5000)
   }
 
   return (
@@ -60,7 +64,7 @@ export function NewsletterSection() {
                   required
                 />
               </div>
-              <Button 
+              <Button
                 type="submit"
                 className="bg-[#3d9a8b] border-2 border-white hover:bg-white hover:text-[#1a3a5c] text-white rounded-full px-8 h-14"
               >
@@ -68,6 +72,17 @@ export function NewsletterSection() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </form>
+
+            {subscribed && (
+              <div className="mt-6 flex items-center justify-center lg:justify-start gap-3 max-w-xl mx-auto lg:mx-0 bg-white/10 border border-[#3d9a8b] rounded-full px-6 py-3">
+                <div className="w-8 h-8 bg-[#3d9a8b] rounded-full flex items-center justify-center flex-shrink-0">
+                  <Check className="w-5 h-5 text-white" />
+                </div>
+                <p className="text-white font-medium">
+                  ¡Gracias por suscribirte! Pronto recibirás nuestras novedades.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

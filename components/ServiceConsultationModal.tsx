@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowRight, X } from "lucide-react"
+import { ArrowRight, X, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -21,6 +21,7 @@ interface ServiceConsultationModalProps {
 }
 
 export function ServiceConsultationModal({ isOpen, onClose, serviceName }: ServiceConsultationModalProps) {
+  const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
@@ -37,12 +38,22 @@ export function ServiceConsultationModal({ isOpen, onClose, serviceName }: Servi
     e.preventDefault()
     // Here you would normally send the data to your API
     console.log("Form submitted:", formData)
-    alert("¡Gracias por tu consulta! Nos pondremos en contacto contigo pronto.")
+    setSubmitted(true)
+  }
+
+  const handleClose = () => {
+    setSubmitted(false)
+    setFormData({
+      nombre: "",
+      email: "",
+      asunto: `Consulta sobre ${serviceName}`,
+      mensaje: ""
+    })
     onClose()
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-2xl p-0 border-0 bg-white">
         {/* Close Button */}
         <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
@@ -54,7 +65,7 @@ export function ServiceConsultationModal({ isOpen, onClose, serviceName }: Servi
         <div className="bg-gradient-to-r from-[#1a3a5c] to-[#0f2a45] p-8 text-center">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-white">
-              Solicitar Consultoría
+              {submitted ? "¡Consulta Enviada!" : "Solicitar Consultoría"}
             </DialogTitle>
             <DialogDescription className="text-white/80 mt-2 text-lg">
               {serviceName}
@@ -62,8 +73,28 @@ export function ServiceConsultationModal({ isOpen, onClose, serviceName }: Servi
           </DialogHeader>
         </div>
 
-        {/* Form */}
-        <div className="p-8">
+        {submitted ? (
+          /* Success View */
+          <div className="p-8 text-center">
+            <div className="w-16 h-16 bg-[#3d9a8b] mx-auto flex items-center justify-center mb-6">
+              <Check className="w-8 h-8 text-white" />
+            </div>
+            <p className="text-[#1a3a5c]/80 text-base mb-2">
+              Gracias por tu consulta. Hemos recibido tu solicitud exitosamente.
+            </p>
+            <p className="text-[#1a3a5c]/80 text-base mb-8">
+              Nos pondremos en contacto contigo a la brevedad posible.
+            </p>
+            <Button
+              onClick={handleClose}
+              className="w-full bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white rounded-none py-4 font-semibold text-base transition-all duration-300 shadow-none border-2 border-[#1a3a5c] hover:border-[#3d9a8b]"
+            >
+              Aceptar
+            </Button>
+          </div>
+        ) : (
+          /* Form */
+          <div className="p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <Input
@@ -115,7 +146,8 @@ export function ServiceConsultationModal({ isOpen, onClose, serviceName }: Servi
               <ArrowRight className="ml-3 h-4 w-4" />
             </Button>
           </form>
-        </div>
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   )

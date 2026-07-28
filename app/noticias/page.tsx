@@ -13,7 +13,7 @@ export default function NoticiasPage() {
   return (
     <main className="min-h-screen bg-background">
       <Header />
-      <CampaignsSection />
+      <CampaignsSection variant="latest-news" />
       <NoticiasPageClient />
       <Footer />
     </main>

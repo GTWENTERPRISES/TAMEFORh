@@ -1,7 +1,9 @@
 'use client'
 
+import { useState } from "react"
 import { Video, Users, BookOpen, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { LoginFormModal } from "@/components/LoginFormModal"
 import Image from "next/image"
 import { motion } from "framer-motion"
 
@@ -44,6 +46,8 @@ const cardVariants = {
 }
 
 export function AulaVirtualPageClient() {
+  const [showLogin, setShowLogin] = useState(false)
+
   return (
     <>
       {/* Hero Section */}
@@ -142,7 +146,10 @@ export function AulaVirtualPageClient() {
                 Inicia sesión con tu cuenta de TAMEFOR para acceder a todos los cursos, materiales y eventos en línea
               </motion.p>
               <motion.div variants={itemVariants}>
-                <Button className="bg-white hover:bg-[#ffffff] text-[#1a3a5c] rounded-full px-8 font-semibold group hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                <Button
+                  onClick={() => setShowLogin(true)}
+                  className="bg-white hover:bg-[#ffffff] text-[#1a3a5c] rounded-full px-8 font-semibold group hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
                   Iniciar Sesión
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -184,6 +191,13 @@ export function AulaVirtualPageClient() {
           </div>
         </div>
       </section>
+
+      <LoginFormModal
+        isOpen={showLogin}
+        onClose={() => setShowLogin(false)}
+        title="Aula Virtual"
+        description="Inicia sesión con tu cuenta de TAMEFOR para acceder a tus cursos"
+      />
     </>
   )
 }

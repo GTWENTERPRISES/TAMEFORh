@@ -132,7 +132,7 @@ export default async function CursoPage({ params }: { params: Promise<{ slug: st
                 </div>
 
                 {/* Objectives */}
-                <div className="bg-white border border-[#3d9a8b]/20 p-8">
+                <div className="bg-white border border-[#3d9a8b]/20 border-l-4 border-l-[#3d9a8b] p-8">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                       <Check className="h-5 w-5 text-[#3d9a8b]" />
@@ -154,7 +154,7 @@ export default async function CursoPage({ params }: { params: Promise<{ slug: st
                 </div>
 
                 {/* Content */}
-                <div className="bg-white border border-[#3d9a8b]/20 p-8">
+                <div className="bg-white border border-[#3d9a8b]/20 border-l-4 border-l-[#3d9a8b] p-8">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                       <BookOpen className="h-5 w-5 text-[#3d9a8b]" />
@@ -186,7 +186,7 @@ export default async function CursoPage({ params }: { params: Promise<{ slug: st
                 </div>
 
                 {/* Requirements */}
-                <div className="bg-white border border-[#3d9a8b]/20 p-8">
+                <div className="bg-white border border-[#3d9a8b]/20 border-l-4 border-l-[#3d9a8b] p-8">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                       <GraduationCap className="h-5 w-5 text-[#3d9a8b]" />
@@ -206,7 +206,7 @@ export default async function CursoPage({ params }: { params: Promise<{ slug: st
                 </div>
 
                 {/* Benefits */}
-                <div className="bg-white border border-[#3d9a8b]/20 p-8">
+                <div className="bg-white border border-[#3d9a8b]/20 border-l-4 border-l-[#3d9a8b] p-8">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                       <Award className="h-5 w-5 text-[#3d9a8b]" />
@@ -261,7 +261,6 @@ export default async function CursoPage({ params }: { params: Promise<{ slug: st
                         <p className="text-sm text-white/70">{course.modality.join(", ")}</p>
                       </div>
                     </div>
-                    
                     <div className="flex items-start gap-3">
                       <div className="w-9 h-9 bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
                         <DollarSign className="h-4 w-4 text-[#3d9a8b]" />
@@ -275,10 +274,18 @@ export default async function CursoPage({ params }: { params: Promise<{ slug: st
 
                   {/* Pricing Table */}
                   <div className="mt-6 pt-6 border-t border-white/20">
-                    <h4 className="text-sm font-semibold text-white mb-3">Precios</h4>
+                    <h4 className="text-sm font-semibold text-white mb-3">Precios por Nivel</h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between items-center py-2 bg-[#3d9a8b]/20 border-l-2 border-[#3d9a8b] px-2 -mx-2">
-                        <span className="text-white font-medium">Regular</span>
+                        <span className="text-white font-medium">Por Nivel</span>
+                        <span className="font-bold text-white">${course.price.basePerLevel}</span>
+                      </div>
+                      <div className="flex justify-between items-center py-2 bg-white/5 px-2 -mx-2">
+                        <span className="text-white/80 text-xs">3 niveles sin descuento</span>
+                        <span className="text-white/60 line-through text-xs">${(course.price.basePerLevel * 3).toFixed(2)}</span>
+                      </div>
+                      <div className="flex justify-between items-center py-2 bg-[#3d9a8b]/30 border-l-2 border-[#3d9a8b] px-2 -mx-2">
+                        <span className="text-white font-medium">Curso Completo (20% desc.)</span>
                         <span className="font-bold text-white">${course.price.regular}</span>
                       </div>
                     </div>
@@ -299,7 +306,7 @@ export default async function CursoPage({ params }: { params: Promise<{ slug: st
                 </div>
 
                 {/* Certification */}
-                <div className="bg-white border border-[#3d9a8b]/20 p-6">
+                <div className="bg-white border border-[#3d9a8b]/20 border-l-4 border-l-[#3d9a8b] p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                       <Award className="h-5 w-5 text-[#3d9a8b]" />
@@ -320,7 +327,7 @@ export default async function CursoPage({ params }: { params: Promise<{ slug: st
                 </div>
 
                 {/* Course Area Info */}
-                <div className="bg-white border border-[#3d9a8b]/20 p-6">
+                <div className="bg-white border border-[#3d9a8b]/20 border-l-4 border-l-[#3d9a8b] p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                       <GraduationCap className="h-5 w-5 text-[#3d9a8b]" />

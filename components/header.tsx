@@ -14,7 +14,6 @@ const navLinks = [
   { label: "Cursos", href: "/cursos", icon: GraduationCap },
   { label: "Proyectos", href: "/proyectos", icon: FolderOpen },
   { label: "Noticias", href: "/noticias", icon: Newspaper },
-  { label: "Pagos", href: "/pagos", icon: CreditCard },
   { label: "Contacto", href: "/contacto", icon: MessageSquare },
 ]
 

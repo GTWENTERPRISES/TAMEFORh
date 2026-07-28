@@ -4,10 +4,11 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Check } from "lucide-react"
 import Image from "next/image"
 
 export function DonateSection() {
+  const [showModal, setShowModal] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,7 +18,13 @@ export function DonateSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    console.log("Formulario de donación enviado:", formData)
+    setShowModal(true)
+  }
+
+  const resetForm = () => {
     setFormData({ name: "", email: "", phone: "", message: "" })
+    setShowModal(false)
   }
 
   return (
@@ -70,7 +77,7 @@ export function DonateSection() {
               Para Donar
             </h3>
             <p className="text-[#3d9a8b]/80 mb-8">
-              El punto de usar lorem ipsum es que tiene una distribución más o menos normal de letras.
+              Tu aporte nos ayuda a impulsar proyectos de conservación, reforestación y educación ambiental en la provincia de Los Ríos.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -113,6 +120,38 @@ export function DonateSection() {
           </div>
         </div>
       </div>
+
+      {/* Modal de Confirmación */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white max-w-md w-full p-8 border-l-4 border-[#3d9a8b]">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-[#3d9a8b] flex items-center justify-center">
+                <Check className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="font-sans text-2xl text-[#1a3a5c] font-bold">¡Mensaje Enviado!</h3>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <p className="text-[#1a3a5c]/80 text-base">
+                Gracias por tu interés en apoyar nuestra causa. Hemos recibido tu mensaje exitosamente.
+              </p>
+              <p className="text-[#1a3a5c]/80 text-base">
+                Nos pondremos en contacto contigo a la brevedad posible con la información para realizar tu donación.
+              </p>
+            </div>
+            <div className="mt-8">
+              <Button
+                onClick={resetForm}
+                className="w-full bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white py-3 font-bold text-lg transition-all duration-300 border-2 border-[#1a3a5c] hover:border-[#3d9a8b]"
+              >
+                Aceptar
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

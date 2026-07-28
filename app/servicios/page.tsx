@@ -1,7 +1,6 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ServiciosPageClient } from "@/components/pages/ServiciosPageClient"
-import { CampaignsSection } from "@/components/campaigns-section"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -14,7 +13,6 @@ export default function ServiciosPage() {
   return (
     <main className="min-h-screen bg-background">
       <Header />
-      <CampaignsSection />
       <ServiciosPageClient />
       <Footer />
     </main>

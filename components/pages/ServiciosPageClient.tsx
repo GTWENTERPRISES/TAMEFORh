@@ -9,51 +9,35 @@ import { motion } from "framer-motion"
 const services = [
   {
     number: "01",
-    title: "Certificación Profesional",
-    description: "Proceso de certificación y registro profesional para ingenieros forestales, cumpliendo con los estándares del SENECYT y el Ministerio del Trabajo.",
-    features: ["Registro profesional oficial", "Certificación de competencias", "Actualización de credenciales"],
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070",
-    slug: "certificacion-profesional"
+    title: "Consultoría y Manejo Forestal",
+    description: "Cuantificación, valoración y aprovechamiento sostenible de existencias maderables en bosques naturales y plantaciones comerciales.",
+    features: ["Inventarios forestales", "Planes de manejo y aprovechamiento", "Silvicultura y viveros"],
+    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013",
+    slug: "gestion-forestal"
   },
   {
     number: "02",
-    title: "Consultoría Técnica",
-    description: "Servicios de consultoría especializada en proyectos forestales, ambientales y de desarrollo sostenible.",
-    features: ["Evaluaciones técnicas", "Planes de manejo forestal", "Estudios de impacto ambiental"],
+    title: "Consultoría y Gestión Ambiental",
+    description: "Evaluación de riesgos, diagnósticos de cumplimiento y regularización ambiental para empresas y proyectos.",
+    features: ["Estudios de impacto ambiental", "Planes de manejo ambiental", "Medidas de mitigación y compensación"],
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070",
     slug: "consultoria-tecnica"
   },
   {
     number: "03",
-    title: "Capacitación y Desarrollo",
-    description: "Programas de capacitación continua, cursos especializados y desarrollo profesional para miembros y profesionales del sector.",
-    features: ["Cursos de actualización", "Talleres especializados", "Seminarios y conferencias"],
-    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070",
-    slug: "capacitacion-y-desarrollo"
-  },
-  {
-    number: "04",
-    title: "Asesoría Legal y Normativa",
-    description: "Orientación en aspectos legales, normativos y regulatorios relacionados con el ejercicio profesional forestal.",
-    features: ["Asesoría legal especializada", "Interpretación normativa", "Representación profesional"],
+    title: "Peritajes Judiciales Acreditados",
+    description: "Informes periciales oficiales con validez legal en procesos procesales y preprocesales, acreditados ante el Consejo de la Judicatura.",
+    features: ["Peritajes en ingeniería forestal", "Peritajes de impacto ambiental", "Peritajes topográficos"],
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070",
     slug: "asesoria-legal-y-normativa"
   },
   {
-    number: "05",
-    title: "Gestión Forestal",
-    description: "Planificación y gestión sostenible de bosques y recursos forestales con metodologías avanzadas.",
-    features: ["Inventarios forestales", "Planes de manejo", "Monitoreo y evaluación"],
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013",
-    slug: "gestion-forestal"
-  },
-  {
-    number: "06",
-    title: "Conservación y Restauración",
-    description: "Programas de conservación y restauración de ecosistemas forestales y biodiversidad.",
-    features: ["Restauración ecológica", "Conservación de biodiversidad", "Reforestación"],
-    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2070",
-    slug: "conservacion-y-restauracion"
+    number: "04",
+    title: "Capacitación y Formación Técnica",
+    description: "Programas teóricos y prácticos orientados a la formación continua de profesionales en geomática, tecnología forestal y gestión ambiental.",
+    features: ["Cursos especializados certificados", "Formación en geomática y SIG", "Actualización profesional continua"],
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070",
+    slug: "capacitacion-y-desarrollo"
   }
 ]
 

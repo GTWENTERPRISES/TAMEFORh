@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { membersData } from "@/lib/membersData"
@@ -36,6 +37,18 @@ const headerVariants = {
 }
 
 export function MiembrosPageClient() {
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const filteredMembers = membersData.filter((member) => {
+    const query = searchQuery.trim().toLowerCase()
+    if (!query) return true
+    return (
+      member.fullName?.toLowerCase().includes(query) ||
+      member.credentialNumber?.toLowerCase().includes(query) ||
+      member.cedula?.toLowerCase().includes(query)
+    )
+  })
+
   return (
     <>
       {/* Hero Section */}
@@ -92,6 +105,8 @@ export function MiembrosPageClient() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
                   placeholder="Buscar por nombre o credencial..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10"
                 />
               </div>
@@ -117,14 +132,16 @@ export function MiembrosPageClient() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
-                    {membersData.length === 0 ? (
+                    {filteredMembers.length === 0 ? (
                       <tr>
                         <td colSpan={5} className="px-6 py-12 text-center text-muted-foreground">
-                          Próximamente se publicará la lista de miembros registrados.
+                          {membersData.length === 0
+                            ? "Próximamente se publicará la lista de miembros registrados."
+                            : `No se encontraron miembros para "${searchQuery}".`}
                         </td>
                       </tr>
                     ) : (
-                      membersData.slice(0, 20).map((member, index) => (
+                      filteredMembers.slice(0, 20).map((member, index) => (
                         <motion.tr
                           key={member.id}
                           className="hover:bg-muted/50 transition-colors"
@@ -159,7 +176,7 @@ export function MiembrosPageClient() {
             </motion.div>
 
             {/* Pagination Info */}
-            {membersData.length > 0 && (
+            {filteredMembers.length > 0 && (
               <motion.div
                 className="mt-6 text-center text-sm text-muted-foreground"
                 initial={{ opacity: 0 }}
@@ -167,7 +184,7 @@ export function MiembrosPageClient() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                Mostrando 1-{Math.min(20, membersData.length)} de {membersData.length} miembros registrados
+                Mostrando 1-{Math.min(20, filteredMembers.length)} de {filteredMembers.length} miembros registrados
               </motion.div>
             )}
           </div>

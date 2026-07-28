@@ -44,44 +44,34 @@ const cardVariants = {
 export function EquipoPageClient() {
   const teamMembers = [
     {
-      name: "Ing. For. Edwin Oswaldo Tapia Palomino, Msc.",
-      position: "GERENTE",
+      name: "Edwin Oswaldo Tapia Palomino",
+      position: "MSc. Sistemas de Gestión Ambiental",
       photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800"
     },
     {
-      name: "Ing. For. Ana Carolina Vázquez Mendoza",
-      position: "COORDINADORA DE PROYECTOS",
+      name: "Diana María Mena Minuche",
+      position: "Ing. Comercio Exterior",
       photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800"
     },
     {
-      name: "Ing. For. José Alejandro Paredes Zambrano",
-      position: "ESPECIALISTA AMBIENTAL",
+      name: "Carlos Mauricio Pacheco Merizalde",
+      position: "Ing. Forestal",
       photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800"
     },
     {
-      name: "Ing. For. María Fernanda Lozano Cedeño",
-      position: "GERENTE DE OPERACIONES",
-      photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800"
-    },
-    {
-      name: "Ing. For. Juan Carlos Rodríguez Pérez",
-      position: "ESPECIALISTA EN GESTIÓN FORESTAL",
+      name: "Ronald Oswaldo Villamar Torres",
+      position: "PhD. Diversidad y Mejoramiento de Plantas",
       photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800"
     },
     {
-      name: "Ing. For. Sofía Isabel Vinueza Alvarado",
-      position: "ESPECIALISTA EN CONSERVACIÓN",
-      photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=800"
-    },
-    {
-      name: "Ing. For. Luis Fernando Macías Alarcón",
-      position: "COORDINADOR DE CAPACITACIÓN",
+      name: "Carlos Gabriel Carrera Díaz",
+      position: "MSc. Sistemas de Información Geográfica",
       photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800"
     },
     {
-      name: "Ing. For. Patricia Alexandra Moreira López",
-      position: "ESPECIALISTA EN RELACIONES PÚBLICAS",
-      photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800"
+      name: "Gregorio Humberto Vásconez Montufar",
+      position: "PhD. Suelos y Nutrición Vegetal",
+      photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800"
     }
   ]
 
@@ -108,17 +98,17 @@ export function EquipoPageClient() {
               <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C13.5 2 15 3.5 15 5C15 6.5 13.5 8 12 8C10.5 8 9 6.5 9 5C9 3.5 10.5 2 12 2ZM17 7C17 7 21 10 21 14C21 18 17 22 12 22C7 22 3 18 3 14C3 10 7 7 7 7" />
               </svg>
-              <span className="text-white font-medium uppercase tracking-wider text-sm">Equipo</span>
+              <span className="text-white font-medium uppercase tracking-wider text-sm">Equipo Consultor</span>
             </motion.div>
             <motion.h1
               className="font-sans text-5xl md:text-6xl text-white font-bold leading-tight mb-6"
               variants={headerVariants}
             >
-              Nuestro Equipo<br />
-              <span className="text-white">Profesional</span>
+              Equipo Consultor<br />
+              <span className="text-[#3d9a8b]">Especializado</span>
             </motion.h1>
             <motion.p className="text-white/80 text-xl" variants={itemVariants}>
-              Profesionales comprometidos con el desarrollo sostenible del sector forestal
+              Profesionales con amplia experiencia en consultoría forestal y ambiental
             </motion.p>
           </motion.div>
         </div>
@@ -140,14 +130,14 @@ export function EquipoPageClient() {
           >
             <motion.div className="flex items-center justify-center gap-2 mb-6" variants={itemVariants}>
               <div className="w-12 h-[2px] bg-[#3d9a8b]" />
-              <span className="text-[#3d9a8b] font-semibold uppercase tracking-[0.2em] text-sm">Equipo de Trabajo</span>
+              <span className="text-[#3d9a8b] font-semibold uppercase tracking-[0.2em] text-sm">Equipo Consultor</span>
               <div className="w-12 h-[2px] bg-[#3d9a8b]" />
             </motion.div>
             <motion.h2
               className="font-sans text-4xl md:text-5xl lg:text-6xl text-[#1a3a5c] leading-tight font-bold mb-6"
               variants={headerVariants}
             >
-              Nuestro Equipo<br />
+              Consultores<br />
               <span className="text-[#3d9a8b]">Profesional</span>
             </motion.h2>
             <div className="w-24 h-1 bg-[#3d9a8b] mx-auto mb-6" />

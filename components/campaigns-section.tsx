@@ -1,12 +1,248 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, MapPin, Users, Calendar as CalendarIcon, Sparkles } from "lucide-react"
+import { ArrowRight, MapPin, Users, Calendar as CalendarIcon, Sparkles, TrendingUp, Clock } from "lucide-react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { containerVariants, itemVariants } from "@/lib/animations"
+import { coursesData } from "@/lib/coursesData"
+import { newsData } from "@/lib/newsData"
+import Link from "next/link"
 
-export function CampaignsSection() {
+interface CampaignsSectionProps {
+  variant?: 'default' | 'latest-news' | 'latest-course'
+}
+
+export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps) {
+  // Obtener la última noticia
+  const latestNews = newsData.length > 0 ? newsData[0] : null
+  
+  // Obtener el último curso
+  const latestCourse = coursesData.length > 0 ? coursesData[0] : null
+
+  // Banner de Última Noticia
+  if (variant === 'latest-news' && latestNews) {
+    return (
+      <section id="latest-news-banner" className="py-12 px-4 md:px-6 lg:px-8 bg-white relative overflow-hidden">
+        <div className="container-max">
+          <motion.div 
+            className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            {/* Left Content */}
+            <motion.div className="max-w-2xl" variants={itemVariants}>
+              <motion.div 
+                className="inline-flex items-center gap-2 bg-[#3d9a8b] text-white px-6 py-2 font-bold uppercase tracking-wider text-sm mb-6"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -2 }}
+              >
+                <Sparkles className="w-4 h-4" />
+                <span>Última Noticia</span>
+              </motion.div>
+
+              <motion.h2 
+                className="text-4xl md:text-5xl text-[#1a3a5c] font-bold leading-tight mb-4"
+                variants={itemVariants}
+              >
+                {latestNews.title}
+              </motion.h2>
+
+              <motion.p 
+                className="text-[#1a3a5c]/70 text-lg md:text-xl mb-12 leading-relaxed line-clamp-3"
+                variants={itemVariants}
+              >
+                {latestNews.excerpt}
+              </motion.p>
+
+              <motion.div className="space-y-4 mb-12" variants={containerVariants}>
+                <motion.div 
+                  className="flex items-start gap-4 p-4 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b]"
+                  variants={itemVariants}
+                >
+                  <div className="w-10 h-10 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
+                    <CalendarIcon className="w-5 h-5 text-[#3d9a8b]" />
+                  </div>
+                  <div>
+                    <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Fecha de Publicación</p>
+                    <p className="text-[#1a3a5c] font-bold text-base">{latestNews.publishDate}</p>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="flex items-start gap-4 p-4 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b]"
+                  variants={itemVariants}
+                >
+                  <div className="w-10 h-10 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="w-5 h-5 text-[#3d9a8b]" />
+                  </div>
+                  <div>
+                    <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Categoría</p>
+                    <p className="text-[#1a3a5c] font-bold text-base">{latestNews.category}</p>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href={`/noticias/${latestNews.slug}`}>
+                  <Button className="bg-[#1a3a5c] hover:bg-[#163250] text-white rounded-none px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#1a3a5c]">
+                    Leer Noticia Completa
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            <motion.div 
+              className="relative h-96 lg:h-full min-h-96 overflow-hidden shadow-2xl border-4 border-[#3d9a8b]/30"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Image
+                src={latestNews.featuredImage}
+                alt={latestNews.title}
+                fill
+                className="object-cover"
+                priority
+              />
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-t from-[#1a3a5c]/40 via-transparent to-transparent"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                viewport={{ once: true }}
+              />
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+    )
+  }
+
+  // Banner de Último Curso
+  if (variant === 'latest-course' && latestCourse) {
+    return (
+      <section id="latest-course-banner" className="py-12 px-4 md:px-6 lg:px-8 bg-white relative overflow-hidden">
+        <div className="container-max">
+          <motion.div 
+            className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            {/* Left Content */}
+            <motion.div className="max-w-2xl" variants={itemVariants}>
+              <motion.div 
+                className="inline-flex items-center gap-2 bg-[#3d9a8b] text-white px-6 py-2 font-bold uppercase tracking-wider text-sm mb-6"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -2 }}
+              >
+                <Sparkles className="w-4 h-4" />
+                <span>Nuevo Curso Disponible</span>
+              </motion.div>
+
+              <motion.h2 
+                className="text-4xl md:text-5xl text-[#1a3a5c] font-bold leading-tight mb-4"
+                variants={itemVariants}
+              >
+                {latestCourse.title}
+              </motion.h2>
+
+              <motion.h3 
+                className="text-xl md:text-2xl text-[#3d9a8b] mb-6 font-semibold"
+                variants={itemVariants}
+              >
+                {latestCourse.subtitle}
+              </motion.h3>
+
+              <motion.p 
+                className="text-[#1a3a5c]/70 text-lg md:text-xl mb-12 leading-relaxed line-clamp-3"
+                variants={itemVariants}
+              >
+                {latestCourse.shortDescription}
+              </motion.p>
+
+              <motion.div className="space-y-4 mb-12" variants={containerVariants}>
+                <motion.div 
+                  className="flex items-start gap-4 p-4 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b]"
+                  variants={itemVariants}
+                >
+                  <div className="w-10 h-10 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-5 h-5 text-[#3d9a8b]" />
+                  </div>
+                  <div>
+                    <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Carga Horaria</p>
+                    <p className="text-[#1a3a5c] font-bold text-base">{latestCourse.cargaHoraria} horas académicas</p>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="flex items-start gap-4 p-4 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b]"
+                  variants={itemVariants}
+                >
+                  <div className="w-10 h-10 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-[#3d9a8b]" />
+                  </div>
+                  <div>
+                    <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Modalidad</p>
+                    <p className="text-[#1a3a5c] font-bold text-base">{latestCourse.modality.join(', ')}</p>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="flex items-start gap-4 p-4 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b]"
+                  variants={itemVariants}
+                >
+                  <div className="w-10 h-10 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="w-5 h-5 text-[#3d9a8b]" />
+                  </div>
+                  <div>
+                    <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Precio</p>
+                    <p className="text-[#1a3a5c] font-bold text-base">${latestCourse.price.regular} USD</p>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href={`/cursos/${latestCourse.slug}`}>
+                  <Button className="bg-[#1a3a5c] hover:bg-[#163250] text-white rounded-none px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#1a3a5c]">
+                    Ver Detalles del Curso
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            <motion.div 
+              className="relative h-96 lg:h-full min-h-96 overflow-hidden shadow-2xl border-4 border-[#3d9a8b]/30"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070"
+                alt={latestCourse.title}
+                fill
+                className="object-cover"
+                priority
+              />
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-t from-[#1a3a5c]/40 via-transparent to-transparent"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                viewport={{ once: true }}
+              />
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+    )
+  }
+
+  // Banner de la Feria (default)
   return (
     <section id="campaigns" className="py-12 px-4 md:px-6 lg:px-8 bg-white relative overflow-hidden">
       <div className="container-max">
@@ -117,16 +353,20 @@ export function CampaignsSection() {
               variants={containerVariants}
             >
               <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button className="bg-[#1a3a5c] hover:bg-[#163250] text-white rounded-none px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#1a3a5c]">
-                  Más Información
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <Link href="/contacto">
+                  <Button className="bg-[#1a3a5c] hover:bg-[#163250] text-white rounded-none px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#1a3a5c]">
+                    Más Información
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </motion.div>
               <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button className="bg-[#3d9a8b] hover:bg-[#358578] text-white rounded-none px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#3d9a8b]">
-                  Inscríbete
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <Link href="/contacto">
+                  <Button className="bg-[#3d9a8b] hover:bg-[#358578] text-white rounded-none px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#3d9a8b]">
+                    Inscríbete
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </motion.div>
             </motion.div>
           </motion.div>

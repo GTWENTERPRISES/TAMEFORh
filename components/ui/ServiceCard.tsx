@@ -30,7 +30,7 @@ export function ServiceCard({
   const content = (
     <motion.div
       className={cn(
-        "group relative rounded-xl overflow-hidden bg-white border border-[#1a3a5c]/10 shadow-sm hover:shadow-lg transition-all duration-300 h-full",
+        "group relative rounded-xl overflow-hidden bg-white border border-[#1a3a5c]/10 border-l-4 border-l-[#3d9a8b] shadow-sm hover:shadow-lg transition-all duration-300 h-full",
         className
       )}
       initial={{ opacity: 0, y: 30 }}

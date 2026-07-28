@@ -70,12 +70,12 @@ export const coursesData: Course[] = [
     modality: ['Virtual'],
     tipoParticipante: 'Adultos',
     price: {
-      basePerLevel: 150,
+      basePerLevel: 125,
       levels: 3,
-      regular: 450,
-      student: 380,
-      memberTamefor: 360,
-      affiliateConifor: 405,
+      regular: 300,
+      student: 300,
+      memberTamefor: 300,
+      affiliateConifor: 300,
       enabledMemberTamefor: 300
     },
     schedule: {
@@ -166,12 +166,12 @@ export const coursesData: Course[] = [
     modality: ['Virtual'],
     tipoParticipante: 'Adultos',
     price: {
-      basePerLevel: 150,
+      basePerLevel: 125,
       levels: 3,
-      regular: 450,
-      student: 380,
-      memberTamefor: 360,
-      affiliateConifor: 405,
+      regular: 300,
+      student: 300,
+      memberTamefor: 300,
+      affiliateConifor: 300,
       enabledMemberTamefor: 300
     },
     schedule: {
@@ -262,13 +262,13 @@ export const coursesData: Course[] = [
     modality: ['Virtual'],
     tipoParticipante: 'Adultos',
     price: {
-      basePerLevel: 150,
-      levels: 3,
-      regular: 450,
-      student: 380,
-      memberTamefor: 360,
-      affiliateConifor: 405,
-      enabledMemberTamefor: 300
+      basePerLevel: 125,
+      levels: 1,
+      regular: 125,
+      student: 125,
+      memberTamefor: 125,
+      affiliateConifor: 125,
+      enabledMemberTamefor: 125
     },
     schedule: {
       startDate: 'Por confirmar',
@@ -358,13 +358,13 @@ export const coursesData: Course[] = [
     modality: ['Virtual'],
     tipoParticipante: 'Adultos',
     price: {
-      basePerLevel: 150,
-      levels: 3,
-      regular: 450,
-      student: 380,
-      memberTamefor: 360,
-      affiliateConifor: 405,
-      enabledMemberTamefor: 300
+      basePerLevel: 125,
+      levels: 1,
+      regular: 125,
+      student: 125,
+      memberTamefor: 125,
+      affiliateConifor: 125,
+      enabledMemberTamefor: 125
     },
     schedule: {
       startDate: 'Por confirmar',
@@ -454,13 +454,13 @@ export const coursesData: Course[] = [
     modality: ['Virtual'],
     tipoParticipante: 'Adultos',
     price: {
-      basePerLevel: 150,
-      levels: 3,
-      regular: 450,
-      student: 380,
-      memberTamefor: 360,
-      affiliateConifor: 405,
-      enabledMemberTamefor: 300
+      basePerLevel: 125,
+      levels: 1,
+      regular: 125,
+      student: 125,
+      memberTamefor: 125,
+      affiliateConifor: 125,
+      enabledMemberTamefor: 125
     },
     schedule: {
       startDate: 'Por confirmar',
@@ -550,13 +550,13 @@ export const coursesData: Course[] = [
     modality: ['Virtual'],
     tipoParticipante: 'Adultos',
     price: {
-      basePerLevel: 150,
-      levels: 3,
-      regular: 450,
-      student: 380,
-      memberTamefor: 360,
-      affiliateConifor: 405,
-      enabledMemberTamefor: 300
+      basePerLevel: 125,
+      levels: 1,
+      regular: 125,
+      student: 125,
+      memberTamefor: 125,
+      affiliateConifor: 125,
+      enabledMemberTamefor: 125
     },
     schedule: {
       startDate: 'Por confirmar',
@@ -646,13 +646,13 @@ export const coursesData: Course[] = [
     modality: ['Virtual'],
     tipoParticipante: 'Adultos',
     price: {
-      basePerLevel: 150,
-      levels: 3,
-      regular: 450,
-      student: 380,
-      memberTamefor: 360,
-      affiliateConifor: 405,
-      enabledMemberTamefor: 300
+      basePerLevel: 125,
+      levels: 1,
+      regular: 125,
+      student: 125,
+      memberTamefor: 125,
+      affiliateConifor: 125,
+      enabledMemberTamefor: 125
     },
     schedule: {
       startDate: 'Por confirmar',
@@ -742,13 +742,13 @@ export const coursesData: Course[] = [
     modality: ['Virtual'],
     tipoParticipante: 'Adultos',
     price: {
-      basePerLevel: 150,
-      levels: 3,
-      regular: 450,
-      student: 380,
-      memberTamefor: 360,
-      affiliateConifor: 405,
-      enabledMemberTamefor: 300
+      basePerLevel: 125,
+      levels: 1,
+      regular: 125,
+      student: 125,
+      memberTamefor: 125,
+      affiliateConifor: 125,
+      enabledMemberTamefor: 125
     },
     schedule: {
       startDate: 'Por confirmar',
@@ -838,13 +838,13 @@ export const coursesData: Course[] = [
     modality: ['Virtual'],
     tipoParticipante: 'Adultos',
     price: {
-      basePerLevel: 150,
-      levels: 3,
-      regular: 450,
-      student: 380,
-      memberTamefor: 360,
-      affiliateConifor: 405,
-      enabledMemberTamefor: 300
+      basePerLevel: 125,
+      levels: 1,
+      regular: 125,
+      student: 125,
+      memberTamefor: 125,
+      affiliateConifor: 125,
+      enabledMemberTamefor: 125
     },
     schedule: {
       startDate: 'Por confirmar',
@@ -934,13 +934,13 @@ export const coursesData: Course[] = [
     modality: ['Virtual'],
     tipoParticipante: 'Adultos',
     price: {
-      basePerLevel: 150,
-      levels: 3,
-      regular: 450,
-      student: 380,
-      memberTamefor: 360,
-      affiliateConifor: 405,
-      enabledMemberTamefor: 300
+      basePerLevel: 125,
+      levels: 1,
+      regular: 125,
+      student: 125,
+      memberTamefor: 125,
+      affiliateConifor: 125,
+      enabledMemberTamefor: 125
     },
     schedule: {
       startDate: 'Por confirmar',

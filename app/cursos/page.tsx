@@ -13,7 +13,7 @@ export default function CursosPage() {
   return (
     <main className="min-h-screen bg-background">
       <Header />
-      <CampaignsSection />
+      <CampaignsSection variant="latest-course" />
       <CursosPageClient />
       <Footer />
     </main>

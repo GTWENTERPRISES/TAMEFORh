@@ -50,17 +50,19 @@ const getLevelsForCourse = (totalLevels: number) => {
 }
 
 export function PagosPageClient() {
-  const [selected, setSelected] = useState<{ courseId: string; level?: string; isFullCourse?: boolean } | null>(null)
+  const [selected, setSelected] = useState<{ courseId: string; levels: string[] } | null>(null)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [email, setEmail] = useState('')
   const [showModal, setShowModal] = useState(false)
   const [idNumber, setIdNumber] = useState('')
   const [receiptNumber, setReceiptNumber] = useState('')
+  const [errors, setErrors] = useState<Record<string, string>>({})
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setSelectedFile(e.target.files[0])
+      setErrors(prev => ({ ...prev, file: '' }))
     }
   }
 
@@ -68,26 +70,94 @@ export function PagosPageClient() {
     fileInputRef.current?.click()
   }
 
+  const selectedCourse = selected !== null ? coursesData.find(c => c.id === selected.courseId) : null
+  
+  const calculatePricing = () => {
+    if (!selectedCourse || !selected || selected.levels.length === 0) {
+      return {
+        subtotal: 0,
+        discount: 0,
+        total: 0,
+        hasDiscount: false
+      }
+    }
+
+    const pricePerLevel = selectedCourse.price.basePerLevel
+    const numLevels = selected.levels.length
+    const subtotal = pricePerLevel * numLevels
+
+    // Aplicar 20% de descuento si selecciona los 3 niveles
+    const hasDiscount = numLevels === 3
+    const discount = hasDiscount ? subtotal * 0.20 : 0
+    const total = subtotal - discount
+
+    return {
+      subtotal,
+      discount,
+      total,
+      hasDiscount
+    }
+  }
+
+  const pricing = calculatePricing()
+  const amountToPay = pricing.total.toFixed(2)
+
+  const toggleLevel = (courseId: string, level: string) => {
+    setSelected(prev => {
+      if (!prev || prev.courseId !== courseId) {
+        // Nuevo curso seleccionado
+        return { courseId, levels: [level] }
+      }
+
+      // Mismo curso - toggle nivel
+      const levelIndex = prev.levels.indexOf(level)
+      if (levelIndex > -1) {
+        // Quitar nivel
+        const newLevels = prev.levels.filter(l => l !== level)
+        if (newLevels.length === 0) {
+          return null
+        }
+        return { courseId, levels: newLevels }
+      } else {
+        // Agregar nivel
+        return { courseId, levels: [...prev.levels, level].sort() }
+      }
+    })
+    setErrors(prev => ({ ...prev, course: '' }))
+  }
+
+  const isLevelSelected = (courseId: string, level: string) => {
+    return selected?.courseId === courseId && selected.levels.includes(level)
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    
-    if (!selected) {
-      alert('Por favor selecciona un curso o nivel')
-      return
+
+    const newErrors: Record<string, string> = {}
+
+    if (!selected || selected.levels.length === 0) {
+      newErrors.course = 'Por favor selecciona al menos un nivel de un curso'
     }
-    
-    if (!idNumber) {
-      alert('Por favor ingresa tu número de cédula')
-      return
+
+    if (!idNumber.trim()) {
+      newErrors.idNumber = 'Por favor ingresa tu número de cédula'
+    } else if (!/^\d{10}$/.test(idNumber.trim())) {
+      newErrors.idNumber = 'La cédula debe tener 10 dígitos'
     }
-    
-    if (!email) {
-      alert('Por favor ingresa tu correo electrónico')
-      return
+
+    if (!email.trim()) {
+      newErrors.email = 'Por favor ingresa tu correo electrónico'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      newErrors.email = 'Ingresa un correo electrónico válido'
     }
-    
+
     if (!selectedFile) {
-      alert('Por favor sube el comprobante de pago')
+      newErrors.file = 'Por favor sube el comprobante de pago'
+    }
+
+    setErrors(newErrors)
+
+    if (Object.values(newErrors).some(Boolean)) {
       return
     }
 
@@ -100,7 +170,7 @@ export function PagosPageClient() {
       receiptNumber,
       selectedFile
     })
-    
+
     setShowModal(true)
   }
 
@@ -110,22 +180,9 @@ export function PagosPageClient() {
     setEmail('')
     setReceiptNumber('')
     setSelectedFile(null)
+    setErrors({})
     setShowModal(false)
   }
-
-  const selectedCourse = selected !== null ? coursesData.find(c => c.id === selected.courseId) : null
-  
-  const amountToPay = (() => {
-    if (!selectedCourse || !selected) return "0.00"
-    if (selected.isFullCourse) {
-      return selectedCourse.price.regular.toFixed(2)
-    }
-    return selectedCourse.price.basePerLevel.toFixed(2)
-  })()
-
-  const isSelected = (courseId: string, level?: string, isFullCourse?: boolean) =>
-    selected?.courseId === courseId && 
-    ((level && selected.level === level) || (isFullCourse && selected.isFullCourse))
 
   // Verifica si el curso tiene niveles (subtitle contiene "Nivel")
   const courseHasLevels = (course: any) => {
@@ -217,34 +274,33 @@ export function PagosPageClient() {
                           <p className="text-[#1a3a5c]/60 text-sm">{course.subtitle}</p>
                           <p className="text-[#1a3a5c]/50 text-xs mt-1">{course.codigoEspecialidad} • {course.cargaHoraria} horas</p>
                         </div>
-                        <div className="text-2xl font-bold text-[#3d9a8b] ml-4">
-                          {courseHasLevels(course) ? (
-                            <>
-                              ${course.price.basePerLevel.toFixed(2)}
-                              <span className="text-xs text-[#3d9a8b]/60 block">por nivel</span>
-                            </>
-                          ) : (
-                            <>
-                              ${course.price.regular.toFixed(2)}
-                              <span className="text-xs text-[#3d9a8b]/60 block">curso completo</span>
-                            </>
+                        <div className="text-right ml-4">
+                          <div className="text-2xl font-bold text-[#3d9a8b]">
+                            ${course.price.regular}
+                            <span className="text-xs text-[#3d9a8b]/60 block">
+                              {course.price.levels > 1 ? 'curso completo' : 'curso'}
+                            </span>
+                          </div>
+                          {course.price.levels > 1 && (
+                            <div className="text-sm text-[#1a3a5c]/70 mt-1">
+                              ${course.price.basePerLevel}/nivel
+                            </div>
                           )}
                         </div>
                       </div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        {courseHasLevels(course) ? (
-                          <>
-                            <span className="text-[#1a3a5c]/60 text-xs font-semibold mr-1">Selecciona el nivel:</span>
+                      
+                      {course.price.levels > 1 ? (
+                        // Curso con niveles - mostrar botones para seleccionar
+                        <>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-[#1a3a5c]/60 text-xs font-semibold mr-1">Selecciona niveles:</span>
                             {getLevelsForCourse(course.price.levels).map((level) => {
-                              const active = isSelected(course.id, level.title)
+                              const active = isLevelSelected(course.id, level.title)
                               return (
                                 <button
                                   key={level.id}
                                   type="button"
-                                  onClick={() => setSelected({ 
-                                    courseId: course.id, 
-                                    level: level.title
-                                  })}
+                                  onClick={() => toggleLevel(course.id, level.title)}
                                   className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 border transition-all duration-200 ${
                                     active
                                       ? "bg-[#3d9a8b] text-white border-[#3d9a8b]"
@@ -256,28 +312,67 @@ export function PagosPageClient() {
                                 </button>
                               )
                             })}
-                          </>
-                        ) : (
-                          <>
-                            <span className="text-[#1a3a5c]/60 text-xs font-semibold mr-1">Selecciona el curso:</span>
+                          </div>
+                          {/* Mostrar niveles seleccionados */}
+                          {selected?.courseId === course.id && selected.levels.length > 0 && (
+                            <div className="mt-3 pt-3 border-t border-[#3d9a8b]/20">
+                              <p className="text-xs text-[#1a3a5c]/70 mb-1">Niveles seleccionados:</p>
+                              <p className="text-sm font-semibold text-[#1a3a5c]">
+                                {selected.levels.join(", ")} ({selected.levels.length} nivel{selected.levels.length > 1 ? 'es' : ''})
+                              </p>
+                              
+                              {/* Badge de descuento cuando selecciona 3 niveles */}
+                              {selected.levels.length === 3 && (
+                                <div className="mt-2 inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg animate-pulse">
+                                  🎉 ¡20% DE DESCUENTO ACTIVADO! Ahorras $75
+                                </div>
+                              )}
+                              
+                              {/* Mensaje motivacional cuando NO tiene los 3 niveles */}
+                              {selected.levels.length < 3 && (
+                                <div className="mt-2 p-2 bg-yellow-50 border border-yellow-300 rounded text-xs">
+                                  <p className="text-yellow-800 font-semibold">
+                                    💡 <strong>¡Completa los 3 niveles</strong> y ahorra <strong className="text-red-600">$75</strong> con el 20% de descuento!
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        // Curso completo sin niveles - botón simple de selección
+                        <>
+                          <div className="flex flex-wrap items-center gap-2">
                             <button
                               type="button"
-                              onClick={() => setSelected({ 
-                                courseId: course.id, 
-                                isFullCourse: true
-                              })}
-                              className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 border transition-all duration-200 ${
-                                isSelected(course.id, undefined, true)
+                              onClick={() => {
+                                if (selected?.courseId === course.id) {
+                                  setSelected(null) // Deseleccionar
+                                } else {
+                                  setSelected({ courseId: course.id, levels: ['Curso Completo'] })
+                                }
+                                setErrors(prev => ({ ...prev, course: '' }))
+                              }}
+                              className={`inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 border transition-all duration-200 ${
+                                selected?.courseId === course.id
                                   ? "bg-[#3d9a8b] text-white border-[#3d9a8b]"
                                   : "bg-[#3d9a8b]/10 text-[#3d9a8b] border-[#3d9a8b]/30 hover:bg-[#3d9a8b]/20"
                               }`}
                             >
-                              {isSelected(course.id, undefined, true) && <Check className="w-3 h-3" />}
-                              Seleccionar Curso
+                              {selected?.courseId === course.id && <Check className="w-4 h-4" />}
+                              Seleccionar Curso Completo
                             </button>
-                          </>
-                        )}
-                      </div>
+                          </div>
+                          {selected?.courseId === course.id && (
+                            <div className="mt-3 pt-3 border-t border-[#3d9a8b]/20">
+                              <p className="text-sm font-semibold text-[#3d9a8b] flex items-center gap-2">
+                                <Check className="w-4 h-4" />
+                                Curso completo seleccionado
+                              </p>
+                            </div>
+                          )}
+                        </>
+                      )}
                     </motion.div>
                   ))}
                 </motion.div>
@@ -290,13 +385,81 @@ export function PagosPageClient() {
                   className="bg-[#3d9a8b] p-8"
                   variants={itemVariants}
                 >
-                  <p className="text-white/90 text-sm font-semibold mb-2 uppercase tracking-wider">Monto a Pagar</p>
-                  <div className="text-4xl font-bold text-white">${amountToPay}</div>
-                  {selectedCourse && (
-                    <div className="mt-3 text-white/80 text-xs space-y-1">
-                      <div>Curso: {selectedCourse.title}</div>
-                      {selected?.level && <div>Nivel: {selected.level}</div>}
-                      {selected?.isFullCourse && <div>Curso Seleccionado</div>}
+                  <p className="text-white/90 text-sm font-semibold mb-2 uppercase tracking-wider">Resumen de Pago</p>
+                  
+                  {selectedCourse && selected && selected.levels.length > 0 ? (
+                    <div className="space-y-3">
+                      {/* Curso y niveles */}
+                      <div className="text-white/80 text-xs space-y-1 pb-3 border-b border-white/20">
+                        <div className="font-semibold text-white">{selectedCourse.title}</div>
+                        <div>{selected.levels.join(", ")}</div>
+                      </div>
+
+                      {/* Subtotal */}
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-white/80">
+                          Subtotal ({selected.levels.length} nivel{selected.levels.length > 1 ? 'es' : ''})
+                        </span>
+                        <span className="text-white font-semibold">
+                          ${pricing.subtotal.toFixed(2)}
+                        </span>
+                      </div>
+
+                      {/* Descuento si aplica */}
+                      {pricing.hasDiscount && (
+                        <div className="relative">
+                          {/* Badge de descuento destacado */}
+                          <div className="absolute -top-2 -right-2 z-10">
+                            <div className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse shadow-lg">
+                              ¡AHORRA $75!
+                            </div>
+                          </div>
+                          
+                          <div className="flex justify-between items-center text-sm bg-gradient-to-r from-yellow-400 to-orange-400 -mx-4 px-4 py-3 shadow-lg">
+                            <span className="text-[#1a3a5c] font-bold flex items-center gap-2">
+                              <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                                <Check className="w-4 h-4 text-green-600" />
+                              </div>
+                              🎉 Descuento Especial 20%
+                            </span>
+                            <span className="text-[#1a3a5c] font-black text-lg">
+                              -${pricing.discount.toFixed(2)}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Total */}
+                      <div className="flex justify-between items-center pt-2 border-t border-white/20">
+                        <span className="text-white font-bold text-sm">Total a Pagar</span>
+                        <span className="text-white font-bold text-3xl">
+                          ${pricing.total.toFixed(2)}
+                        </span>
+                      </div>
+
+                      {/* Mensaje motivacional */}
+                      {!pricing.hasDiscount && selected.levels.length < 3 && (
+                        <div className="mt-3 p-3 bg-yellow-400/20 border-l-4 border-yellow-400 -mx-4">
+                          <p className="text-yellow-200 text-xs font-semibold flex items-center gap-2">
+                            💡 <span><strong>¡Tip!</strong> Selecciona los 3 niveles y ahorra <strong>$75</strong> con el descuento del 20%</span>
+                          </p>
+                        </div>
+                      )}
+
+                      {pricing.hasDiscount && (
+                        <div className="mt-3 p-3 bg-green-500/20 border-l-4 border-green-400 -mx-4">
+                          <p className="text-green-200 text-xs font-semibold flex items-center gap-2">
+                            ✅ <span><strong>¡Excelente elección!</strong> Estás ahorrando $75 con el curso completo</span>
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div>
+                      <div className="text-4xl font-bold text-white">$0.00</div>
+                      <div className="mt-2 text-white/70 text-xs">
+                        Selecciona un curso y sus niveles
+                      </div>
                     </div>
                   )}
                 </motion.div>
@@ -328,23 +491,35 @@ export function PagosPageClient() {
                   className="bg-[#1a3a5c] border-l-4 border-[#3d9a8b] p-8"
                   variants={itemVariants}
                 >
-                  <h3 className="font-sans text-xl text-white mb-6 font-bold">Datos Bancarios - Produbanco</h3>
+                  <div className="flex items-center gap-3 mb-6">
+                    <h3 className="font-sans text-xl text-white font-bold">Datos Bancarios</h3>
+                    <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded">
+                      <Image
+                        src="/banco.jpg"
+                        alt="Produbanco"
+                        width={24}
+                        height={24}
+                        className="object-contain"
+                      />
+                      <span className="font-bold text-[#1a3a5c] text-sm">PRODUBANCO</span>
+                    </div>
+                  </div>
                   <div className="space-y-3 text-white/90">
                     <div>
                       <span className="text-white/70 text-sm">Tipo de Cuenta:</span>
-                      <p className="font-semibold">Cuenta de Ahorros</p>
+                      <p className="font-semibold">Cuenta Corriente</p>
                     </div>
                     <div>
                       <span className="text-white/70 text-sm">Número de Cuenta:</span>
-                      <p className="font-semibold text-lg text-yellow-400">XXXXXXXXXXXX</p>
+                      <p className="font-semibold text-lg text-yellow-400">27059122094</p>
                     </div>
                     <div>
                       <span className="text-white/70 text-sm">Titular:</span>
-                      <p className="font-semibold">TAMEFOR S.A.S B.I.C</p>
+                      <p className="font-semibold">TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C.</p>
                     </div>
                     <div>
                       <span className="text-white/70 text-sm">RUC/Identificación:</span>
-                      <p className="font-semibold">XXXXXXXXXXXXX</p>
+                      <p className="font-semibold">1291792017001</p>
                     </div>
                   </div>
                 </motion.div>
@@ -360,7 +535,7 @@ export function PagosPageClient() {
               variants={containerVariants}
             >
               <motion.div variants={itemVariants}>
-                <div className="bg-white p-10 border border-[#3d9a8b]/20">
+                <div className="bg-white p-10 border border-[#3d9a8b]/20 border-l-4 border-l-[#3d9a8b]">
                   <div className="flex items-center gap-3 mb-8">
                     <div className="w-10 h-10 bg-[#3d9a8b]/10 border border-[#3d9a8b]/20 flex items-center justify-center">
                       <CreditCard className="w-6 h-6 text-[#3d9a8b]" />
@@ -379,10 +554,21 @@ export function PagosPageClient() {
                       </p>
                       <Input
                         value={idNumber}
-                        onChange={(e) => setIdNumber(e.target.value)}
+                        onChange={(e) => {
+                          setIdNumber(e.target.value)
+                          setErrors(prev => ({ ...prev, idNumber: '' }))
+                        }}
                         placeholder="Número de cédula"
-                        className="w-full !bg-white border-[#3d9a8b]/20 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 rounded-none h-12 font-medium focus-visible:ring-[#3d9a8b]"
+                        className={`w-full !bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 rounded-none h-12 font-medium focus-visible:ring-[#3d9a8b] ${
+                          errors.idNumber ? 'border-red-500' : 'border-[#3d9a8b]/20'
+                        }`}
                       />
+                      {errors.idNumber && (
+                        <p className="mt-2 text-red-600 text-sm font-medium flex items-center gap-1.5">
+                          <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                          {errors.idNumber}
+                        </p>
+                      )}
                     </div>
 
                     {/* Correo Electrónico */}
@@ -396,10 +582,21 @@ export function PagosPageClient() {
                       <Input
                         type="email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {
+                          setEmail(e.target.value)
+                          setErrors(prev => ({ ...prev, email: '' }))
+                        }}
                         placeholder="ejemplo@correo.com"
-                        className="w-full !bg-white border-[#3d9a8b]/20 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 rounded-none h-12 font-medium focus-visible:ring-[#3d9a8b]"
+                        className={`w-full !bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 rounded-none h-12 font-medium focus-visible:ring-[#3d9a8b] ${
+                          errors.email ? 'border-red-500' : 'border-[#3d9a8b]/20'
+                        }`}
                       />
+                      {errors.email && (
+                        <p className="mt-2 text-red-600 text-sm font-medium flex items-center gap-1.5">
+                          <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                          {errors.email}
+                        </p>
+                      )}
                     </div>
 
                     {/* Payment Method */}
@@ -446,7 +643,9 @@ export function PagosPageClient() {
                       />
                       <div
                         onClick={handleFileUploadClick}
-                        className="border-2 border-dashed border-[#3d9a8b]/30 p-8 text-center hover:border-[#3d9a8b] transition-colors cursor-pointer"
+                        className={`border-2 border-dashed p-8 text-center hover:border-[#3d9a8b] transition-colors cursor-pointer ${
+                          errors.file ? 'border-red-500' : 'border-[#3d9a8b]/30'
+                        }`}
                       >
                         {selectedFile ? (
                           <>
@@ -480,7 +679,21 @@ export function PagosPageClient() {
                           </>
                         )}
                       </div>
+                      {errors.file && (
+                        <p className="mt-2 text-red-600 text-sm font-medium flex items-center gap-1.5">
+                          <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                          {errors.file}
+                        </p>
+                      )}
                     </div>
+
+                    {/* Error de selección de curso */}
+                    {errors.course && (
+                      <div className="flex items-start gap-3 p-4 bg-red-50 border-l-4 border-red-500">
+                        <AlertCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <p className="text-red-700 text-sm font-medium">{errors.course}</p>
+                      </div>
+                    )}
 
                     {/* Submit Button */}
                     <Button className="w-full bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white py-3 font-bold text-lg transition-all duration-300 border-2 border-[#1a3a5c] hover:border-[#3d9a8b]">

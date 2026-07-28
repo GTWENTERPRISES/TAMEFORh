@@ -185,7 +185,7 @@ export function CursosPageClient() {
               return (
                 <motion.div
                   key={course.id}
-                  className="group relative h-full flex flex-col bg-white border border-[#3d9a8b]/20 hover:border-[#3d9a8b] transition-all duration-300"
+                  className="group relative h-full flex flex-col bg-white border border-[#3d9a8b]/20 border-l-4 border-l-[#3d9a8b] hover:border-[#3d9a8b] transition-all duration-300"
                   variants={cardVariants}
                   whileHover={{ y: -10 }}
                   layout

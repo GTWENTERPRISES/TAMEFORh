@@ -205,7 +205,7 @@ export function TestimonialsSection() {
                 whileHover={{ y: -8 }}
                 className="group relative"
               >
-                <div className="bg-white/95 backdrop-blur-sm border border-[#3d9a8b]/30 transition-all duration-500 hover:shadow-xl h-full flex flex-col">
+                <div className="bg-white/95 backdrop-blur-sm border border-[#3d9a8b]/30 border-l-4 border-l-[#3d9a8b] transition-all duration-500 hover:shadow-xl h-full flex flex-col">
                   {/* Quote icon */}
                   <div className="p-8 pb-6">
                     <Quote className="w-8 h-8 text-[#3d9a8b] mb-6" />

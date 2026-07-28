@@ -2,6 +2,7 @@
 
 import { Check, ArrowRight, Leaf } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import Image from "next/image"
 
 const features = [
@@ -97,10 +98,12 @@ export function WhyChooseSection() {
 
             {/* CTA and Donation */}
             <div className="flex flex-wrap items-center gap-6">
-              <Button className="bg-[#3d9a8b] hover:bg-[#2d7a6b] text-white rounded-full px-6">
-                Explorar Todo
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href="/servicios">
+                <Button className="bg-[#3d9a8b] hover:bg-[#2d7a6b] text-white rounded-full px-6">
+                  Explorar Todo
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
               
               <div className="flex items-center gap-3 bg-[#1a3a5c] rounded-full py-2 px-4 shadow-lg border border-[#3d9a8b]/30">
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
