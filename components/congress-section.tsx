@@ -18,7 +18,7 @@ export function CongressSection() {
             <div className="relative">
               <div className="relative h-[450px] rounded-2xl overflow-hidden border-4 border-[#3d9a8b] shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1200"
+                  src="/arboles.webp"
                   alt="Expo Forestal TAMEFOR"
                   fill
                   className="object-cover"
