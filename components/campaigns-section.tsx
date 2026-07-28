@@ -244,10 +244,10 @@ export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps)
 
   // Banner de la Feria (default)
   return (
-    <section id="campaigns" className="py-12 px-4 md:px-6 lg:px-8 bg-white relative overflow-hidden">
+    <section id="campaigns" className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 md:px-6 lg:px-8 bg-white relative overflow-hidden">
       <div className="container-max">
         <motion.div 
-          className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -257,7 +257,7 @@ export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps)
           <motion.div className="max-w-2xl" variants={itemVariants}>
             {/* Badge */}
             <motion.div 
-              className="inline-flex items-center gap-2 bg-[#3d9a8b] text-white px-6 py-2 font-bold uppercase tracking-wider text-sm mb-6"
+              className="inline-flex items-center gap-2 bg-[#3d9a8b] text-white px-4 sm:px-5 md:px-6 py-2 font-bold uppercase tracking-wider text-xs sm:text-sm mb-5 sm:mb-6"
               variants={itemVariants}
               whileHover={{ scale: 1.05, y: -2 }}
             >
@@ -267,7 +267,7 @@ export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps)
 
             {/* Title */}
             <motion.h2 
-              className="text-5xl md:text-6xl text-[#1a3a5c] font-bold leading-tight mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#1a3a5c] font-bold leading-tight mb-3 sm:mb-4"
               variants={itemVariants}
             >
               Expo Forestal<br />
@@ -276,7 +276,7 @@ export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps)
 
             {/* Subtitle */}
             <motion.h3 
-              className="text-2xl md:text-3xl text-[#1a3a5c]/80 mb-6 font-semibold"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#1a3a5c]/80 mb-4 sm:mb-5 md:mb-6 font-semibold"
               variants={itemVariants}
             >
               Feria de Innovación y Sostenibilidad Ambiental
@@ -284,7 +284,7 @@ export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps)
 
             {/* Description */}
             <motion.p 
-              className="text-[#1a3a5c]/70 text-lg md:text-xl mb-12 leading-relaxed"
+              className="text-[#1a3a5c]/70 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 md:mb-12 leading-relaxed"
               variants={itemVariants}
             >
               La feria más grande de tecnología forestal, maquinaria, insumos y servicios ambientales. Encuentra proveedores, descubre innovaciones y establece alianzas estratégicas para tu negocio.
@@ -292,7 +292,7 @@ export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps)
 
             {/* Event Details */}
             <motion.div 
-              className="space-y-4 mb-12"
+              className="space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -300,69 +300,69 @@ export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps)
             >
               {/* Dates */}
               <motion.div 
-                className="flex items-start gap-4 p-4 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b] hover:border-[#3d9a8b] transition-all duration-300"
+                className="flex items-start gap-3 sm:gap-4 p-4 sm:p-5 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b] hover:border-[#3d9a8b] transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ x: 5 }}
               >
-                <div className="w-10 h-10 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                   <CalendarIcon className="w-5 h-5 text-[#3d9a8b]" />
                 </div>
                 <div>
-                  <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Fechas</p>
-                  <p className="text-[#1a3a5c] font-bold text-base">15-17 de Septiembre, 2026</p>
+                  <p className="text-[#1a3a5c]/60 text-xs sm:text-sm font-medium mb-1">Fechas</p>
+                  <p className="text-[#1a3a5c] font-bold text-sm sm:text-base">15-17 de Septiembre, 2026</p>
                 </div>
               </motion.div>
 
               {/* Location */}
               <motion.div 
-                className="flex items-start gap-4 p-4 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b] hover:border-[#3d9a8b] transition-all duration-300"
+                className="flex items-start gap-3 sm:gap-4 p-4 sm:p-5 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b] hover:border-[#3d9a8b] transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ x: 5 }}
               >
-                <div className="w-10 h-10 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-5 h-5 text-[#3d9a8b]" />
                 </div>
                 <div>
-                  <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Ubicación</p>
-                  <p className="text-[#1a3a5c] font-bold text-base">Centro de Convenciones, Quevedo</p>
+                  <p className="text-[#1a3a5c]/60 text-xs sm:text-sm font-medium mb-1">Ubicación</p>
+                  <p className="text-[#1a3a5c] font-bold text-sm sm:text-base">Centro de Convenciones, Quevedo</p>
                 </div>
               </motion.div>
 
               {/* Participants */}
               <motion.div 
-                className="flex items-start gap-4 p-4 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b] hover:border-[#3d9a8b] transition-all duration-300"
+                className="flex items-start gap-3 sm:gap-4 p-4 sm:p-5 bg-[#3d9a8b]/10 border-l-4 border-[#3d9a8b] hover:border-[#3d9a8b] transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ x: 5 }}
               >
-                <div className="w-10 h-10 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0">
                   <Users className="w-5 h-5 text-[#3d9a8b]" />
                 </div>
                 <div>
-                  <p className="text-[#1a3a5c]/60 text-sm font-medium mb-1">Expositores</p>
-                  <p className="text-[#1a3a5c] font-bold text-base">+80 empresas del sector forestal</p>
+                  <p className="text-[#1a3a5c]/60 text-xs sm:text-sm font-medium mb-1">Expositores</p>
+                  <p className="text-[#1a3a5c] font-bold text-sm sm:text-base">+80 empresas del sector forestal</p>
                 </div>
               </motion.div>
             </motion.div>
 
             {/* CTA Buttons */}
             <motion.div 
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={containerVariants}
             >
-              <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/contacto">
-                  <Button className="bg-[#1a3a5c] hover:bg-[#163250] text-white rounded-none px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#1a3a5c]">
+              <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+                <Link href="/contacto" className="block w-full sm:w-auto">
+                  <Button className="w-full sm:w-auto bg-[#1a3a5c] hover:bg-[#163250] text-white rounded-none px-8 sm:px-10 py-3.5 sm:py-4 font-bold text-base sm:text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#1a3a5c] min-h-[52px]">
                     Más Información
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
               </motion.div>
-              <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/contacto">
-                  <Button className="bg-[#3d9a8b] hover:bg-[#358578] text-white rounded-none px-10 py-4 font-bold text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#3d9a8b]">
+              <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+                <Link href="/contacto" className="block w-full sm:w-auto">
+                  <Button className="w-full sm:w-auto bg-[#3d9a8b] hover:bg-[#358578] text-white rounded-none px-8 sm:px-10 py-3.5 sm:py-4 font-bold text-base sm:text-lg group transition-all shadow-lg hover:shadow-xl border-2 border-[#3d9a8b] min-h-[52px]">
                     Inscríbete
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
@@ -373,13 +373,13 @@ export function CampaignsSection({ variant = 'default' }: CampaignsSectionProps)
 
           {/* Right Image */}
           <motion.div 
-            className="relative h-96 lg:h-full min-h-96 overflow-hidden shadow-2xl border-4 border-[#3d9a8b]/30"
+            className="relative h-80 sm:h-96 lg:h-full min-h-80 sm:min-h-96 overflow-hidden shadow-2xl border-4 border-[#3d9a8b]/30 order-first lg:order-last"
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2000"
-              alt="Expo Forestal TAMEFOR 2026"
+              src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013"
+              alt="Expo Forestal TAMEFOR 2026 - Bosque sostenible"
               fill
               className="object-cover"
               priority
