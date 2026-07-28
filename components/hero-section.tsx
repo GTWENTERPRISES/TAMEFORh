@@ -40,7 +40,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden py-24 lg:py-32">
+    <section className="relative min-h-[70vh] sm:min-h-[75vh] md:min-h-[80vh] lg:min-h-[85vh] flex items-center overflow-hidden py-16 sm:py-20 md:py-24 lg:py-32">
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a3a5c] via-[#163250] to-[#0f2a45]" />
       
@@ -59,7 +59,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-r from-[#1a3a5c]/95 via-[#163250]/85 to-[#0f2a45]/70" />
 
       <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-24 relative z-20 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Left Content */}
           <motion.div 
             className="w-full z-30"
@@ -69,13 +69,13 @@ export function HeroSection() {
           >
             {/* Badge */}
             <motion.div 
-              className="flex items-center gap-3 mb-8"
+              className="flex items-center gap-3 mb-6 md:mb-8"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
               <motion.div 
-                className="px-8 py-3.5 backdrop-blur-md bg-[#3d9a8b]/15 border-l-4 border-[#3d9a8b] text-white font-bold text-base md:text-lg"
+                className="px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 backdrop-blur-md bg-[#3d9a8b]/15 border-l-4 border-[#3d9a8b] text-white font-bold text-sm sm:text-base md:text-lg"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>{slides[currentSlide].subtitle}</span>
@@ -83,46 +83,46 @@ export function HeroSection() {
             </motion.div>
 
             {/* Slide Content Container with Reserved Height */}
-            <div className="min-h-[360px] md:min-h-[380px]">
+            <div className="min-h-[320px] sm:min-h-[340px] md:min-h-[360px] lg:min-h-[380px]">
               <AnimatePresence mode="wait">
                 <motion.div 
                   key={currentSlide}
-                  className="space-y-6"
+                  className="space-y-4 sm:space-y-5 md:space-y-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <div className="space-y-3">
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl text-white font-bold leading-tight">
+                  <div className="space-y-2 md:space-y-3">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-bold leading-tight">
                       {slides[currentSlide].title}<br />
-                      <span className="block text-[#3d9a8b] text-4xl md:text-5xl lg:text-6xl mt-2">
+                      <span className="block text-[#3d9a8b] text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2">
                         {slides[currentSlide].titleHighlight}
                       </span>
                     </h1>
                   </div>
 
-                  <p className="text-white/85 text-xl md:text-2xl max-w-2xl leading-relaxed min-h-[80px]">
+                  <p className="text-white/85 text-base sm:text-lg md:text-xl lg:text-2xl max-w-2xl leading-relaxed min-h-[60px] sm:min-h-[70px] md:min-h-[80px]">
                     {slides[currentSlide].description}
                   </p>
 
                   <motion.div 
-                    className="flex flex-wrap items-center gap-5 pt-6"
+                    className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 md:gap-5 pt-4 sm:pt-5 md:pt-6"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
                   >
                     {/* Primary CTA Button */}
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button size="lg" className="bg-[#3d9a8b] hover:bg-[#358578] text-white rounded-none px-12 py-6 group font-bold shadow-lg hover:shadow-xl transition-all duration-300 text-xl border-2 border-[#3d9a8b]">
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+                      <Button size="lg" className="w-full sm:w-auto bg-[#3d9a8b] hover:bg-[#358578] text-white rounded-none px-8 sm:px-10 md:px-12 py-5 sm:py-5 md:py-6 group font-bold shadow-lg hover:shadow-xl transition-all duration-300 text-base sm:text-lg md:text-xl border-2 border-[#3d9a8b] min-h-[52px]">
                         Únete Hoy
-                        <ArrowRight className="ml-3 h-6 w-7 group-hover:translate-x-3 transition-transform" />
+                        <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 md:h-6 md:w-7 group-hover:translate-x-3 transition-transform" />
                       </Button>
                     </motion.div>
                     
                     {/* Secondary CTA Button */}
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button size="lg" variant="secondary" className="bg-transparent border-2 border-white hover:bg-white/10 text-white rounded-none px-12 py-6 font-bold transition-all duration-300 text-xl">
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+                      <Button size="lg" variant="secondary" className="w-full sm:w-auto bg-transparent border-2 border-white hover:bg-white/10 text-white rounded-none px-8 sm:px-10 md:px-12 py-5 sm:py-5 md:py-6 font-bold transition-all duration-300 text-base sm:text-lg md:text-xl min-h-[52px]">
                         Conocer Más
                       </Button>
                     </motion.div>
@@ -133,7 +133,7 @@ export function HeroSection() {
 
             {/* Slide Indicators */}
             <motion.div 
-              className="flex gap-4 mt-10"
+              className="flex gap-3 sm:gap-4 mt-8 sm:mt-9 md:mt-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -142,11 +142,12 @@ export function HeroSection() {
                 <motion.button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`h-4 transition-all duration-300 ${
-                    currentSlide === index ? "w-20 bg-[#3d9a8b]" : "w-12 bg-white/40 hover:bg-white/60"
+                  className={`h-3 sm:h-4 transition-all duration-300 min-h-[44px] flex items-center ${
+                    currentSlide === index ? "w-16 sm:w-20 bg-[#3d9a8b]" : "w-10 sm:w-12 bg-white/40 hover:bg-white/60"
                   }`}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
+                  aria-label={`Ir a diapositiva ${index + 1}`}
                 />
               ))}
             </motion.div>
