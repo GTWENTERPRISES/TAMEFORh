@@ -23,10 +23,9 @@ export const organizationSchema = {
     email: "info@tamefor.com",
   },
   sameAs: [
-    // Agregar enlaces a redes sociales
-    "https://www.linkedin.com/company/tamefor",
+    // Redes sociales oficiales de TAMEFOR
     "https://www.facebook.com/tamefor",
-    "https://twitter.com/tamefor",
+    "https://www.linkedin.com/company/tamefor",
   ],
   areaServed: {
     "@type": "Country",
@@ -208,7 +207,7 @@ export const localBusinessSchema = {
     closes: "17:00",
   },
   sameAs: [
-    "https://www.linkedin.com/company/tamefor",
     "https://www.facebook.com/tamefor",
+    "https://www.linkedin.com/company/tamefor",
   ],
 }

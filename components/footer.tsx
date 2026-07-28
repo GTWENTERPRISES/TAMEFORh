@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { MapPin, Mail, Phone, Facebook, Twitter, Instagram, Linkedin, ArrowRight } from "lucide-react"
+import { MapPin, Mail, Phone, Facebook, Linkedin, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { containerVariants, itemVariants } from "@/lib/animations"
 import { IconBadge } from "@/components/ui/IconBadge"
@@ -27,10 +27,8 @@ const services = [
 ]
 
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com" },
-  { icon: Twitter, href: "https://twitter.com" },
-  { icon: Instagram, href: "https://instagram.com" },
-  { icon: Linkedin, href: "https://linkedin.com" },
+  { icon: Facebook, href: "https://facebook.com/tamefor", name: "Facebook" },
+  { icon: Linkedin, href: "https://linkedin.com/company/tamefor", name: "LinkedIn" },
 ]
 
 export function Footer() {

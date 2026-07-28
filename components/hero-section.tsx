@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ArrowRight, Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { ArrowRight, Facebook, Linkedin } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { IconBadge } from "@/components/ui/IconBadge"
@@ -23,10 +23,8 @@ const slides = [
 ]
 
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com" },
-  { icon: Twitter, href: "https://twitter.com" },
-  { icon: Instagram, href: "https://instagram.com" },
-  { icon: Linkedin, href: "https://linkedin.com" },
+  { icon: Facebook, href: "https://facebook.com/tamefor", name: "Facebook" },
+  { icon: Linkedin, href: "https://linkedin.com/company/tamefor", name: "LinkedIn" },
 ]
 
 export function HeroSection() {

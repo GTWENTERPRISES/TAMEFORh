@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Menu, X, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin, Home, Users, Briefcase, Users2, GraduationCap, FolderOpen, Newspaper, CreditCard, MessageSquare, LayoutDashboard, BookOpen } from "lucide-react"
+import { Menu, X, Phone, Mail, MapPin, Facebook, Linkedin, Home, Users, Briefcase, Users2, GraduationCap, FolderOpen, Newspaper, CreditCard, MessageSquare, LayoutDashboard, BookOpen } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
@@ -18,10 +18,8 @@ const navLinks = [
 ]
 
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com" },
-  { icon: Twitter, href: "https://twitter.com" },
-  { icon: Instagram, href: "https://instagram.com" },
-  { icon: Linkedin, href: "https://linkedin.com" },
+  { icon: Facebook, href: "https://facebook.com/tamefor", name: "Facebook" },
+  { icon: Linkedin, href: "https://linkedin.com/company/tamefor", name: "LinkedIn" },
 ]
 
 export function Header() {
