@@ -27,8 +27,8 @@ const services = [
 ]
 
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com/tamefor", name: "Facebook" },
-  { icon: Linkedin, href: "https://linkedin.com/company/tamefor", name: "LinkedIn" },
+  { icon: Facebook, href: "https://www.facebook.com/share/1RuJ5kuMfs/", name: "Facebook" },
+  { icon: Linkedin, href: "https://ec.linkedin.com/company/tamefor", name: "LinkedIn" },
 ]
 
 export function Footer() {

@@ -12,17 +12,17 @@ export function DirectiveSection() {
     {
       name: "Edwin Oswaldo Tapia Palomino",
       position: "MSc. Sistemas de Gestión Ambiental",
-      photo: "/edwin.jpg"
+      photo: "/edwin.jpeg"
     },
     {
       name: "Diana María Mena Minuche",
       position: "Ing. Comercio Exterior",
-      photo: "/diana.png"
+      photo: "/diana.jpeg"
     },
     {
       name: "Carlos Mauricio Pacheco Merizalde",
       position: "Ing. Forestal",
-      photo: "/carlos.png"
+      photo: "/pacheco.jpeg"
     }
   ]
 

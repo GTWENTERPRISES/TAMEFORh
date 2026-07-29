@@ -6,24 +6,70 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ArrowRight, Check } from "lucide-react"
 import Image from "next/image"
+import { validateForm, validationSchemas, getFieldError, type ValidationError } from "@/lib/formValidation"
+import { createMensajeContacto } from "@/lib/api/mensajes"
 
 export function DonateSection() {
   const [showModal, setShowModal] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errors, setErrors] = useState<ValidationError[]>([])
   const [formData, setFormData] = useState({
-    name: "",
+    nombre: "",
     email: "",
-    phone: "",
-    message: "",
+    telefono: "",
+    mensaje: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+    // Limpiar error del campo al escribir
+    if (errors.length > 0) {
+      setErrors(errors.filter(e => e.field !== field))
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Formulario de donación enviado:", formData)
-    setShowModal(true)
+    
+    // Validar formulario
+    const validation = validateForm(formData, validationSchemas.donacion)
+    
+    if (!validation.isValid) {
+      setErrors(validation.errors)
+      return
+    }
+    
+    // Enviar a API
+    setIsSubmitting(true)
+    setErrors([])
+    
+    try {
+      const mensaje = await createMensajeContacto({
+        nombre: formData.nombre,
+        email: formData.email,
+        telefono: formData.telefono,
+        asunto: 'Consulta sobre Donaciones',
+        mensaje: formData.mensaje || 'Solicito información sobre cómo realizar una donación a TAMEFOR.',
+        tipoConsulta: 'Donaciones'
+      })
+      
+      if (mensaje) {
+        setShowModal(true)
+      } else {
+        setErrors([{ field: 'general', message: 'Error al enviar el mensaje. Intente nuevamente.' }])
+      }
+    } catch (error) {
+      console.error('Error al enviar mensaje:', error)
+      setErrors([{ field: 'general', message: 'Error al enviar el mensaje. Intente nuevamente.' }])
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const resetForm = () => {
-    setFormData({ name: "", email: "", phone: "", message: "" })
+    setFormData({ nombre: "", email: "", telefono: "", mensaje: "" })
+    setErrors([])
+    setIsSubmitting(false)
     setShowModal(false)
   }
 
@@ -81,40 +127,74 @@ export function DonateSection() {
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <Input
-                placeholder="Tu Nombre Completo"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-white border-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 rounded-lg h-12 font-medium"
-                required
-              />
-              <Input
-                type="email"
-                placeholder="ejemplo@gmail.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="bg-white border-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 rounded-lg h-12 font-medium"
-                required
-              />
-              <Input
-                type="tel"
-                placeholder="+1 xxx xxx xxxx"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="bg-white border-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 rounded-lg h-12 font-medium"
-              />
+              {getFieldError(errors, 'general') && (
+                <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                  <p className="text-red-700 font-medium">{getFieldError(errors, 'general')}</p>
+                </div>
+              )}
+              
+              <div>
+                <Input
+                  placeholder="Tu Nombre Completo *"
+                  value={formData.nombre}
+                  onChange={(e) => handleChange('nombre', e.target.value)}
+                  disabled={isSubmitting}
+                  className={`bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 rounded-lg h-12 font-medium ${
+                    getFieldError(errors, 'nombre') ? 'border-red-500 border-2' : 'border-white'
+                  }`}
+                />
+                {getFieldError(errors, 'nombre') && (
+                  <p className="text-red-300 text-sm mt-1 ml-2">{getFieldError(errors, 'nombre')}</p>
+                )}
+              </div>
+              
+              <div>
+                <Input
+                  type="email"
+                  placeholder="ejemplo@gmail.com *"
+                  value={formData.email}
+                  onChange={(e) => handleChange('email', e.target.value)}
+                  disabled={isSubmitting}
+                  className={`bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 rounded-lg h-12 font-medium ${
+                    getFieldError(errors, 'email') ? 'border-red-500 border-2' : 'border-white'
+                  }`}
+                />
+                {getFieldError(errors, 'email') && (
+                  <p className="text-red-300 text-sm mt-1 ml-2">{getFieldError(errors, 'email')}</p>
+                )}
+              </div>
+              
+              <div>
+                <Input
+                  type="tel"
+                  placeholder="+593 999 999 999"
+                  value={formData.telefono}
+                  onChange={(e) => handleChange('telefono', e.target.value)}
+                  disabled={isSubmitting}
+                  className={`bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 rounded-lg h-12 font-medium ${
+                    getFieldError(errors, 'telefono') ? 'border-red-500 border-2' : 'border-white'
+                  }`}
+                />
+                {getFieldError(errors, 'telefono') && (
+                  <p className="text-red-300 text-sm mt-1 ml-2">{getFieldError(errors, 'telefono')}</p>
+                )}
+              </div>
+              
               <Textarea
                 placeholder="Di algo..."
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                value={formData.mensaje}
+                onChange={(e) => handleChange('mensaje', e.target.value)}
+                disabled={isSubmitting}
                 className="bg-white border-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 rounded-lg min-h-[120px] font-medium"
               />
+              
               <Button 
                 type="submit"
-                className="bg-white hover:bg-[#ffffff] text-[#1a3a5c] rounded-full px-8 h-12 font-semibold"
+                disabled={isSubmitting}
+                className="bg-white hover:bg-[#ffffff] text-[#1a3a5c] rounded-full px-8 h-12 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Enviar Ahora
-                <ArrowRight className="ml-2 h-5 w-5" />
+                {isSubmitting ? 'Enviando...' : 'Enviar Ahora'}
+                {!isSubmitting && <ArrowRight className="ml-2 h-5 w-5" />}
               </Button>
             </form>
           </div>

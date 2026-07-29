@@ -5,17 +5,52 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ArrowRight, Mail, Check } from "lucide-react"
 import Image from "next/image"
+import { validateForm, validationSchemas, getFieldError, type ValidationError } from "@/lib/formValidation"
+import { createMensajeContacto } from "@/lib/api/mensajes"
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("")
   const [subscribed, setSubscribed] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errors, setErrors] = useState<ValidationError[]>([])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Suscripción al boletín:", email)
-    setSubscribed(true)
-    setEmail("")
-    setTimeout(() => setSubscribed(false), 5000)
+    
+    // Validar email
+    const validation = validateForm({ email }, validationSchemas.newsletter)
+    
+    if (!validation.isValid) {
+      setErrors(validation.errors)
+      return
+    }
+    
+    // Enviar a API
+    setIsSubmitting(true)
+    setErrors([])
+    
+    try {
+      const mensaje = await createMensajeContacto({
+        nombre: 'Suscriptor Newsletter',
+        email: email,
+        asunto: 'Suscripción al Newsletter',
+        mensaje: 'Solicito suscribirme al newsletter de TAMEFOR para recibir noticias y actualizaciones.',
+        tipoConsulta: 'Newsletter'
+      })
+      
+      if (mensaje) {
+        setSubscribed(true)
+        setEmail("")
+        setTimeout(() => setSubscribed(false), 5000)
+      } else {
+        setErrors([{ field: 'email', message: 'Error al suscribirse. Intente nuevamente.' }])
+      }
+    } catch (error) {
+      console.error('Error al suscribir:', error)
+      setErrors([{ field: 'email', message: 'Error al suscribirse. Intente nuevamente.' }])
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -59,17 +94,27 @@ export function NewsletterSection() {
                   type="email"
                   placeholder="ejemplo@gmail.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-white border-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/60 rounded-full px-6 h-14 text-lg font-medium"
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                    setErrors([])
+                  }}
+                  disabled={isSubmitting}
+                  className={`bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/60 rounded-full px-6 h-14 text-lg font-medium ${
+                    getFieldError(errors, 'email') ? 'border-red-500 border-2' : 'border-white'
+                  }`}
                   required
                 />
+                {getFieldError(errors, 'email') && (
+                  <p className="text-red-300 text-sm mt-2 ml-4">{getFieldError(errors, 'email')}</p>
+                )}
               </div>
               <Button
                 type="submit"
-                className="bg-[#3d9a8b] border-2 border-white hover:bg-white hover:text-[#1a3a5c] text-white rounded-full px-8 h-14"
+                disabled={isSubmitting}
+                className="bg-[#3d9a8b] border-2 border-white hover:bg-white hover:text-[#1a3a5c] text-white rounded-full px-8 h-14 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Suscribirme Ahora
-                <ArrowRight className="ml-2 h-5 w-5" />
+                {isSubmitting ? 'Enviando...' : 'Suscribirme Ahora'}
+                {!isSubmitting && <ArrowRight className="ml-2 h-5 w-5" />}
               </Button>
             </form>
 

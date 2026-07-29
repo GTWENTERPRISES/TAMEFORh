@@ -3,8 +3,10 @@
 import { Calendar, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { newsData } from "@/lib/newsData"
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { getAllNoticias } from "@/lib/api/noticias"
+import type { NewsArticle } from "@/lib/newsData"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -45,6 +47,23 @@ const cardVariants = {
 }
 
 export function NoticiasPageClient() {
+  const [newsData, setNewsData] = useState<NewsArticle[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadNoticias() {
+      try {
+        const noticias = await getAllNoticias()
+        setNewsData(noticias)
+      } catch (error) {
+        console.error('Error al cargar noticias:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    loadNoticias()
+  }, [])
+
   return (
     <>
       {/* Hero Section */}
@@ -111,7 +130,17 @@ export function NoticiasPageClient() {
             viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
           >
-            {newsData.map((article, index) => (
+            {isLoading ? (
+              <div className="col-span-full text-center py-12">
+                <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent"></div>
+                <p className="mt-4 text-primary/70">Cargando noticias...</p>
+              </div>
+            ) : newsData.length === 0 ? (
+              <div className="col-span-full text-center py-12">
+                <p className="text-primary/70">No hay noticias disponibles</p>
+              </div>
+            ) : (
+              newsData.map((article, index) => (
               <motion.div
                 key={article.id}
                 className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-[#3d9a8b] bg-white"
@@ -162,7 +191,8 @@ export function NoticiasPageClient() {
                   </Link>
                 </div>
               </motion.div>
-            ))}
+            ))
+            )}
           </motion.div>
         </div>
       </section>

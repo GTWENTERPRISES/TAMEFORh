@@ -7,10 +7,12 @@ import { Textarea } from "@/components/ui/textarea"
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { validateForm, validationSchemas, getFieldError, type ValidationError } from "@/lib/formValidation"
+import { createMensajeContacto } from "@/lib/api/mensajes"
 
 export function ContactSection() {
   const [showModal, setShowModal] = useState(false)
   const [errors, setErrors] = useState<ValidationError[]>([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -59,7 +61,7 @@ export function ContactSection() {
     }
   ]
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     // Validar formulario
@@ -75,10 +77,31 @@ export function ContactSection() {
       return
     }
     
-    // Limpiar errores y enviar
+    // Enviar a API
+    setIsSubmitting(true)
     setErrors([])
-    console.log('Formulario enviado:', formData)
-    setShowModal(true)
+    
+    try {
+      const mensaje = await createMensajeContacto({
+        nombre: formData.nombre,
+        email: formData.email,
+        telefono: formData.telefono,
+        asunto: formData.asunto || 'Consulta General',
+        mensaje: formData.mensaje,
+        tipoConsulta: 'Formulario de Contacto',
+      })
+      
+      if (mensaje) {
+        setShowModal(true)
+      } else {
+        setErrors([{ field: 'general', message: 'Error al enviar el mensaje. Intente nuevamente.' }])
+      }
+    } catch (error) {
+      console.error('Error al enviar mensaje:', error)
+      setErrors([{ field: 'general', message: 'Error al enviar el mensaje. Intente nuevamente.' }])
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const resetForm = () => {
@@ -90,7 +113,16 @@ export function ContactSection() {
       mensaje: ''
     })
     setErrors([])
+    setIsSubmitting(false)
     setShowModal(false)
+  }
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData({ ...formData, [field]: value })
+    // Limpiar errores al escribir
+    if (errors.length > 0) {
+      setErrors(errors.filter(e => e.field !== field))
+    }
   }
 
   return (
@@ -160,53 +192,112 @@ export function ContactSection() {
               Enviar Mensaje
             </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Error general */}
+              {getFieldError(errors, 'general') && (
+                <div className="bg-red-50 border-l-4 border-red-500 p-4">
+                  <p className="text-red-700 font-medium">{getFieldError(errors, 'general')}</p>
+                </div>
+              )}
+              
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-[#1a3a5c] font-semibold mb-3">Nombre completo</label>
+                  <label className="block text-[#1a3a5c] font-semibold mb-3">
+                    Nombre completo <span className="text-red-500">*</span>
+                  </label>
                   <Input 
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    value={formData.nombre}
+                    onChange={(e) => handleInputChange('nombre', e.target.value)}
                     placeholder="Ingrese su nombre completo" 
-                    className="w-full bg-white !bg-white border-[#3d9a8b]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none" 
+                    className={`w-full bg-white !bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:ring-0 focus:outline-none ${
+                      getFieldError(errors, 'nombre') 
+                        ? 'border-red-500 focus:border-red-500' 
+                        : 'border-[#3d9a8b]/30 focus:border-[#3d9a8b]'
+                    }`}
+                    disabled={isSubmitting}
                   />
+                  {getFieldError(errors, 'nombre') && (
+                    <p className="text-red-500 text-sm mt-1">{getFieldError(errors, 'nombre')}</p>
+                  )}
                 </div>
                 <div>
-                  <label className="block text-[#1a3a5c] font-semibold mb-3">Correo electrónico</label>
+                  <label className="block text-[#1a3a5c] font-semibold mb-3">
+                    Correo electrónico <span className="text-red-500">*</span>
+                  </label>
                   <Input 
                     type="email" 
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
                     placeholder="correo@ejemplo.com" 
-                    className="w-full bg-white !bg-white border-[#3d9a8b]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none" 
+                    className={`w-full bg-white !bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:ring-0 focus:outline-none ${
+                      getFieldError(errors, 'email') 
+                        ? 'border-red-500 focus:border-red-500' 
+                        : 'border-[#3d9a8b]/30 focus:border-[#3d9a8b]'
+                    }`}
+                    disabled={isSubmitting}
                   />
+                  {getFieldError(errors, 'email') && (
+                    <p className="text-red-500 text-sm mt-1">{getFieldError(errors, 'email')}</p>
+                  )}
                 </div>
+              </div>
+              <div>
+                <label className="block text-[#1a3a5c] font-semibold mb-3">Teléfono</label>
+                <Input 
+                  value={formData.telefono}
+                  onChange={(e) => handleInputChange('telefono', e.target.value)}
+                  placeholder="+593 999 999 999 o 0999999999" 
+                  className={`w-full bg-white !bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:ring-0 focus:outline-none ${
+                    getFieldError(errors, 'telefono') 
+                      ? 'border-red-500 focus:border-red-500' 
+                      : 'border-[#3d9a8b]/30 focus:border-[#3d9a8b]'
+                  }`}
+                  disabled={isSubmitting}
+                />
+                {getFieldError(errors, 'telefono') && (
+                  <p className="text-red-500 text-sm mt-1">{getFieldError(errors, 'telefono')}</p>
+                )}
               </div>
               <div>
                 <label className="block text-[#1a3a5c] font-semibold mb-3">Asunto</label>
                 <Input 
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  value={formData.asunto}
+                  onChange={(e) => handleInputChange('asunto', e.target.value)}
                   placeholder="Ingrese el asunto de su consulta" 
                   className="w-full bg-white !bg-white border-[#3d9a8b]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none" 
+                  disabled={isSubmitting}
                 />
               </div>
               <div>
-                <label className="block text-[#1a3a5c] font-semibold mb-3">Mensaje</label>
+                <label className="block text-[#1a3a5c] font-semibold mb-3">
+                  Mensaje <span className="text-red-500">*</span>
+                </label>
                 <Textarea 
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Escriba su mensaje detalladamente" 
+                  value={formData.mensaje}
+                  onChange={(e) => handleInputChange('mensaje', e.target.value)}
+                  placeholder="Escriba su mensaje detalladamente (mínimo 10 caracteres)" 
                   rows={5} 
-                  className="w-full bg-white !bg-white border-[#3d9a8b]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none resize-none" 
+                  className={`w-full bg-white !bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium rounded-none border-2 focus:ring-0 focus:outline-none resize-none ${
+                    getFieldError(errors, 'mensaje') 
+                      ? 'border-red-500 focus:border-red-500' 
+                      : 'border-[#3d9a8b]/30 focus:border-[#3d9a8b]'
+                  }`}
+                  disabled={isSubmitting}
                 />
+                {getFieldError(errors, 'mensaje') && (
+                  <p className="text-red-500 text-sm mt-1">{getFieldError(errors, 'mensaje')}</p>
+                )}
               </div>
               <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               >
-                <Button className="w-full bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white rounded-none py-4 font-semibold text-base transition-all duration-300 shadow-none border-2 border-[#1a3a5c] hover:border-[#3d9a8b]">
-                  Enviar Mensaje
-                  <ArrowRight className="ml-3 h-4 w-4" />
+                <Button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white rounded-none py-4 font-semibold text-base transition-all duration-300 shadow-none border-2 border-[#1a3a5c] hover:border-[#3d9a8b] disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
+                  {!isSubmitting && <ArrowRight className="ml-3 h-4 w-4" />}
                 </Button>
               </motion.div>
             </form>

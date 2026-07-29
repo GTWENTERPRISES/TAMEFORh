@@ -24,8 +24,8 @@ export const organizationSchema = {
   },
   sameAs: [
     // Redes sociales oficiales de TAMEFOR
-    "https://www.facebook.com/tamefor",
-    "https://www.linkedin.com/company/tamefor",
+    "https://www.facebook.com/share/1RuJ5kuMfs/",
+    "https://ec.linkedin.com/company/tamefor",
   ],
   areaServed: {
     "@type": "Country",
@@ -207,7 +207,7 @@ export const localBusinessSchema = {
     closes: "17:00",
   },
   sameAs: [
-    "https://www.facebook.com/tamefor",
-    "https://www.linkedin.com/company/tamefor",
+    "https://www.facebook.com/share/1RuJ5kuMfs/",
+    "https://ec.linkedin.com/company/tamefor",
   ],
 }

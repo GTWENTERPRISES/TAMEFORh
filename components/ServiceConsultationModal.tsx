@@ -13,6 +13,8 @@ import {
   DialogDescription,
   DialogClose,
 } from "@/components/ui/dialog"
+import { validateForm, validationSchemas, getFieldError, type ValidationError } from "@/lib/formValidation"
+import { createSolicitudInformacion } from "@/lib/api/solicitudes"
 
 interface ServiceConsultationModalProps {
   isOpen: boolean
@@ -22,31 +24,72 @@ interface ServiceConsultationModalProps {
 
 export function ServiceConsultationModal({ isOpen, onClose, serviceName }: ServiceConsultationModalProps) {
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errors, setErrors] = useState<ValidationError[]>([])
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
-    asunto: `Consulta sobre ${serviceName}`,
+    empresa: "",
+    telefono: "",
     mensaje: ""
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    // Limpiar error del campo al escribir
+    if (errors.length > 0) {
+      setErrors(errors.filter(err => err.field !== name))
+    }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would normally send the data to your API
-    console.log("Form submitted:", formData)
-    setSubmitted(true)
+    
+    // Validar formulario
+    const validation = validateForm(formData, validationSchemas.consultoria)
+    
+    if (!validation.isValid) {
+      setErrors(validation.errors)
+      return
+    }
+    
+    // Enviar a API
+    setIsSubmitting(true)
+    setErrors([])
+    
+    try {
+      const solicitud = await createSolicitudInformacion({
+        nombre: formData.nombre,
+        email: formData.email,
+        empresa: formData.empresa,
+        telefono: formData.telefono,
+        tipoSolicitud: `Consultoría de Servicios - ${serviceName}`,
+        mensaje: formData.mensaje,
+      })
+      
+      if (solicitud) {
+        setSubmitted(true)
+      } else {
+        setErrors([{ field: 'general', message: 'Error al enviar la solicitud. Intente nuevamente.' }])
+      }
+    } catch (error) {
+      console.error('Error al enviar solicitud:', error)
+      setErrors([{ field: 'general', message: 'Error al enviar la solicitud. Intente nuevamente.' }])
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleClose = () => {
     setSubmitted(false)
+    setIsSubmitting(false)
+    setErrors([])
     setFormData({
       nombre: "",
       email: "",
-      asunto: `Consulta sobre ${serviceName}`,
+      empresa: "",
+      telefono: "",
       mensaje: ""
     })
     onClose()
@@ -95,57 +138,130 @@ export function ServiceConsultationModal({ isOpen, onClose, serviceName }: Servi
         ) : (
           /* Form */
           <div className="p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <Input
-                name="nombre"
-                value={formData.nombre}
-                onChange={handleChange}
-                placeholder="Nombre completo"
-                required
-                className="w-full bg-white !bg-white border-[#1a3a5c]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none"
-              />
-            </div>
-            <div>
-              <Input
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Correo electrónico"
-                required
-                className="w-full bg-white !bg-white border-[#1a3a5c]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none"
-              />
-            </div>
-            <div>
-              <Input
-                name="asunto"
-                value={formData.asunto}
-                onChange={handleChange}
-                placeholder="Asunto"
-                required
-                className="w-full bg-white !bg-white border-[#1a3a5c]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none"
-              />
-            </div>
-            <div>
-              <Textarea
-                name="mensaje"
-                value={formData.mensaje}
-                onChange={handleChange}
-                placeholder="Cuéntanos sobre tu proyecto o consulta"
-                rows={5}
-                required
-                className="w-full bg-white !bg-white border-[#1a3a5c]/30 text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium rounded-none border-2 focus:border-[#3d9a8b] focus:ring-0 focus:outline-none resize-none"
-              />
-            </div>
-            <Button
-              type="submit"
-              className="w-full bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white rounded-none py-4 font-semibold text-base transition-all duration-300 shadow-none border-2 border-[#1a3a5c] hover:border-[#3d9a8b]"
-            >
-              Enviar Consulta
-              <ArrowRight className="ml-3 h-4 w-4" />
-            </Button>
-          </form>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Error general */}
+              {getFieldError(errors, 'general') && (
+                <div className="bg-red-50 border-l-4 border-red-500 p-4">
+                  <p className="text-red-700 font-medium">{getFieldError(errors, 'general')}</p>
+                </div>
+              )}
+              
+              <div>
+                <label className="block text-[#1a3a5c] font-semibold mb-2">
+                  Nombre completo <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  name="nombre"
+                  value={formData.nombre}
+                  onChange={handleChange}
+                  placeholder="Ingrese su nombre completo"
+                  disabled={isSubmitting}
+                  className={`w-full bg-white !bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:ring-0 focus:outline-none ${
+                    getFieldError(errors, 'nombre')
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-[#1a3a5c]/30 focus:border-[#3d9a8b]'
+                  }`}
+                />
+                {getFieldError(errors, 'nombre') && (
+                  <p className="text-red-500 text-sm mt-1">{getFieldError(errors, 'nombre')}</p>
+                )}
+              </div>
+              
+              <div>
+                <label className="block text-[#1a3a5c] font-semibold mb-2">
+                  Correo electrónico <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="correo@ejemplo.com"
+                  disabled={isSubmitting}
+                  className={`w-full bg-white !bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:ring-0 focus:outline-none ${
+                    getFieldError(errors, 'email')
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-[#1a3a5c]/30 focus:border-[#3d9a8b]'
+                  }`}
+                />
+                {getFieldError(errors, 'email') && (
+                  <p className="text-red-500 text-sm mt-1">{getFieldError(errors, 'email')}</p>
+                )}
+              </div>
+              
+              <div>
+                <label className="block text-[#1a3a5c] font-semibold mb-2">
+                  Empresa <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  name="empresa"
+                  value={formData.empresa}
+                  onChange={handleChange}
+                  placeholder="Nombre de su empresa"
+                  disabled={isSubmitting}
+                  className={`w-full bg-white !bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:ring-0 focus:outline-none ${
+                    getFieldError(errors, 'empresa')
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-[#1a3a5c]/30 focus:border-[#3d9a8b]'
+                  }`}
+                />
+                {getFieldError(errors, 'empresa') && (
+                  <p className="text-red-500 text-sm mt-1">{getFieldError(errors, 'empresa')}</p>
+                )}
+              </div>
+              
+              <div>
+                <label className="block text-[#1a3a5c] font-semibold mb-2">
+                  Teléfono <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  name="telefono"
+                  value={formData.telefono}
+                  onChange={handleChange}
+                  placeholder="+593 999 999 999"
+                  disabled={isSubmitting}
+                  className={`w-full bg-white !bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium h-12 rounded-none border-2 focus:ring-0 focus:outline-none ${
+                    getFieldError(errors, 'telefono')
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-[#1a3a5c]/30 focus:border-[#3d9a8b]'
+                  }`}
+                />
+                {getFieldError(errors, 'telefono') && (
+                  <p className="text-red-500 text-sm mt-1">{getFieldError(errors, 'telefono')}</p>
+                )}
+              </div>
+              
+              <div>
+                <label className="block text-[#1a3a5c] font-semibold mb-2">
+                  Mensaje <span className="text-red-500">*</span>
+                </label>
+                <Textarea
+                  name="mensaje"
+                  value={formData.mensaje}
+                  onChange={handleChange}
+                  placeholder="Cuéntanos sobre tu proyecto o consulta (mínimo 20 caracteres)"
+                  rows={5}
+                  disabled={isSubmitting}
+                  className={`w-full bg-white !bg-white text-[#1a3a5c] placeholder:text-[#1a3a5c]/50 font-medium rounded-none border-2 focus:ring-0 focus:outline-none resize-none ${
+                    getFieldError(errors, 'mensaje')
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-[#1a3a5c]/30 focus:border-[#3d9a8b]'
+                  }`}
+                />
+                {getFieldError(errors, 'mensaje') && (
+                  <p className="text-red-500 text-sm mt-1">{getFieldError(errors, 'mensaje')}</p>
+                )}
+              </div>
+              
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white rounded-none py-4 font-semibold text-base transition-all duration-300 shadow-none border-2 border-[#1a3a5c] hover:border-[#3d9a8b] disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Enviando...' : 'Enviar Consulta'}
+                {!isSubmitting && <ArrowRight className="ml-3 h-4 w-4" />}
+              </Button>
+            </form>
           </div>
         )}
       </DialogContent>

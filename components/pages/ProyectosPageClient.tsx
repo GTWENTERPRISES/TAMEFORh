@@ -3,8 +3,10 @@
 import { MapPin, Calendar, Users, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { projectsData } from "@/lib/projectsData"
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { getAllProyectos } from "@/lib/api/proyectos"
+import type { Project } from "@/lib/projectsData"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -45,6 +47,23 @@ const cardVariants = {
 }
 
 export function ProyectosPageClient() {
+  const [projectsData, setProjectsData] = useState<Project[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadProyectos() {
+      try {
+        const proyectos = await getAllProyectos()
+        setProjectsData(proyectos)
+      } catch (error) {
+        console.error('Error al cargar proyectos:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    loadProyectos()
+  }, [])
+
   return (
     <>
       {/* Hero Section */}
@@ -104,7 +123,17 @@ export function ProyectosPageClient() {
             </motion.p>
           </motion.div>
 
-          {projectsData.length === 0 ? (
+          {isLoading ? (
+            <motion.div
+              className="text-center py-20"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent"></div>
+              <p className="mt-4 text-primary/70">Cargando proyectos...</p>
+            </motion.div>
+          ) : projectsData.length === 0 ? (
             <motion.div
               className="text-center py-20"
               initial={{ opacity: 0 }}

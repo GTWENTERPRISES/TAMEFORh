@@ -3,9 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { Clock, MapPin, ArrowRight, BookOpen, Users, Award } from "lucide-react"
 import Link from "next/link"
-import { coursesData } from "@/lib/coursesData"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { getAllCursos } from "@/lib/api/cursos"
+import type { Course } from "@/lib/coursesData"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -69,7 +71,22 @@ const categoryColors: Record<string, { bar: string; badge: string }> = {
 }
 
 export function CursosPageClient() {
-  const filteredCourses = coursesData
+  const [filteredCourses, setFilteredCourses] = useState<Course[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadCursos() {
+      try {
+        const cursos = await getAllCursos()
+        setFilteredCourses(cursos)
+      } catch (error) {
+        console.error('Error al cargar cursos:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    loadCursos()
+  }, [])
 
   return (
     <>
@@ -114,7 +131,7 @@ export function CursosPageClient() {
                   <BookOpen className="w-6 h-6 text-[#3d9a8b]" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-white">10</p>
+                  <p className="text-2xl font-bold text-white">{isLoading ? '...' : filteredCourses.length}</p>
                   <p className="text-white/60 text-sm">Cursos Disponibles</p>
                 </div>
               </div>
@@ -180,7 +197,17 @@ export function CursosPageClient() {
             viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
           >
-            {filteredCourses.map((course, index) => {
+            {isLoading ? (
+              <div className="col-span-full text-center py-12">
+                <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent"></div>
+                <p className="mt-4 text-primary/70">Cargando cursos...</p>
+              </div>
+            ) : filteredCourses.length === 0 ? (
+              <div className="col-span-full text-center py-12">
+                <p className="text-primary/70">No hay cursos disponibles</p>
+              </div>
+            ) : (
+              filteredCourses.map((course, index) => {
               const colors = categoryColors[course.category] || categoryColors['gestion-impacto-ambiental']
               return (
                 <motion.div
@@ -250,7 +277,8 @@ export function CursosPageClient() {
                   </div>
                 </motion.div>
               )
-            })}
+            })
+            )}
           </motion.div>
         </div>
       </section>

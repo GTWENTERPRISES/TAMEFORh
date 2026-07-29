@@ -4,6 +4,9 @@ import { Search, BookOpen, FileText, Download } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { getAllDocumentos } from "@/lib/api/biblioteca"
+import type { Document } from "@/lib/documentsData"
 
 const categories = [
   { name: "Artículos Científicos", count: 45, icon: FileText },
@@ -51,6 +54,40 @@ const cardVariants = {
 }
 
 export function BibliotecaPageClient() {
+  const [documents, setDocuments] = useState<Document[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState("")
+
+  useEffect(() => {
+    async function loadDocuments() {
+      try {
+        const docs = await getAllDocumentos()
+        setDocuments(docs)
+      } catch (error) {
+        console.error('Error al cargar documentos:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    loadDocuments()
+  }, [])
+
+  // Contar documentos por categoría
+  const categoryCounts = documents.reduce((acc, doc) => {
+    acc[doc.category] = (acc[doc.category] || 0) + 1
+    return acc
+  }, {} as Record<string, number>)
+
+  const categories = [
+    { name: "Artículos Científicos", count: categoryCounts["Artículos Científicos"] || 0, icon: FileText },
+    { name: "Libros Forestales", count: categoryCounts["Libros"] || 0, icon: BookOpen },
+    { name: "Legislación Forestal", count: categoryCounts["Legislación"] || 0, icon: FileText },
+    { name: "Guías Técnicas", count: categoryCounts["Guías Técnicas"] || 0, icon: Download }
+  ]
+
+  // Filtrar documentos destacados
+  const featuredDocs = documents.filter(doc => doc.featured).slice(0, 4)
+
   return (
     <>
       {/* Hero Section */}
@@ -107,6 +144,8 @@ export function BibliotecaPageClient() {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
                   placeholder="Buscar en la biblioteca..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-12 py-3 text-lg"
                 />
               </div>
@@ -146,47 +185,40 @@ export function BibliotecaPageClient() {
               variants={containerVariants}
             >
               <motion.h2 className="font-sans text-3xl text-white mb-8" variants={itemVariants}>
-                Recursos Destacados
+                {isLoading ? 'Cargando recursos...' : 'Recursos Destacados'}
               </motion.h2>
               <motion.div className="grid md:grid-cols-2 gap-6" variants={containerVariants}>
-                {[
-                  {
-                    title: "Guía de Manejo Forestal Sostenible",
-                    type: "PDF",
-                    size: "2.4 MB"
-                  },
-                  {
-                    title: "Legislación Forestal Ecuatoriana 2024",
-                    type: "PDF",
-                    size: "1.8 MB"
-                  },
-                  {
-                    title: "Inventarios Forestales: Metodología",
-                    type: "PDF",
-                    size: "3.2 MB"
-                  },
-                  {
-                    title: "Conservación de Biodiversidad",
-                    type: "PDF",
-                    size: "2.1 MB"
-                  }
-                ].map((resource, index) => (
-                  <motion.div
-                    key={index}
-                    className="bg-white/10 backdrop-blur-sm rounded-xl p-4 flex items-center justify-between hover:bg-white/20 transition-all duration-300 group hover:scale-105"
-                    variants={itemVariants}
-                    whileHover={{ x: 5 }}
-                  >
-                    <div className="flex items-center gap-3">
-                      <FileText className="h-6 w-6 text-white" />
-                      <div>
-                        <p className="text-white font-semibold text-sm">{resource.title}</p>
-                        <p className="text-white/60 text-xs">{resource.type} • {resource.size}</p>
+                {isLoading ? (
+                  <div className="col-span-2 text-center py-8">
+                    <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-white border-r-transparent"></div>
+                    <p className="mt-4 text-white/70">Cargando documentos...</p>
+                  </div>
+                ) : featuredDocs.length === 0 ? (
+                  <div className="col-span-2 text-center py-8">
+                    <p className="text-white/70">No hay recursos destacados disponibles</p>
+                  </div>
+                ) : (
+                  featuredDocs.map((resource, index) => (
+                    <motion.a
+                      key={index}
+                      href={resource.fileUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white/10 backdrop-blur-sm rounded-xl p-4 flex items-center justify-between hover:bg-white/20 transition-all duration-300 group hover:scale-105"
+                      variants={itemVariants}
+                      whileHover={{ x: 5 }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <FileText className="h-6 w-6 text-white" />
+                        <div>
+                          <p className="text-white font-semibold text-sm">{resource.title}</p>
+                          <p className="text-white/60 text-xs">{resource.fileType?.toUpperCase() || 'PDF'} • {resource.fileSize || 'N/A'}</p>
+                        </div>
                       </div>
-                    </div>
-                    <Download className="h-5 w-5 text-white cursor-pointer hover:scale-110 transition-transform group-hover:text-[#3d9a8b]" />
-                  </motion.div>
-                ))}
+                      <Download className="h-5 w-5 text-white cursor-pointer hover:scale-110 transition-transform group-hover:text-[#3d9a8b]" />
+                    </motion.a>
+                  ))
+                )}
               </motion.div>
             </motion.div>
           </div>

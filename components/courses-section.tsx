@@ -3,15 +3,27 @@
 import { Calendar, MapPin, Clock, Award, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { coursesData } from "@/lib/coursesData"
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { getCursosDestacados, type Course } from "@/lib/api/cursos"
 
 export function CoursesSection() {
-  const featuredCourses = coursesData.filter(course => 
-    course.slug === 'modelacion-biometria-manejo-datos' ||
-    course.slug === 'sistemas-informacion-geografica' ||
-    course.slug === 'negocios-gerencia-activos-verdes'
-  )
+  const [featuredCourses, setFeaturedCourses] = useState<Course[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadCursos() {
+      try {
+        const cursos = await getCursosDestacados(3)
+        setFeaturedCourses(cursos)
+      } catch (error) {
+        console.error('Error al cargar cursos destacados:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    loadCursos()
+  }, [])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -74,7 +86,17 @@ export function CoursesSection() {
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
         >
-          {featuredCourses.map((course) => (
+          {isLoading ? (
+            <div className="col-span-full text-center py-12">
+              <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent"></div>
+              <p className="mt-4 text-primary/70">Cargando cursos...</p>
+            </div>
+          ) : featuredCourses.length === 0 ? (
+            <div className="col-span-full text-center py-12">
+              <p className="text-primary/70">No hay cursos destacados disponibles</p>
+            </div>
+          ) : (
+            featuredCourses.map((course) => (
             <motion.div 
               key={course.id} 
               className="group relative"
@@ -122,7 +144,8 @@ export function CoursesSection() {
                 </div>
               </div>
             </motion.div>
-          ))}
+            ))
+          )}
         </motion.div>
 
         {/* Certification */}
