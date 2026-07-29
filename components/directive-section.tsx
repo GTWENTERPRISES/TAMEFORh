@@ -7,21 +7,22 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 
 export function DirectiveSection() {
+  // Usar los primeros 3 miembros del equipo con fotos locales
   const directiveMembers = [
     {
-      name: "Ing. For. Edwin Oswaldo Tapia Palomino, Msc.",
-      position: "GERENTE",
-      photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800"
+      name: "Edwin Oswaldo Tapia Palomino",
+      position: "MSc. Sistemas de Gestión Ambiental",
+      photo: "/edwin.jpg"
     },
     {
-      name: "Ing. For. Ana Carolina Vázquez Mendoza",
-      position: "COORDINADORA DE PROYECTOS",
-      photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800"
+      name: "Diana María Mena Minuche",
+      position: "Ing. Comercio Exterior",
+      photo: "/diana.png"
     },
     {
-      name: "Ing. For. José Alejandro Paredes Zambrano",
-      position: "ESPECIALISTA AMBIENTAL",
-      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800"
+      name: "Carlos Mauricio Pacheco Merizalde",
+      position: "Ing. Forestal",
+      photo: "/carlos.png"
     }
   ]
 
@@ -90,8 +91,9 @@ export function DirectiveSection() {
                   <Image
                     src={member.photo}
                     alt={member.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    width={400}
+                    height={320}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a5c]/40 to-transparent" />
                 </div>
