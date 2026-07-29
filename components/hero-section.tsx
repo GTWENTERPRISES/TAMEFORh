@@ -43,18 +43,19 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a3a5c] via-[#163250] to-[#0f2a45]" />
       
       {/* Background Image */}
-      <div className="absolute inset-0 opacity-25">
+      <div className="absolute inset-0 opacity-20 md:opacity-25">
         <Image
           src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013"
           alt="Volunteers planting trees"
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
+          sizes="100vw"
         />
       </div>
       
-      {/* Overlay Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#1a3a5c]/95 via-[#163250]/85 to-[#0f2a45]/70" />
+      {/* Overlay Gradient - Más opaco en móvil */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#1a3a5c]/98 via-[#163250]/90 to-[#0f2a45]/80 md:from-[#1a3a5c]/95 md:via-[#163250]/85 md:to-[#0f2a45]/70" />
 
       <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-24 relative z-20 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -153,12 +154,31 @@ export function HeroSection() {
           
           {/* Right Content - Corporate Images */}
           <motion.div 
-            className="hidden lg:block flex justify-end"
+            className="relative lg:flex justify-end mt-12 lg:mt-0"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <div className="relative">
+            {/* Versión móvil - Una sola imagen centrada */}
+            <div className="lg:hidden">
+              <motion.div
+                className="relative rounded-none overflow-hidden shadow-2xl border-4 border-[#3d9a8b]/30 mx-auto max-w-md"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800"
+                  alt="Equipo profesional"
+                  width={540}
+                  height={360}
+                  className="object-cover w-full h-auto"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a5c]/60 to-transparent" />
+              </motion.div>
+            </div>
+
+            {/* Versión desktop - Múltiples imágenes */}
+            <div className="relative hidden lg:block">
               {/* Main Image */}
               <motion.div
                 className="relative rounded-none overflow-hidden shadow-2xl border-4 border-[#3d9a8b]/30"

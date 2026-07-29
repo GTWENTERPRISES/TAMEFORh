@@ -6,14 +6,17 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { motion } from "framer-motion"
 import { useState } from "react"
+import { validateForm, validationSchemas, getFieldError, type ValidationError } from "@/lib/formValidation"
 
 export function ContactSection() {
   const [showModal, setShowModal] = useState(false)
+  const [errors, setErrors] = useState<ValidationError[]>([])
   const [formData, setFormData] = useState({
-    name: '',
+    nombre: '',
     email: '',
-    subject: '',
-    message: ''
+    telefono: '',
+    asunto: '',
+    mensaje: ''
   })
 
   const containerVariants = {
@@ -58,17 +61,35 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validar formulario
+    const validation = validateForm(formData, {
+      nombre: validationSchemas.contacto.nombre,
+      email: validationSchemas.contacto.email,
+      telefono: validationSchemas.contacto.telefono,
+      mensaje: validationSchemas.contacto.mensaje,
+    })
+    
+    if (!validation.isValid) {
+      setErrors(validation.errors)
+      return
+    }
+    
+    // Limpiar errores y enviar
+    setErrors([])
     console.log('Formulario enviado:', formData)
     setShowModal(true)
   }
 
   const resetForm = () => {
     setFormData({
-      name: '',
+      nombre: '',
       email: '',
-      subject: '',
-      message: ''
+      telefono: '',
+      asunto: '',
+      mensaje: ''
     })
+    setErrors([])
     setShowModal(false)
   }
 

@@ -1,0 +1,148 @@
+// Datos locales de testimonios
+
+export interface Testimonial {
+  id: number
+  name: string
+  role: string
+  company: string
+  rating: number
+  text: string
+  image: string
+  destacado?: boolean
+  orden?: number
+}
+
+export const testimonialsData: Testimonial[] = [
+  {
+    id: 1,
+    name: "Ing. For. Juan Carlos Mendoza",
+    role: "Gerente de Operaciones",
+    company: "Bosques y Maderas S.A.",
+    rating: 5.0,
+    text: "La consultoría de TAMEFOR fue fundamental para la certificación FSC de nuestra empresa. Su profesionalismo y conocimiento técnico superaron todas nuestras expectativas.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400",
+    destacado: true,
+    orden: 1,
+  },
+  {
+    id: 2,
+    name: "Dra. Ana María Vásquez",
+    role: "Directora Ambiental",
+    company: "Corporación Verde Ecológica",
+    rating: 5.0,
+    text: "Los cursos de biometría y modelación nos proporcionaron herramientas avanzadas para la gestión sostenible de nuestros ecosistemas.",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400",
+    destacado: true,
+    orden: 2,
+  },
+  {
+    id: 3,
+    name: "Ing. Carlos Alberto Ramírez",
+    role: "Jefe de Proyectos Forestales",
+    company: "Ecosistemas del Sur Ltda.",
+    rating: 5.0,
+    text: "Su asesoría en la elaboración de planes de manejo forestal fue excepcional. Cumplimos con todas las normativas ambientales vigentes.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400",
+    destacado: true,
+    orden: 3,
+  },
+  {
+    id: 4,
+    name: "Mg. Patricia Lucía Gómez",
+    role: "Coordinadora de Certificación",
+    company: "Sostenibilidad Forestal S.A.S",
+    rating: 5.0,
+    text: "El acompañamiento en el proceso de certificación PEFC fue impecable. Recomiendo encarecidamente sus servicios profesionales.",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400",
+    destacado: true,
+    orden: 4,
+  },
+  {
+    id: 5,
+    name: "Ing. For. Roberto Hernández",
+    role: "Consultor Independiente",
+    company: "Consultoría Ambiental Integral",
+    rating: 5.0,
+    text: "Los programas de capacitación en SIG y manejo de datos forestales son de la más alta calidad académica y práctica.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400",
+    destacado: true,
+    orden: 5,
+  },
+  {
+    id: 6,
+    name: "Abg. Luisa Fernanda Torres",
+    role: "Asesora Legal Ambiental",
+    company: "Estudio Jurídico Ambiental",
+    rating: 5.0,
+    text: "Su expertise en normativa forestal y ambiental es invaluable. Trabajar con TAMEFOR garantiza compliance total.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400",
+    destacado: true,
+    orden: 6,
+  },
+  {
+    id: 7,
+    name: "Ing. For. Mario Enrique Duarte",
+    role: "Director Técnico",
+    company: "Maderas del Caribe S.A.",
+    rating: 5.0,
+    text: "El curso de manejo de datos forestales transformó nuestra forma de trabajar. Ahora contamos con información precisa para la toma de decisiones.",
+    image: "https://images.unsplash.com/photo-1463453091185-61582044d556?q=80&w=400",
+    destacado: false,
+    orden: 7,
+  },
+  {
+    id: 8,
+    name: "Mg. Claudia Patricia Ortega",
+    role: "Jefa de Conservación",
+    company: "Reserva Natural del Valle",
+    rating: 5.0,
+    text: "Su apoyo en la elaboración de nuestro plan de conservación fue crucial para obtener el reconocimiento oficial.",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400",
+    destacado: false,
+    orden: 8,
+  },
+  {
+    id: 9,
+    name: "Ing. Andrés Felipe Mejía",
+    role: "Gerente de Sostenibilidad",
+    company: "Industrias Forestales Unidas",
+    rating: 5.0,
+    text: "Los servicios de TAMEFOR nos ayudaron a reducir nuestra huella de carbono en un 40% en solo dos años.",
+    image: "https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=400",
+    destacado: false,
+    orden: 9,
+  },
+  {
+    id: 10,
+    name: "Dra. Sofía Isabel Paredes",
+    role: "Investigadora Principal",
+    company: "Instituto de Ciencias Forestales",
+    rating: 5.0,
+    text: "La capacitación en sistemas de información geográfica elevó el nivel de nuestros proyectos de investigación significativamente.",
+    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=400",
+    destacado: false,
+    orden: 10,
+  },
+  {
+    id: 11,
+    name: "Ing. For. Diego Alejandro Rincón",
+    role: "Coordinador de Inventarios",
+    company: "Corporación Forestal Nacional",
+    rating: 5.0,
+    text: "El curso de biometría forestal nos proporcionó las herramientas necesarias para realizar inventarios precisos y eficientes.",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400",
+    destacado: false,
+    orden: 11,
+  },
+  {
+    id: 12,
+    name: "Mg. Valentina Alexandra Castro",
+    role: "Asesora en Gestión Ambiental",
+    company: "Grupo Ambiental Latinoamericano",
+    rating: 5.0,
+    text: "Recomiendo TAMEFOR a todas las empresas que busquen excelencia en consultoría forestal y ambiental. Son verdaderos expertos.",
+    image: "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?q=80&w=400",
+    destacado: false,
+    orden: 12,
+  },
+]

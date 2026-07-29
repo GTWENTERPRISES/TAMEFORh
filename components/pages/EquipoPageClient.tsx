@@ -1,7 +1,10 @@
 'use client'
 
 import { motion } from "framer-motion"
-import { Check } from "lucide-react"
+import { useState, useEffect } from "react"
+import { getAllEquipo, type TeamMember } from "@/lib/api/equipo"
+import { teamData } from "@/lib/teamData"
+import Image from "next/image"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -41,39 +44,18 @@ const cardVariants = {
   },
 }
 
-export function EquipoPageClient() {
-  const teamMembers = [
-    {
-      name: "Edwin Oswaldo Tapia Palomino",
-      position: "MSc. Sistemas de Gestión Ambiental",
-      photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800"
-    },
-    {
-      name: "Diana María Mena Minuche",
-      position: "Ing. Comercio Exterior",
-      photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800"
-    },
-    {
-      name: "Carlos Mauricio Pacheco Merizalde",
-      position: "Ing. Forestal",
-      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800"
-    },
-    {
-      name: "Ronald Oswaldo Villamar Torres",
-      position: "PhD. Diversidad y Mejoramiento de Plantas",
-      photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800"
-    },
-    {
-      name: "Carlos Gabriel Carrera Díaz",
-      position: "MSc. Sistemas de Información Geográfica",
-      photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800"
-    },
-    {
-      name: "Gregorio Humberto Vásconez Montufar",
-      position: "PhD. Suelos y Nutrición Vegetal",
-      photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800"
-    }
-  ]
+interface EquipoPageClientProps {
+  initialTeamMembers?: TeamMember[]
+}
+
+export function EquipoPageClient({ initialTeamMembers }: EquipoPageClientProps) {
+  // Inicializar con datos locales para que se muestren inmediatamente
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>(initialTeamMembers || teamData)
+
+  // Cargar equipo desde la API al montar el componente (esto agregará datos adicionales si existen)
+  useEffect(() => {
+    getAllEquipo().then(setTeamMembers)
+  }, [])
 
   return (
     <>
@@ -166,9 +148,11 @@ export function EquipoPageClient() {
                 >
                   {/* Image Container */}
                   <div className="relative h-72 overflow-hidden">
-                    <img
+                    <Image
                       src={member.photo}
                       alt={member.name}
+                      width={400}
+                      height={400}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a5c]/30 to-transparent" />
