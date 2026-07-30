@@ -48,7 +48,7 @@ Todas las APIs de PocketBase solicitadas han sido implementadas exitosamente.
 **Archivo:** `.env.local` ✅ Creado
 
 ```env
-NEXT_PUBLIC_POCKETBASE_URL=http://67.215.249.142:8090
+NEXT_PUBLIC_POCKETBASE_URL=https://api.tamefor.com
 ```
 
 **Archivo:** `.env.local.example` ✅ Actualizado
@@ -58,7 +58,7 @@ NEXT_PUBLIC_POCKETBASE_URL=http://67.215.249.142:8090
 # NEXT_PUBLIC_POCKETBASE_URL=http://127.0.0.1:8090
 
 # Para servidor remoto:
-NEXT_PUBLIC_POCKETBASE_URL=http://67.215.249.142:8090
+NEXT_PUBLIC_POCKETBASE_URL=https://api.tamefor.com
 ```
 
 ### 2. Cliente PocketBase
@@ -265,7 +265,7 @@ Todos los archivos TypeScript validados sin errores.
 
 ### ✅ URL de PocketBase Configurada
 
-- **Producción:** `http://67.215.249.142:8090`
+- **Producción:** `https://api.tamefor.com`
 - **Desarrollo:** Comentado en `.env.local.example`
 
 ---
