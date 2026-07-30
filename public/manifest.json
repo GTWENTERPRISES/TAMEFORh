@@ -1,0 +1,42 @@
+{
+  "name": "TAMEFOR - Consultoría Forestal y Ambiental Ecuador",
+  "short_name": "TAMEFOR",
+  "description": "Empresa líder en consultoría forestal y ambiental en Ecuador. Certificación ISO 14001, capacitaciones SENECYT, gestión forestal sostenible.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a3a5c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "environmental", "consulting"],
+  "lang": "es-EC",
+  "dir": "ltr",
+  "scope": "/",
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-mobile.jpg",
+      "sizes": "750x1334",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    }
+  ]
+}
