@@ -1,5 +1,7 @@
 import { getProjectBySlug, projectsData } from "@/lib/projectsData"
-import { ProyectoPageClient } from "@/components/pages/ProyectoPageClient"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
+import { ProyectoDetailClient } from "@/components/pages/ProyectoDetailClient"
 import { notFound } from "next/navigation"
 import type { Metadata } from 'next'
 
@@ -15,12 +17,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   
   if (!project) {
     return {
-      title: 'Proyecto no encontrado | TAMEFOR Los Ríos',
+      title: 'Proyecto no encontrado | TAMEFOR Ecuador',
     }
   }
 
   return {
-    title: `${project.title} | TAMEFOR Los Ríos`,
+    title: `${project.title} | Proyectos TAMEFOR Ecuador`,
     description: project.shortDescription,
   }
 }
@@ -33,5 +35,11 @@ export default async function ProyectoPage({ params }: { params: Promise<{ slug:
     notFound()
   }
 
-  return <ProyectoPageClient project={project} />
+  return (
+    <main className="min-h-screen bg-background">
+      <Header />
+      <ProyectoDetailClient project={project} />
+      <Footer />
+    </main>
+  )
 }

@@ -12,28 +12,32 @@ const projects = [
     title: "Gestión de Residuos",
     description: "Consultoría ambiental que incluye asesoramiento y orientación en gestión de residuos",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2032",
-    category: "Reciclaje"
+    category: "Reciclaje",
+    slug: "gestion-residuos"
   },
   {
     number: "02",
     title: "Gestión Forestal",
     description: "Consultoría ambiental que incluye asesoramiento y orientación en conservación forestal",
     image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013",
-    category: "Bosque"
+    category: "Bosque",
+    slug: "gestion-forestal"
   },
   {
     number: "03",
     title: "Limpieza de Bosques",
     description: "Consultoría ambiental que incluye asesoramiento y orientación en limpieza forestal",
     image: "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?q=80&w=2074",
-    category: "Limpieza"
+    category: "Limpieza",
+    slug: "limpieza-bosques"
   },
   {
     number: "04",
     title: "Reforestación",
     description: "Consultoría ambiental que incluye asesoramiento y orientación en plantación de árboles",
     image: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&w=2088",
-    category: "Plantación"
+    category: "Plantación",
+    slug: "reforestacion"
   },
 ]
 
@@ -143,12 +147,14 @@ export function ProjectsSection() {
                   </p>
 
                   {/* Button */}
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="mt-auto">
-                    <Button className="w-full bg-[#3d9a8b] hover:bg-[#2d7a6b] text-white rounded-none font-semibold text-sm transition-all duration-300 border-2 border-[#3d9a8b] hover:border-[#2d7a6b] group/btn">
-                      Ver Proyecto
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
-                  </motion.div>
+                  <Link href={`/proyectos/${project.slug}`} className="mt-auto">
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                      <Button className="w-full bg-[#3d9a8b] hover:bg-[#2d7a6b] text-white rounded-none font-semibold text-sm transition-all duration-300 border-2 border-[#3d9a8b] hover:border-[#2d7a6b] group/btn">
+                        Ver Proyecto
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </motion.div>
+                  </Link>
                 </div>
               </div>
             </motion.div>
