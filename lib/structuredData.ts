@@ -6,8 +6,8 @@ export const organizationSchema = {
   "@type": "Organization",
   name: "TAMEFOR S.A.S B.I.C",
   legalName: "TAMEFOR S.A.S Beneficio e Interés Colectivo",
-  url: "https://tamefor.com",
-  logo: "https://tamefor.com/logo.png",
+  url: "https://www.tamefor.com",
+  logo: "https://www.tamefor.com/logo.png",
   description:
     "Empresa líder en consultoría forestal y ambiental en Ecuador. Especializada en gestión forestal sostenible, certificaciones ISO 14001 y capacitación profesional.",
   address: {
@@ -45,7 +45,7 @@ export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "TAMEFOR",
-  url: "https://tamefor.com",
+  url: "https://www.tamefor.com",
   description:
     "Consultoría forestal y ambiental profesional en Ecuador. Servicios especializados para empresas.",
   publisher: {
@@ -56,7 +56,7 @@ export const websiteSchema = {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://tamefor.com/search?q={search_term_string}",
+      urlTemplate: "https://www.tamefor.com/search?q={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },
@@ -69,7 +69,7 @@ export const breadcrumbSchema = (items: { name: string; url: string }[]) => ({
     "@type": "ListItem",
     position: index + 1,
     name: item.name,
-    item: `https://tamefor.com${item.url}`,
+    item: `https://www.tamefor.com${item.url}`,
   })),
 })
 
@@ -89,7 +89,7 @@ export const courseSchema = (course: {
   provider: {
     "@type": "Organization",
     name: course.provider,
-    sameAs: "https://tamefor.com",
+    sameAs: "https://www.tamefor.com",
   },
   url: course.url,
   ...(course.price && {
@@ -132,7 +132,7 @@ export const articleSchema = (article: {
     name: "TAMEFOR S.A.S B.I.C",
     logo: {
       "@type": "ImageObject",
-      url: "https://tamefor.com/logo.png",
+      url: "https://www.tamefor.com/logo.png",
     },
   },
   inLanguage: "es-EC",
@@ -182,9 +182,9 @@ export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "TAMEFOR S.A.S B.I.C",
-  image: "https://tamefor.com/logo.png",
-  "@id": "https://tamefor.com",
-  url: "https://tamefor.com",
+  image: "https://www.tamefor.com/logo.png",
+  "@id": "https://www.tamefor.com",
+  url: "https://www.tamefor.com",
   telephone: "+593-XXX-XXXX", // Reemplazar con número real
   priceRange: "$$",
   address: {

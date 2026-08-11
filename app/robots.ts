@@ -5,7 +5,7 @@ import { MetadataRoute } from "next"
  * https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots
  */
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://tamefor.com"
+  const baseUrl = "https://www.tamefor.com"
 
   return {
     rules: [

@@ -36,7 +36,7 @@ export const metadata: Metadata = {
       "Accede gratuitamente a recursos técnicos, manuales, guías y documentos especializados en gestión forestal y ambiental. Centro de conocimiento profesional.",
     type: "website",
     locale: "es_EC",
-    url: "https://tamefor.com/biblioteca",
+    url: "https://www.tamefor.com/biblioteca",
     siteName: "TAMEFOR S.A.S B.I.C",
     images: [
       {

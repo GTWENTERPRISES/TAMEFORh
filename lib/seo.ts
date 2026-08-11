@@ -5,7 +5,7 @@ import type { Metadata } from "next"
  */
 
 export const SITE_NAME = "TAMEFOR S.A.S B.I.C"
-export const SITE_URL = "https://tamefor.com"
+export const SITE_URL = "https://www.tamefor.com"
 export const SITE_DESCRIPTION =
   "Consultoría forestal y ambiental profesional en Ecuador. Certificación ISO 14001, capacitaciones SENECYT, gestión forestal sostenible."
 

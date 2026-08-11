@@ -35,7 +35,7 @@ export const metadata: Metadata = {
       "Conoce nuestro portafolio de proyectos exitosos en gestión forestal, certificaciones ISO, reforestación y conservación. Experiencia comprobada en todo Ecuador.",
     type: "website",
     locale: "es_EC",
-    url: "https://tamefor.com/proyectos",
+    url: "https://www.tamefor.com/proyectos",
     siteName: "TAMEFOR S.A.S B.I.C",
     images: [
       {

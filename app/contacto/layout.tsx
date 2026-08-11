@@ -36,7 +36,7 @@ export const metadata: Metadata = {
       "Comunícate con nuestros expertos en consultoría forestal y ambiental. Atención personalizada, cotizaciones rápidas y soluciones a medida para tu proyecto en Ecuador.",
     type: "website",
     locale: "es_EC",
-    url: "https://tamefor.com/contacto",
+    url: "https://www.tamefor.com/contacto",
     siteName: "TAMEFOR S.A.S B.I.C",
     images: [
       {

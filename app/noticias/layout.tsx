@@ -42,7 +42,7 @@ export const metadata: Metadata = {
       "Mantente informado sobre las últimas novedades del sector forestal y ambiental en Ecuador. Artículos técnicos escritos por profesionales expertos.",
     type: "website",
     locale: "es_EC",
-    url: "https://tamefor.com/noticias",
+    url: "https://www.tamefor.com/noticias",
     siteName: "TAMEFOR S.A.S B.I.C",
     images: [
       {

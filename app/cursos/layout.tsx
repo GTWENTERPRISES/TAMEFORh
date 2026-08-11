@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       "Capacitaciones profesionales certificadas por SENECYT y Ministerio del Trabajo. SIG, Biometría, Derecho Ambiental, Negocios Verdes y más. Modalidad virtual con certificación permanente.",
     type: "website",
     locale: "es_EC",
-    url: "https://tamefor.com/cursos",
+    url: "https://www.tamefor.com/cursos",
     siteName: "TAMEFOR S.A.S B.I.C",
     images: [
       {

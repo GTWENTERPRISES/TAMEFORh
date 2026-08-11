@@ -58,7 +58,7 @@ export const metadata: Metadata = {
       "Soluciones integrales en gestión forestal y ambiental: Certificación ISO 14001, inventarios, auditorías, peritajes judiciales, topografía y más. Experiencia comprobada en todo Ecuador.",
     type: "website",
     locale: "es_EC",
-    url: "https://tamefor.com/servicios",
+    url: "https://www.tamefor.com/servicios",
     siteName: "TAMEFOR S.A.S B.I.C",
     images: [
       {

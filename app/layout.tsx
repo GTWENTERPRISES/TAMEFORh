@@ -3,7 +3,7 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tamefor.com'),
+  metadataBase: new URL('https://www.tamefor.com'),
   title: {
     default: 'TAMEFOR S.A.S B.I.C — Consultoría Forestal y Ambiental en Ecuador | Certificación ISO 14001',
     template: '%s | TAMEFOR Ecuador',
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_EC',
-    url: 'https://tamefor.com',
+    url: 'https://www.tamefor.com',
     siteName: 'TAMEFOR S.A.S B.I.C',
     title: 'TAMEFOR — Consultoría Forestal y Ambiental Líder en Ecuador',
     description: 'Empresa especializada en consultoría forestal y ambiental con más de 10 años de experiencia. Certificación ISO 14001, capacitaciones SENECYT, gestión forestal sostenible, inventarios, peritajes y auditorías ambientales. Soluciones integrales en todo Ecuador.',
@@ -112,7 +112,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'google-site-verification-code', // Reemplazar con código real de Google Search Console
+    // 👉 PASO 1: entra a https://search.google.com/search-console
+    // 👉 PASO 2: agrega la propiedad https://www.tamefor.com y elige "Etiqueta HTML"
+    // 👉 PASO 3: copia SOLO el valor del content="..." (ej: "AbC123...") y pégalo aquí abajo:
+    google: 'PEGA_AQUI_TU_CODIGO_DE_GOOGLE',
     // yandex: 'yandex-verification-code',
     // other: 'other-verification-code',
   },

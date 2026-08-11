@@ -40,7 +40,7 @@ export const metadata: Metadata = {
       "Más de 10 años liderando la consultoría forestal y ambiental en Ecuador. Equipo experto, compromiso con la sostenibilidad y soluciones innovadoras en cada proyecto.",
     type: "website",
     locale: "es_EC",
-    url: "https://tamefor.com/nosotros",
+    url: "https://www.tamefor.com/nosotros",
     siteName: "TAMEFOR S.A.S B.I.C",
     images: [
       {

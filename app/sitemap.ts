@@ -5,7 +5,7 @@ import { MetadataRoute } from "next"
  * https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://tamefor.com"
+  const baseUrl = "https://www.tamefor.com"
   const now = new Date()
 
   // Páginas estáticas principales
