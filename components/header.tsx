@@ -57,7 +57,7 @@ export function Header() {
                   whileHover={{ x: 5 }}
                 >
                   <Phone className="h-4 w-4 text-white flex-shrink-0" />
-                  <span className="whitespace-nowrap">+593 96 226 5426</span>
+                  <span className="whitespace-nowrap">+593 96 993 4651</span>
                 </motion.div>
               </Link>
               <div className="flex items-center gap-3">
