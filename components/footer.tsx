@@ -172,7 +172,7 @@ export function Footer() {
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-white mb-1">Teléfono</p>
                   <Link href="tel:+593969934651" className="text-xs sm:text-sm text-white/70 hover:text-[#3d9a8b] transition-smooth inline-block py-1">
-                    +593 96 226 5426
+                    +593 96 993 4651
                   </Link>
                 </div>
               </div>
