@@ -143,7 +143,7 @@ export function TerminosUsoPageClient() {
                 </p>
                 <div className="bg-[#3d9a8b]/10 rounded-xl p-6">
                   <p className="text-foreground"><strong>Email:</strong> informacion@tameforlosrios.org</p>
-                  <p className="text-foreground"><strong>Teléfono:</strong> +593 96 226 5426</p>
+                  <p className="text-foreground"><strong>Teléfono:</strong> +593 96 9934651</p>
                   <p className="text-foreground"><strong>Dirección:</strong> Quevedo, Los Ríos, Ecuador</p>
                 </div>
               </motion.div>
