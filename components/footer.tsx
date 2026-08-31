@@ -171,7 +171,7 @@ export function Footer() {
                 <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-[#3d9a8b] flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-white mb-1">Teléfono</p>
-                  <Link href="tel:+593962265426" className="text-xs sm:text-sm text-white/70 hover:text-[#3d9a8b] transition-smooth inline-block py-1">
+                  <Link href="tel:+593969934651" className="text-xs sm:text-sm text-white/70 hover:text-[#3d9a8b] transition-smooth inline-block py-1">
                     +593 96 226 5426
                   </Link>
                 </div>

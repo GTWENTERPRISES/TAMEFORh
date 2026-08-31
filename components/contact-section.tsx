@@ -50,8 +50,8 @@ export function ContactSection() {
     {
       icon: Phone,
       title: "Teléfono",
-      content: "+593 96 226 5426",
-      href: "tel:+593962265426"
+      content: "+593 969934651",
+      href: "tel:+593969934651"
     },
     {
       icon: Clock,

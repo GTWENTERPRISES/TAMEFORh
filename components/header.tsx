@@ -51,7 +51,7 @@ export function Header() {
               </Link>
             </div>
             <div className="flex items-center gap-4">
-              <Link href="tel:+593962265426" className="flex items-center gap-2 hover:text-[#3d9a8b] transition-smooth min-h-[44px]">
+              <Link href="tel:+593969934651" className="flex items-center gap-2 hover:text-[#3d9a8b] transition-smooth min-h-[44px]">
                 <motion.div 
                   className="flex items-center gap-2"
                   whileHover={{ x: 5 }}
@@ -101,7 +101,7 @@ export function Header() {
                 <span>info@tamefor.com</span>
               </Link>
               <span className="hidden sm:inline text-white/40">|</span>
-              <Link href="tel:+593962265426" className="flex items-center gap-1.5 hover:text-[#3d9a8b] transition-smooth py-1">
+              <Link href="tel:+593969934651" className="flex items-center gap-1.5 hover:text-[#3d9a8b] transition-smooth py-1">
                 <Phone className="h-3.5 w-3.5 text-white flex-shrink-0" />
                 <span>+593 96 226 5426</span>
               </Link>
