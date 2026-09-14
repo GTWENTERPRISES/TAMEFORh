@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Inicio", href: "/", icon: Home },
   { label: "Nosotros", href: "/nosotros", icon: Users },
   { label: "Servicios", href: "/servicios", icon: Briefcase },
-  { label: "Equipo", href: "/equipo", icon: Users2 },
+  
   { label: "Cursos", href: "/cursos", icon: GraduationCap },
   { label: "Proyectos", href: "/proyectos", icon: FolderOpen },
   { label: "Noticias", href: "/noticias", icon: Newspaper },
