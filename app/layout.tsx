@@ -146,7 +146,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es-EC" className="dark bg-background">
+    <html lang="es-EC" className="bg-background">
       <head>
         {/* Preconexiones para mejorar rendimiento */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

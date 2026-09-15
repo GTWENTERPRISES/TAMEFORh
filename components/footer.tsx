@@ -32,7 +32,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-[#1a3a5c] text-white">
+    <footer className="bg-primary text-primary-foreground">
       <motion.div
         className="container mx-auto px-4 py-10 sm:py-12 md:py-16 lg:py-20"
         initial="hidden"
@@ -174,7 +174,6 @@ export function Footer() {
                     +593 96 993 4651
                   </Link>
                 </div>
-                //
               </div>
             </div>
           </motion.div>

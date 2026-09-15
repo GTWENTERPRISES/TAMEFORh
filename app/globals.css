@@ -10,10 +10,10 @@
 */
 
 :root {
-  --background: oklch(0.98 0.002 200);
-  --foreground: oklch(0.25 0.05 230);
+  --background: oklch(0.975 0.012 190);
+  --foreground: oklch(0.22 0.035 230);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.25 0.05 230);
+  --card-foreground: oklch(0.22 0.035 230);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.25 0.05 230);
   /* Navy Blue - Primary */
@@ -38,7 +38,7 @@
   --chart-3: oklch(0.75 0.12 85);
   --chart-4: oklch(0.70 0.10 175);
   --chart-5: oklch(0.65 0.08 85);
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.25 0.05 230);
   --sidebar-primary: oklch(0.32 0.06 230);
@@ -217,7 +217,20 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
+    font-family: Arial, sans-serif;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--secondary) 28%, transparent);
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-secondary ring-offset-2 ring-offset-background;
+  }
+  h1, h2, h3, h4 {
+    letter-spacing: -0.025em;
   }
 }

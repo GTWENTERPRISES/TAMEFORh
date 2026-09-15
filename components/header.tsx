@@ -26,7 +26,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="w-full">
+    <header className="w-full bg-background">
       {/* Top Bar - Dark Blue Background */}
       <div className="bg-[#1a3a5c] text-white py-3 md:py-3 border-b border-[#3d9a8b]/30">
         <div className="container-max">
@@ -135,7 +135,7 @@ export function Header() {
       </div>
 
       {/* Main Navigation */}
-      <nav className="bg-white shadow-md py-3 md:py-4 sticky top-0 z-50 border-b-2 border-[#3d9a8b]/20">
+      <nav className="bg-background/95 backdrop-blur-md shadow-sm py-3 md:py-4 sticky top-0 z-50 border-b border-border">
         <div className="container-max flex justify-between items-center">
           <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-3">
@@ -160,7 +160,7 @@ export function Header() {
                 <motion.div key={link.href} whileHover={{ y: -2 }}>
                   <Link
                     href={link.href}
-                    className="text-[#1a3a5c] hover:text-[#3d9a8b] font-semibold text-xs transition-smooth relative group flex items-center gap-2 py-2"
+                    className="text-foreground/80 hover:text-secondary font-semibold text-xs transition-smooth relative group flex items-center gap-2 py-2"
                   >
                     <Icon className="h-4 w-4" />
                     {link.label}
@@ -174,7 +174,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <Link href="/plataforma-interna">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button className="rounded-full px-6 py-2.5 bg-[#3d9a8b] hover:bg-[#3d9a8b]/90 text-white font-semibold shadow-md hover:shadow-lg transition-smooth flex items-center gap-2 min-h-[44px]">
+                <Button className="rounded-lg px-5 py-2.5 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold shadow-sm hover:shadow-md transition-smooth flex items-center gap-2 min-h-[44px]">
                   <LayoutDashboard className="h-4 w-4" />
                   Plataforma
                 </Button>
@@ -182,7 +182,7 @@ export function Header() {
             </Link>
             <Link href="https://aulavirtual.tamefor.com/login/index.php" target="_blank" rel="noopener noreferrer">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button className="rounded-full px-6 py-2.5 bg-[#3d9a8b] hover:bg-[#3d9a8b]/90 text-white font-semibold shadow-md hover:shadow-lg transition-smooth flex items-center gap-2 min-h-[44px]">
+                <Button className="rounded-lg px-5 py-2.5 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold shadow-sm hover:shadow-md transition-smooth flex items-center gap-2 min-h-[44px]">
                   <BookOpen className="h-4 w-4" />
                   Aula Virtual
                 </Button>
