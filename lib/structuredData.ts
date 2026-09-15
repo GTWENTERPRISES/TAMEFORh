@@ -4,8 +4,8 @@
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "TAMEFOR S.A.S B.I.C",
-  legalName: "TAMEFOR S.A.S Beneficio e Interés Colectivo",
+  name: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
+  legalName: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. Beneficio e Interés Colectivo",
   url: "https://www.tamefor.com",
   logo: "https://www.tamefor.com/logo.png",
   description:
@@ -50,7 +50,7 @@ export const websiteSchema = {
     "Consultoría forestal y ambiental profesional en Ecuador. Servicios especializados para empresas.",
   publisher: {
     "@type": "Organization",
-    name: "TAMEFOR S.A.S B.I.C",
+    name: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
   },
   potentialAction: {
     "@type": "SearchAction",
@@ -125,11 +125,11 @@ export const articleSchema = (article: {
   dateModified: article.dateModified || article.datePublished,
   author: {
     "@type": "Organization",
-    name: article.author || "TAMEFOR S.A.S B.I.C",
+    name: article.author || "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
   },
   publisher: {
     "@type": "Organization",
-    name: "TAMEFOR S.A.S B.I.C",
+    name: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
     logo: {
       "@type": "ImageObject",
       url: "https://www.tamefor.com/logo.png",
@@ -153,7 +153,7 @@ export const serviceSchema = (service: {
   serviceType: service.serviceType,
   provider: {
     "@type": "Organization",
-    name: "TAMEFOR S.A.S B.I.C",
+    name: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
   },
   areaServed: {
     "@type": "Country",
@@ -181,7 +181,7 @@ export const faqSchema = (faqs: { question: string; answer: string }[]) => ({
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "TAMEFOR S.A.S B.I.C",
+  name: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
   image: "https://www.tamefor.com/logo.png",
   "@id": "https://www.tamefor.com",
   url: "https://www.tamefor.com",

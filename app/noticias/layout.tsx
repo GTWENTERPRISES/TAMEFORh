@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_EC",
     url: "https://www.tamefor.com/noticias",
-    siteName: "TAMEFOR S.A.S B.I.C",
+    siteName: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
     images: [
       {
         url: "/og-noticias.jpg",

@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Política de Privacidad | TAMEFOR S.A.S B.I.C",
+  title: "Política de Privacidad | TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
   description:
-    "Política de privacidad y protección de datos personales de TAMEFOR S.A.S B.I.C. Conoce cómo protegemos tu información de acuerdo con la legislación ecuatoriana.",
+    "Política de privacidad y protección de datos personales de TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C. Conoce cómo protegemos tu información de acuerdo con la legislación ecuatoriana.",
   keywords: [
     "política de privacidad TAMEFOR",
     "protección de datos Ecuador",
@@ -12,10 +12,10 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Política de Privacidad - TAMEFOR",
-    description: "Política de protección de datos personales de TAMEFOR S.A.S B.I.C",
+    description: "Política de protección de datos personales de TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
     type: "website",
     locale: "es_EC",
-    siteName: "TAMEFOR S.A.S B.I.C",
+    siteName: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
   },
   alternates: {
     canonical: "/politica-privacidad",

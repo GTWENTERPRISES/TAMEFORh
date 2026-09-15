@@ -77,7 +77,7 @@ export function NosotrosPageClient() {
               <span className="text-[#3d9a8b]">Forestal Sostenible</span>
             </motion.h1>
             <motion.p className="text-white/80 text-xl" variants={itemVariants}>
-              Conoce a TAMEFOR S.A.S B.I.C - Consultoría forestal y ambiental
+              Conoce a TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C - Consultoría forestal y ambiental
             </motion.p>
           </motion.div>
         </div>
@@ -117,7 +117,7 @@ export function NosotrosPageClient() {
                   className="font-sans text-4xl lg:text-5xl text-[#1a3a5c] leading-tight mb-6 font-bold"
                   variants={headerVariants}
                 >
-                  TAMEFOR S.A.S B.I.C
+                  TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C
                 </motion.h2>
 
                 <motion.p className="text-[#1a3a5c]/70 leading-relaxed mb-6 text-lg" variants={itemVariants}>

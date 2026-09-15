@@ -56,7 +56,7 @@ export function Footer() {
               </Link>
             </motion.div>
             <p className="text-white/80 leading-relaxed text-xs sm:text-sm">
-              TAMEFOR S.A.S B.I.C - Consultora forestal y ambiental. Ofrecemos servicios de gestión ambiental, consultoría forestal y capacitaciones certificadas para empresas y profesionales en Ecuador.
+              TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C - Consultora forestal y ambiental. Ofrecemos servicios de gestión ambiental, consultoría forestal y capacitaciones certificadas para empresas y profesionales en Ecuador.
             </p>
             <motion.div
               className="bg-[#3d9a8b]/20 rounded-lg p-3 sm:p-4 border border-[#3d9a8b]/30 hover:border-[#3d9a8b] transition-smooth"
@@ -175,6 +175,7 @@ export function Footer() {
                     +593 96 993 4651
                   </Link>
                 </div>
+                //
               </div>
             </div>
           </motion.div>
@@ -196,7 +197,7 @@ export function Footer() {
         >
           <div className="flex flex-col items-center md:items-start gap-2">
             <p className="text-xs sm:text-sm text-white/70 text-center md:text-left">
-              © 2025 TAMEFOR S.A.S B.I.C. Todos los derechos reservados.
+              © 2025 TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C. Todos los derechos reservados.
             </p>
             <p className="text-xs text-white/50 text-center md:text-left">
               Powered by{" "}

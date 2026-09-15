@@ -39,7 +39,7 @@ export function PlataformaInternaPageClient() {
             Plataforma Interna
           </h1>
           <p className="text-white/70 text-sm">
-            Acceso exclusivo para clientes y equipo de TAMEFOR S.A.S B.I.C
+            Acceso exclusivo para clientes y equipo de TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export function PlataformaInternaPageClient() {
       </motion.div>
 
       <p className="mt-8 text-white/40 text-xs text-center">
-        © {new Date().getFullYear()} TAMEFOR S.A.S B.I.C — Todos los derechos reservados
+        © {new Date().getFullYear()} TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C — Todos los derechos reservados
       </p>
     </main>
   )

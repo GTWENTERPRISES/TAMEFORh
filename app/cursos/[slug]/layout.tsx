@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "article",
     locale: "es_EC",
-    siteName: "TAMEFOR S.A.S B.I.C",
+    siteName: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
   },
   twitter: {
     card: "summary_large_image",

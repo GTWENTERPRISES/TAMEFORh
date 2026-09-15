@@ -12,7 +12,7 @@ const tabs = ["Nuestra Historia", "Nuestra Misión", "Nuestra Visión"]
 
 const tabContent = {
   "Nuestra Historia": {
-    text: "Fundados en 2025, TAMEFOR S.A.S B.I.C nace como una consultora forestal y ambiental constituida como empresa B.I.C. (Beneficio e Interés Colectivo), comprometida con la sostenibilidad y el desarrollo empresarial responsable.",
+    text: "Fundados en 2025, TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C nace como una consultora forestal y ambiental constituida como empresa B.I.C. (Beneficio e Interés Colectivo), comprometida con la sostenibilidad y el desarrollo empresarial responsable.",
     points: [
       "Empresa B.I.C. enfocada en beneficio colectivo y ambiental",
       "Equipo multidisciplinario de expertos en gestión ambiental y forestal",
@@ -141,7 +141,7 @@ export function AboutSection() {
                 titleHighlight="Forestal Sostenible"
                 centered={false}
                 dark={true}
-                description="Conoce a TAMEFOR S.A.S B.I.C - Consultoría forestal y ambiental"
+                description="Conoce a TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C - Consultoría forestal y ambiental"
               />
             </motion.div>
 

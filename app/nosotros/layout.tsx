@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Sobre TAMEFOR | Empresa Líder en Consultoría Forestal Ecuador - Nuestra Historia",
   description:
-    "Conoce TAMEFOR S.A.S B.I.C, empresa líder en consultoría forestal y ambiental en Ecuador con más de 10 años de experiencia. Equipo multidisciplinario de ingenieros forestales, ambientales y especialistas certificados. Misión: promover la gestión forestal sostenible. Visión: ser referente en servicios ambientales en Ecuador. Valores: excelencia, sostenibilidad, innovación y compromiso. Miembros activos de gremios forestales nacionales.",
+    "Conoce TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C, empresa líder en consultoría forestal y ambiental en Ecuador con más de 10 años de experiencia. Equipo multidisciplinario de ingenieros forestales, ambientales y especialistas certificados. Misión: promover la gestión forestal sostenible. Visión: ser referente en servicios ambientales en Ecuador. Valores: excelencia, sostenibilidad, innovación y compromiso. Miembros activos de gremios forestales nacionales.",
   keywords: [
     // Empresa
     "TAMEFOR Ecuador",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_EC",
     url: "https://www.tamefor.com/nosotros",
-    siteName: "TAMEFOR S.A.S B.I.C",
+    siteName: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
     images: [
       {
         url: "/og-nosotros.jpg",

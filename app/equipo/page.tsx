@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Equipo de Trabajo | TAMEFOR',
-  description: 'Conoce a los profesionales que conforman el equipo de TAMEFOR S.A.S B.I.C.',
+  description: 'Conoce a los profesionales que conforman el equipo de TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C.',
 }
 
 export default function EquipoPage() {

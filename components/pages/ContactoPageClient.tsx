@@ -63,7 +63,7 @@ export function ContactoPageClient() {
               variants={headerVariants}
             >
               Atención al Cliente<br />
-              <span className="text-[#3d9a8b]">TAMEFOR S.A.S B.I.C</span>
+              <span className="text-[#3d9a8b]">TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C</span>
             </motion.h1>
             <div className="w-24 h-1 bg-[#3d9a8b] mx-auto mb-8" />
             <motion.p className="text-white/80 text-xl max-w-2xl mx-auto" variants={itemVariants}>

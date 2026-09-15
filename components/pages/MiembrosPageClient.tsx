@@ -83,7 +83,7 @@ export function MiembrosPageClient() {
               <span className="text-white">TAMEFOR Los Ríos</span>
             </motion.h1>
             <motion.p className="text-white/80 text-xl" variants={itemVariants}>
-              Profesionales certificados y consultores de TAMEFOR S.A.S B.I.C
+              Profesionales certificados y consultores de TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C
             </motion.p>
           </motion.div>
         </div>

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description: "Sistema de pagos seguro para servicios forestales y capacitaciones.",
     type: "website",
     locale: "es_EC",
-    siteName: "TAMEFOR S.A.S B.I.C",
+    siteName: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
   },
   twitter: {
     card: "summary",

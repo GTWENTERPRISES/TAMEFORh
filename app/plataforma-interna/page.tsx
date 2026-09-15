@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Plataforma Interna | TAMEFOR',
-  description: 'Acceso a la plataforma interna de TAMEFOR S.A.S B.I.C.',
+  description: 'Acceso a la plataforma interna de TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C.',
   robots: {
     index: false,
     follow: false,

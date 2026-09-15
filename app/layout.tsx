@@ -5,7 +5,7 @@ import './globals.css'
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.tamefor.com'),
   title: {
-    default: 'TAMEFOR S.A.S B.I.C — Consultoría Forestal y Ambiental en Ecuador | Certificación ISO 14001',
+    default: 'TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C — Consultoría Forestal y Ambiental en Ecuador | Certificación ISO 14001',
     template: '%s | TAMEFOR Ecuador',
   },
   description: 'Empresa líder en consultoría forestal y ambiental en Ecuador. Especialistas en certificación ISO 14001, gestión forestal sostenible, capacitaciones SENECYT, inventarios forestales, peritajes judiciales, topografía, auditorías ambientales y planes de manejo. +10 años de experiencia. Servicios profesionales en Quito y todo Ecuador.',
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
     'TAMEFOR Ecuador',
     'empresa forestal Ecuador',
   ],
-  authors: [{ name: 'TAMEFOR S.A.S B.I.C' }],
-  creator: 'TAMEFOR S.A.S B.I.C',
-  publisher: 'TAMEFOR S.A.S B.I.C',
+  authors: [{ name: 'TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C' }],
+  creator: 'TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C',
+  publisher: 'TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C',
   formatDetection: {
     email: true,
     address: true,
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_EC',
     url: 'https://www.tamefor.com',
-    siteName: 'TAMEFOR S.A.S B.I.C',
+    siteName: 'TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C',
     title: 'TAMEFOR — Consultoría Forestal y Ambiental Líder en Ecuador',
     description: 'Empresa especializada en consultoría forestal y ambiental con más de 10 años de experiencia. Certificación ISO 14001, capacitaciones SENECYT, gestión forestal sostenible, inventarios, peritajes y auditorías ambientales. Soluciones integrales en todo Ecuador.',
     images: [

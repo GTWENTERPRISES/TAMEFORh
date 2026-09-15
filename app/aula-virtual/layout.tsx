@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       "Accede a cursos forestales certificados desde cualquier lugar. Formación profesional virtual con expertos del sector.",
     type: "website",
     locale: "es_EC",
-    siteName: "TAMEFOR S.A.S B.I.C",
+    siteName: "TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C",
   },
   twitter: {
     card: "summary",
