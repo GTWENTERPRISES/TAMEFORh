@@ -6,7 +6,6 @@ import { CongressSection } from "@/components/congress-section"
 import { StatisticsSection } from "@/components/statistics-section"
 import { AboutSection } from "@/components/about-section"
 import { ServicesSection } from "@/components/services-section"
-import { DirectiveSection } from "@/components/directive-section"
 import { CoursesSection } from "@/components/courses-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { ProjectsSection } from "@/components/projects-section"
@@ -61,9 +60,7 @@ export function HomePageClient() {
       <motion.div variants={itemVariants}>
         <ServicesSection />
       </motion.div>
-      <motion.div variants={itemVariants}>
-        <DirectiveSection />
-      </motion.div>
+      
       <motion.div variants={itemVariants}>
         <CoursesSection />
       </motion.div>
