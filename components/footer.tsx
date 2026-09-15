@@ -9,7 +9,6 @@ import { IconBadge } from "@/components/ui/IconBadge"
 
 const quickLinks = [
   { label: "Nosotros", href: "/nosotros" },
-  { label: "Equipo", href: "/equipo" },
   { label: "Servicios", href: "/servicios" },
   { label: "Cursos", href: "/cursos" },
   { label: "Proyectos", href: "/proyectos" },
