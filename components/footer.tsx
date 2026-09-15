@@ -58,7 +58,7 @@ export function Footer() {
               TAMEFOR TAPIA & MENA SOLUCIONES FORESTALES Y AMBIENTALES S.A.S. B.I.C - Consultora forestal y ambiental. Ofrecemos servicios de gestión ambiental, consultoría forestal y capacitaciones certificadas para empresas y profesionales en Ecuador.
             </p>
             <motion.div
-              className="bg-[#3d9a8b]/20 rounded-lg p-3 sm:p-4 border border-[#3d9a8b]/30 hover:border-[#3d9a8b] transition-smooth"
+              className="bg-secondary/20 rounded-lg p-3 sm:p-4 border border-secondary/30 hover:border-[#3d9a8b] transition-smooth"
               whileHover={{ borderColor: "#3d9a8b" }}
             >
               <p className="font-bold text-white text-xs sm:text-sm mb-1 sm:mb-2">¡Estamos Disponibles!</p>
@@ -73,7 +73,7 @@ export function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#3d9a8b]/20 flex items-center justify-center hover:bg-[#3d9a8b] transition-smooth"
+                    className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-secondary/20 flex items-center justify-center hover:bg-secondary transition-smooth"
                     aria-label={`Visitar ${social.name}`}
                   >
                     <social.icon className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
@@ -87,11 +87,11 @@ export function Footer() {
           <motion.div className="space-y-4 sm:space-y-5 md:space-y-6" variants={itemVariants}>
             <div className="flex items-center gap-2 sm:gap-3">
               <motion.div
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#3d9a8b]" />
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
               </motion.div>
               <h3 className="font-sans text-sm sm:text-base md:text-lg font-bold text-white">Enlaces Rápidos</h3>
             </div>
@@ -100,9 +100,9 @@ export function Footer() {
                 <motion.li key={i} whileHover={{ x: 8 }}>
                   <Link
                     href={link.href}
-                    className="text-white/70 hover:text-[#3d9a8b] transition-smooth flex items-center gap-2 group text-xs sm:text-sm py-2 min-h-[44px]"
+                    className="text-white/70 hover:text-secondary transition-smooth flex items-center gap-2 group text-xs sm:text-sm py-2 min-h-[44px]"
                   >
-                    <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#3d9a8b]" />
+                    <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 opacity-0 group-hover:opacity-100 transition-opacity text-secondary" />
                     {link.label}
                   </Link>
                 </motion.li>
@@ -114,11 +114,11 @@ export function Footer() {
           <motion.div className="space-y-4 sm:space-y-5 md:space-y-6" variants={itemVariants}>
             <div className="flex items-center gap-2 sm:gap-3">
               <motion.div
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-[#3d9a8b]" />
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
               </motion.div>
               <h3 className="font-sans text-sm sm:text-base md:text-lg font-bold text-white">Servicios</h3>
             </div>
@@ -127,9 +127,9 @@ export function Footer() {
                 <motion.li key={i} whileHover={{ x: 8 }}>
                   <Link
                     href={service.href}
-                    className="text-white/70 hover:text-[#3d9a8b] transition-smooth flex items-center gap-2 group text-xs sm:text-sm py-2 min-h-[44px]"
+                    className="text-white/70 hover:text-secondary transition-smooth flex items-center gap-2 group text-xs sm:text-sm py-2 min-h-[44px]"
                   >
-                    <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#3d9a8b]" />
+                    <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 opacity-0 group-hover:opacity-100 transition-opacity text-secondary" />
                     {service.label}
                   </Link>
                 </motion.li>
@@ -141,36 +141,36 @@ export function Footer() {
           <motion.div className="space-y-4 sm:space-y-5 md:space-y-6" variants={itemVariants}>
             <div className="flex items-center gap-2 sm:gap-3">
               <motion.div
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#3d9a8b]/20 flex items-center justify-center flex-shrink-0"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-[#3d9a8b]" />
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
               </motion.div>
               <h3 className="font-sans text-sm sm:text-base md:text-lg font-bold text-white">Contacto</h3>
             </div>
             <div className="space-y-3 sm:space-y-4">
               <div className="flex items-start gap-2 sm:gap-3">
-                <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-[#3d9a8b] flex-shrink-0 mt-1" />
+                <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-secondary flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-white mb-1">Ubicación</p>
                   <p className="text-xs sm:text-sm text-white/70 leading-relaxed">Cdla. El Guayacán, Mz C5, villa 6 y 7 III Etapa<br />Quevedo, Los Ríos 120501, Ecuador</p>
                 </div>
               </div>
               <div className="flex items-start gap-2 sm:gap-3 min-h-[44px]">
-                <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-[#3d9a8b] flex-shrink-0 mt-1" />
+                <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-secondary flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-white mb-1">Email</p>
-                  <Link href="mailto:info@tamefor.com" className="text-xs sm:text-sm text-white/70 hover:text-[#3d9a8b] transition-smooth inline-block py-1">
+                  <Link href="mailto:info@tamefor.com" className="text-xs sm:text-sm text-white/70 hover:text-secondary transition-smooth inline-block py-1">
                     info@tamefor.com
                   </Link>
                 </div>
               </div>
               <div className="flex items-start gap-2 sm:gap-3 min-h-[44px]">
-                <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-[#3d9a8b] flex-shrink-0 mt-1" />
+                <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-secondary flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-white mb-1">Teléfono</p>
-                  <Link href="tel:+593969934651" className="text-xs sm:text-sm text-white/70 hover:text-[#3d9a8b] transition-smooth inline-block py-1">
+                  <Link href="tel:+593969934651" className="text-xs sm:text-sm text-white/70 hover:text-secondary transition-smooth inline-block py-1">
                     +593 96 993 4651
                   </Link>
                 </div>
@@ -181,7 +181,7 @@ export function Footer() {
 
         {/* Divider */}
         <motion.div
-          className="border-t border-[#3d9a8b]/20 my-6 sm:my-8 md:my-10 lg:my-12"
+          className="border-t border-secondary/20 my-6 sm:my-8 md:my-10 lg:my-12"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 0.8 }}
@@ -203,17 +203,17 @@ export function Footer() {
                 href="https://peertopeeracademy.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-[#3d9a8b] hover:text-[#3d9a8b]/80 transition-smooth font-semibold"
+                className="text-secondary hover:text-secondary/80 transition-smooth font-semibold"
               >
                 Peer-to-Peer Academy
               </a>
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
-            <Link href="/politica-privacidad" className="text-xs sm:text-sm text-white/70 hover:text-[#3d9a8b] transition-smooth text-center min-h-[44px] flex items-center justify-center px-2">
+            <Link href="/politica-privacidad" className="text-xs sm:text-sm text-white/70 hover:text-secondary transition-smooth text-center min-h-[44px] flex items-center justify-center px-2">
               Política de Privacidad
             </Link>
-            <Link href="/terminos-uso" className="text-xs sm:text-sm text-white/70 hover:text-[#3d9a8b] transition-smooth text-center min-h-[44px] flex items-center justify-center px-2">
+            <Link href="/terminos-uso" className="text-xs sm:text-sm text-white/70 hover:text-secondary transition-smooth text-center min-h-[44px] flex items-center justify-center px-2">
               Términos de Uso
             </Link>
           </div>

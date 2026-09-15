@@ -28,19 +28,19 @@ export function Header() {
   return (
     <header className="w-full bg-background">
       {/* Top Bar - Dark Blue Background */}
-      <div className="bg-[#1a3a5c] text-white py-3 md:py-3 border-b border-[#3d9a8b]/30">
+      <div className="bg-primary text-primary-foreground py-2.5 border-b border-secondary/30">
         <div className="container-max">
           {/* Desktop: Layout horizontal completo */}
           <div className="hidden md:flex justify-between items-center text-sm gap-4">
             <div className="flex items-center gap-6">
               <motion.div 
-                className="flex items-center gap-2 hover:text-[#3d9a8b] transition-smooth cursor-pointer"
+                className="flex items-center gap-2 hover:text-secondary transition-smooth cursor-pointer"
                 whileHover={{ x: 5 }}
               >
                 <MapPin className="h-4 w-4 text-white flex-shrink-0" />
                 <span className="font-semibold">Soluciones Forestales y Ambientales</span>
               </motion.div>
-              <Link href="mailto:info@tamefor.com" className="flex items-center gap-2 hover:text-[#3d9a8b] transition-smooth">
+              <Link href="mailto:info@tamefor.com" className="flex items-center gap-2 hover:text-secondary transition-smooth">
                 <motion.div 
                   className="flex items-center gap-2"
                   whileHover={{ x: 5 }}
@@ -51,7 +51,7 @@ export function Header() {
               </Link>
             </div>
             <div className="flex items-center gap-4">
-              <Link href="tel:+593969934651" className="flex items-center gap-2 hover:text-[#3d9a8b] transition-smooth min-h-[44px]">
+              <Link href="tel:+593969934651" className="flex items-center gap-2 hover:text-secondary transition-smooth min-h-[44px]">
                 <motion.div 
                   className="flex items-center gap-2"
                   whileHover={{ x: 5 }}
@@ -74,7 +74,7 @@ export function Header() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white hover:text-[#3d9a8b] transition-smooth flex items-center justify-center w-9 h-9"
+                        className="text-white hover:text-secondary transition-smooth flex items-center justify-center w-9 h-9"
                         aria-label={`Visitar ${social.name}`}
                       >
                         <Icon className="h-4 w-4" />
@@ -90,18 +90,18 @@ export function Header() {
           <div className="md:hidden space-y-2.5">
             {/* Línea 1: Eslogan */}
             <div className="flex items-center justify-center gap-2">
-              <MapPin className="h-3.5 w-3.5 text-[#3d9a8b] flex-shrink-0" />
+              <MapPin className="h-3.5 w-3.5 text-secondary flex-shrink-0" />
               <span className="font-semibold text-xs text-center">Soluciones Forestales y Ambientales</span>
             </div>
             
             {/* Línea 2: Email y Teléfono */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs">
-              <Link href="mailto:info@tamefor.com" className="flex items-center gap-1.5 hover:text-[#3d9a8b] transition-smooth py-1">
+              <Link href="mailto:info@tamefor.com" className="flex items-center gap-1.5 hover:text-secondary transition-smooth py-1">
                 <Mail className="h-3.5 w-3.5 text-white flex-shrink-0" />
                 <span>info@tamefor.com</span>
               </Link>
               <span className="hidden sm:inline text-white/40">|</span>
-              <Link href="tel:+593969934651" className="flex items-center gap-1.5 hover:text-[#3d9a8b] transition-smooth py-1">
+              <Link href="tel:+593969934651" className="flex items-center gap-1.5 hover:text-secondary transition-smooth py-1">
                 <Phone className="h-3.5 w-3.5 text-white flex-shrink-0" />
                 <span>+593 96 993 4651</span>
               </Link>
@@ -121,7 +121,7 @@ export function Header() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white hover:text-[#3d9a8b] transition-smooth flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-[#3d9a8b]/20"
+                      className="text-white hover:text-secondary transition-smooth flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-secondary/20"
                       aria-label={`Visitar ${social.name}`}
                     >
                       <Icon className="h-3.5 w-3.5" />
@@ -146,8 +146,8 @@ export function Header() {
               />
               {/* Texto al lado del logo - Solo visible en móvil */}
               <div className="flex flex-col lg:hidden">
-                <span className="text-[#1a3a5c] font-bold text-sm sm:text-base leading-tight">TAMEFOR</span>
-                <span className="text-[#3d9a8b] font-semibold text-xs sm:text-sm leading-tight">Soluciones Forestales</span>
+                <span className="text-primary font-bold text-sm sm:text-base leading-tight">TAMEFOR</span>
+                <span className="text-secondary font-semibold text-xs sm:text-sm leading-tight">Soluciones Forestales</span>
               </div>
             </Link>
           </motion.div>
@@ -164,7 +164,7 @@ export function Header() {
                   >
                     <Icon className="h-4 w-4" />
                     {link.label}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#3d9a8b] group-hover:w-full transition-all duration-300"></span>
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary group-hover:w-full transition-all duration-300"></span>
                   </Link>
                 </motion.div>
               )
@@ -192,7 +192,7 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="lg:hidden p-2 text-[#3d9a8b] min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="lg:hidden p-2 text-secondary min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -209,7 +209,7 @@ export function Header() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <motion.div
-            className="lg:hidden bg-white border-t-2 border-[#3d9a8b]/20 mt-4 py-4 max-h-[calc(100vh-120px)] overflow-y-auto"
+            className="lg:hidden bg-white border-t-2 border-secondary/20 mt-4 py-4 max-h-[calc(100vh-120px)] overflow-y-auto"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -221,7 +221,7 @@ export function Header() {
                   <motion.div key={link.href} whileHover={{ x: 5 }}>
                     <Link
                       href={link.href}
-                      className="text-[#1a3a5c] hover:text-[#3d9a8b] font-semibold py-3 px-4 text-base transition-smooth block flex items-center gap-3 rounded-md hover:bg-[#3d9a8b]/5 min-h-[48px]"
+                      className="text-primary hover:text-secondary font-semibold py-3 px-4 text-base transition-smooth block flex items-center gap-3 rounded-md hover:bg-secondary/5 min-h-[48px]"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <Icon className="h-5 w-5" />
@@ -230,10 +230,10 @@ export function Header() {
                   </motion.div>
                 )
               })}
-              <div className="flex flex-col gap-3 pt-4 mt-2 border-t-2 border-[#3d9a8b]/20">
+              <div className="flex flex-col gap-3 pt-4 mt-2 border-t-2 border-secondary/20">
                 <Link href="/plataforma-interna" className="w-full">
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button className="w-full rounded-full bg-[#3d9a8b] hover:bg-[#3d9a8b]/90 text-white font-semibold shadow-md hover:shadow-lg transition-smooth flex items-center justify-center gap-2 min-h-[48px] text-base">
+                    <Button className="w-full rounded-full bg-secondary hover:bg-secondary/90 text-white font-semibold shadow-md hover:shadow-lg transition-smooth flex items-center justify-center gap-2 min-h-[48px] text-base">
                       <LayoutDashboard className="h-5 w-5" />
                       Plataforma
                     </Button>
@@ -241,7 +241,7 @@ export function Header() {
                 </Link>
                 <Link href="https://aulavirtual.tamefor.com/login/index.php" target="_blank" rel="noopener noreferrer" className="w-full">
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button className="w-full rounded-full bg-[#3d9a8b] hover:bg-[#3d9a8b]/90 text-white font-semibold shadow-md hover:shadow-lg transition-smooth flex items-center justify-center gap-2 min-h-[48px] text-base">
+                    <Button className="w-full rounded-full bg-secondary hover:bg-secondary/90 text-white font-semibold shadow-md hover:shadow-lg transition-smooth flex items-center justify-center gap-2 min-h-[48px] text-base">
                       <BookOpen className="h-5 w-5" />
                       Aula Virtual
                     </Button>

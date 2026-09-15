@@ -99,7 +99,7 @@
   }
 
   .container-max {
-    @apply container mx-auto max-w-7xl;
+    @apply mx-auto w-full max-w-7xl;
   }
 
   .text-gradient {
@@ -172,8 +172,7 @@
 }
 
 @theme inline {
-  --font-sans: 'Arial', sans-serif;
-  --font-sans: 'Arial', sans-serif;
+  --font-sans: 'Inter', 'Segoe UI', Arial, sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -231,6 +230,59 @@
     @apply outline-none ring-2 ring-secondary ring-offset-2 ring-offset-background;
   }
   h1, h2, h3, h4 {
-    letter-spacing: -0.025em;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+  h1 { font-weight: 800; }
+  h2 { font-weight: 750; }
+  h3, h4 { font-weight: 700; }
+  a, button, input, textarea, select { transition: color var(--duration-fast) ease, background-color var(--duration-fast) ease, border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease, transform var(--duration-fast) ease; }
+}
+
+@layer components {
+  .surface-elevated {
+    @apply rounded-2xl border border-border/70 bg-card shadow-sm;
+  }
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-secondary;
+  }
+  .page-hero {
+    @apply relative overflow-hidden border-b border-border/70 bg-primary py-16 text-primary-foreground md:py-24;
+  }
+  .page-hero::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 opacity-20;
+    background-image: radial-gradient(circle at 80% 20%, var(--secondary) 0, transparent 34%), linear-gradient(135deg, transparent 0 60%, var(--primary-foreground) 60% 61%, transparent 61%);
+  }
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl py-20 px-4 md:px-6 lg:px-8;
+  }
+  .section-shell-tight {
+    @apply mx-auto w-full max-w-7xl py-12 px-4 md:px-6 lg:px-8;
+  }
+  .prose-enterprise {
+    @apply leading-8 text-muted-foreground;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* Compatibility layer: keeps every legacy page aligned with the enterprise palette. */
+[class*="text-[#1a3a5c]"] { color: var(--primary) !important; }
+[class*="text-[#3d9a8b]"] { color: var(--secondary) !important; }
+[class*="bg-[#1a3a5c]"] { background-color: var(--primary) !important; }
+[class*="bg-[#3d9a8b]"] { background-color: var(--secondary) !important; }
+[class*="border-[#1a3a5c]"] { border-color: color-mix(in oklch, var(--primary) 18%, transparent) !important; }
+[class*="border-[#3d9a8b]"] { border-color: color-mix(in oklch, var(--secondary) 35%, transparent) !important; }
+[class*="from-[#1a3a5c]"] { --tw-gradient-from: var(--primary) !important; }
+[class*="to-[#1a3a5c]"] { --tw-gradient-to: var(--primary) !important; }
+[class*="from-[#3d9a8b]"] { --tw-gradient-from: var(--secondary) !important; }
+[class*="to-[#3d9a8b]"] { --tw-gradient-to: var(--secondary) !important; }
+
+/* Shared interaction language across every route. */
+button, a { transition-property: color, background-color, border-color, box-shadow, transform; transition-duration: 180ms; }
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid color-mix(in oklch, var(--secondary) 35%, transparent); outline-offset: 3px; }
+main section { position: relative; }
+

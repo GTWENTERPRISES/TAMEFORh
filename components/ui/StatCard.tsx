@@ -20,7 +20,7 @@ export function StatCard({
   return (
     <motion.div
       className={cn(
-        "relative text-center p-8 bg-white/10 border-l-4 border-[#3d9a8b] backdrop-blur-md hover:shadow-xl transition-all duration-300 overflow-hidden",
+        "relative text-center p-8 rounded-2xl bg-primary/10 border border-primary-foreground/15 border-l-4 border-l-secondary backdrop-blur-md hover:-translate-y-1 hover:bg-primary/15 transition-all duration-300 overflow-hidden",
         className
       )}
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -33,14 +33,14 @@ export function StatCard({
       <div className="relative z-10">
         {/* Icon Badge */}
         <motion.div
-          className="inline-flex items-center justify-center w-14 h-14 bg-[#3d9a8b]/20 mb-6 border border-[#3d9a8b]/30"
+          className="inline-flex items-center justify-center size-14 rounded-2xl bg-secondary/20 mb-6 border border-secondary/30"
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.3 }}
           initial={{ opacity: 0, scale: 0 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
         >
-          <Icon className="w-7 h-7 text-[#3d9a8b]" />
+          <Icon className="size-7 text-secondary" />
         </motion.div>
 
         {/* Value */}

@@ -30,7 +30,7 @@ export function ServiceCard({
   const content = (
     <motion.div
       className={cn(
-        "group relative rounded-xl overflow-hidden bg-white border border-[#1a3a5c]/10 border-l-4 border-l-[#3d9a8b] shadow-sm hover:shadow-lg transition-all duration-300 h-full",
+        "group relative overflow-hidden rounded-2xl bg-card border border-border/70 border-l-4 border-l-secondary shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300 h-full",
         className
       )}
       initial={{ opacity: 0, y: 30 }}
@@ -41,7 +41,7 @@ export function ServiceCard({
     >
       {/* Image Background */}
       {image && (
-        <div className="relative overflow-hidden h-52 bg-gradient-to-br from-[#1a3a5c]/5 to-[#3d9a8b]/5">
+        <div className="relative overflow-hidden h-52 bg-muted">
           <Image
             src={image}
             alt={title}
@@ -49,7 +49,7 @@ export function ServiceCard({
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a5c]/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/75 to-transparent" />
         </div>
       )}
 
@@ -60,10 +60,10 @@ export function ServiceCard({
           {/* Number Badge */}
           {number && (
             <div className="flex items-center gap-3">
-              <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-[#3d9a8b]/10 text-[#3d9a8b] font-bold text-base">
+              <div className="inline-flex items-center justify-center size-10 rounded-xl bg-secondary/12 text-secondary font-bold text-base">
                 {number}
               </div>
-              <div className="text-xs font-semibold text-[#3d9a8b] uppercase tracking-wider">
+              <div className="eyebrow">
                 Servicio
               </div>
             </div>
@@ -71,11 +71,11 @@ export function ServiceCard({
 
           {icon && <div className="mb-2">{icon}</div>}
 
-          <h3 className="text-xl font-bold text-[#1a3a5c] leading-tight">
+          <h3 className="text-xl font-bold text-card-foreground leading-tight">
             {title}
           </h3>
           
-          <p className="text-[#1a3a5c]/70 text-sm leading-relaxed">
+          <p className="text-muted-foreground text-sm leading-relaxed">
             {description}
           </p>
         </div>
