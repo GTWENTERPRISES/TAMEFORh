@@ -22,7 +22,6 @@ const services = [
   { label: "Capacitación", href: "/cursos" },
   { label: "Asesoría Legal", href: "/servicios" },
   { label: "Gestión Forestal", href: "/servicios" },
-  { label: "Miembros", href: "/miembros" },
 ]
 
 const socialLinks = [
