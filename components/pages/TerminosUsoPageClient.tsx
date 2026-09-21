@@ -1,157 +1,227 @@
 'use client'
 
-import Image from "next/image"
 import { motion } from "framer-motion"
+import Link from "next/link"
+import { Scale, ArrowRight, Mail, Phone, MapPin } from "lucide-react"
+import { PageHeader } from "@/components/ui/PageHeader"
+import { SectionHeader } from "@/components/ui"
+import { containerVariants, itemVariants } from "@/lib/animations"
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
+const sections = [
+  {
+    title: "1. Aceptación de los Términos",
+    content: "Al acceder y utilizar este sitio web, usted acepta estar sujeto a estos términos de uso y a todas las leyes y regulaciones aplicables. Si no está de acuerdo con alguno de estos términos, no debe utilizar este sitio.",
   },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+  {
+    title: "2. Uso del Sitio",
+    content: "Este sitio web es proporcionado únicamente para su uso personal. No está permitido:",
+    list: [
+      "Modificar o copiar los materiales",
+      "Usar los materiales para fines comerciales",
+      "Intentar descompilar o aplicar ingeniería inversa",
+      "Eliminar cualquier derecho de autor o notación de propiedad",
+      "Transferir los materiales a otra persona",
+    ],
   },
-}
-
-const headerVariants = {
-  hidden: { opacity: 0, y: -30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+  {
+    title: "3. Propiedad Intelectual",
+    content: "Todo el contenido incluido en este sitio, como texto, gráficos, logotipos, imágenes y software, es propiedad de TAMEFOR o de sus proveedores de contenido y está protegido por las leyes de propiedad intelectual.",
   },
-}
+  {
+    title: "4. Limitación de Responsabilidad",
+    content: "TAMEFOR no será responsable de ningún daño que surja del uso o la imposibilidad de usar los materiales en este sitio, incluso si TAMEFOR o un representante autorizado ha sido notificado de la posibilidad de tales daños.",
+  },
+  {
+    title: "5. Enlaces a Terceros",
+    content: "Este sitio puede contener enlaces a sitios web de terceros. TAMEFOR no tiene control sobre, ni asume ninguna responsabilidad por, el contenido, las políticas de privacidad o las prácticas de los sitios web de terceros.",
+  },
+  {
+    title: "6. Modificaciones",
+    content: "TAMEFOR puede revisar estos términos de uso en cualquier momento sin previo aviso. Al utilizar este sitio web, usted acepta estar sujeto a la versión actual de estos términos de uso.",
+  },
+  {
+    title: "7. Ley Aplicable",
+    content: "Estos términos se rigen e interpretan de acuerdo con las leyes de Ecuador, y usted se somete irrevocablemente a la jurisdicción exclusiva de los tribunales de ese país.",
+  },
+  {
+    title: "8. Contacto",
+    content: "Para cualquier consulta sobre estos términos de uso, puede contactarnos en:",
+    contact: true,
+  },
+]
 
 export function TerminosUsoPageClient() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070"
-            alt="Términos de Uso"
-            fill
-            className="object-cover"
+      <PageHeader
+        badge="Legal"
+        title="Términos de"
+        titleHighlight="Uso"
+        subtitle="Última actualización: Septiembre 2026"
+        backgroundImage="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070"
+      />
+
+      {/* ═══ Content ═══ */}
+      <section className="section-padding bg-white relative overflow-hidden">
+        {/* Decorative blobs */}
+        <motion.div
+          className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3d9a8b]/5 rounded-full blur-3xl -mr-64 -mt-64"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        />
+        <motion.div
+          className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#1a3a5c]/5 rounded-full blur-3xl -ml-48 -mb-48"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          viewport={{ once: true }}
+        />
+
+        <div className="container-max relative z-10">
+          <SectionHeader
+            icon={Scale}
+            subtitle="Marco Legal"
+            title="Condiciones de"
+            titleHighlight="Uso del Sitio"
+            description="Lee atentamente los términos y condiciones que rigen el uso de nuestra plataforma"
+            centered
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1a3a5c]/95 via-[#1a3a5c]/80 to-[#1a3a5c]/60" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
+
           <motion.div
-            className="max-w-3xl"
+            className="max-w-4xl mx-auto mt-12 space-y-8"
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
           >
-            <motion.h1
-              className="font-sans text-5xl md:text-6xl text-white font-bold leading-tight mb-6"
-              variants={headerVariants}
-            >
-              Términos de<br />
-              <span className="text-white">Uso</span>
-            </motion.h1>
-            <motion.p className="text-white/80 text-xl" variants={itemVariants}>
-              Última actualización: Enero 2026
-            </motion.p>
+            {sections.map((section, index) => (
+              <motion.div
+                key={index}
+                className="group relative overflow-hidden bg-white border border-[#1a3a5c]/10 shadow-md p-8 hover:shadow-xl transition-all duration-500"
+                variants={itemVariants}
+                whileHover={{ y: -3 }}
+              >
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
+                  <div className="h-full w-2/5 group-hover:w-full bg-gradient-to-r from-[#3d9a8b] via-[#5bc4b1] to-[#3d9a8b] transition-all duration-700" />
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-[#3d9a8b]/10 flex items-center justify-center flex-shrink-0 mt-1 group-hover:bg-[#3d9a8b] transition-colors duration-500">
+                    <span className="text-[#3d9a8b] font-bold text-sm group-hover:text-white transition-colors duration-500">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="font-bold text-2xl text-[#1a3a5c] mb-4">{section.title}</h2>
+                    <p className="text-[#1a3a5c]/70 leading-relaxed mb-4">{section.content}</p>
+
+                    {section.list && (
+                      <ul className="space-y-2">
+                        {section.list.map((item, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <div className="w-1.5 h-1.5 bg-[#3d9a8b] rounded-full mt-2 flex-shrink-0" />
+                            <span className="text-[#1a3a5c]/70">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {section.contact && (
+                      <div className="bg-[#1a3a5c]/5 p-6 border-l-4 border-[#3d9a8b] mt-4">
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-3">
+                            <Mail className="w-4 h-4 text-[#3d9a8b]" />
+                            <span className="text-[#1a3a5c]">informacion@tameforlosrios.org</span>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <Phone className="w-4 h-4 text-[#3d9a8b]" />
+                            <span className="text-[#1a3a5c]">+593 96 993 4651</span>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <MapPin className="w-4 h-4 text-[#3d9a8b]" />
+                            <span className="text-[#1a3a5c]">Quevedo, Los Ríos, Ecuador</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Bottom animated line */}
+                <div className="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-[#3d9a8b] to-[#5bc4b1] transition-all duration-700" />
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Content */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto prose prose-lg">
+      {/* ═══ CTA Banner ═══ */}
+      <section className="relative overflow-hidden bg-white py-20">
+        <motion.div
+          className="absolute top-0 left-0 w-96 h-96 bg-[#3d9a8b]/5 rounded-full blur-3xl -ml-48 -mt-48"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        />
+
+        <div className="container-max relative z-10">
+          <motion.div
+            className="max-w-3xl mx-auto text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
             <motion.div
-              className="bg-card rounded-2xl shadow-lg p-8 md:p-12"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={containerVariants}
+              className="inline-flex items-center gap-2 mb-6"
+              variants={itemVariants}
             >
-              <motion.div variants={itemVariants}>
-                <h2 className="font-sans text-3xl text-[#1a3a5c] mb-6">1. Aceptación de los Términos</h2>
-                <p className="text-muted-foreground mb-8">
-                  Al acceder y utilizar el sitio web de TAMEFOR Los Ríos, usted acepta estar sujeto a estos términos de uso. Si no está de acuerdo con alguno de estos términos, no debe utilizar este sitio.
-                </p>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <h2 className="font-sans text-3xl text-[#1a3a5c] mb-6">2. Uso del Sitio Web</h2>
-                <p className="text-muted-foreground mb-6">
-                  Usted se compromete a utilizar este sitio web únicamente para fines legales y de manera que no infrinja los derechos de terceros ni restrinja o inhiba el uso y disfrute del sitio por parte de otros.
-                </p>
-                <p className="text-muted-foreground mb-8">
-                  Está prohibido:
-                </p>
-                <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-8">
-                  <li>Utilizar el sitio de manera fraudulenta o ilegal</li>
-                  <li>Intentar acceder a áreas restringidas sin autorización</li>
-                  <li>Transmitir virus o código malicioso</li>
-                  <li>Recopilar datos de otros usuarios sin su consentimiento</li>
-                </ul>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <h2 className="font-sans text-3xl text-[#1a3a5c] mb-6">3. Propiedad Intelectual</h2>
-                <p className="text-muted-foreground mb-8">
-                  Todo el contenido de este sitio web, incluyendo textos, gráficos, logotipos, imágenes y software, es propiedad de TAMEFOR Los Ríos o de sus proveedores de contenido y está protegido por las leyes de propiedad intelectual.
-                </p>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <h2 className="font-sans text-3xl text-[#1a3a5c] mb-6">4. Registro y Cuentas</h2>
-                <p className="text-muted-foreground mb-8">
-                  Para acceder a ciertos servicios, puede ser necesario crear una cuenta. Usted es responsable de mantener la confidencialidad de su información de cuenta y de todas las actividades que ocurran bajo su cuenta.
-                </p>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <h2 className="font-sans text-3xl text-[#1a3a5c] mb-6">5. Limitación de Responsabilidad</h2>
-                <p className="text-muted-foreground mb-8">
-                  TAMEFOR Los Ríos no será responsable de ningún daño directo, indirecto, incidental, especial o consecuente que resulte del uso o la imposibilidad de usar este sitio web.
-                </p>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <h2 className="font-sans text-3xl text-[#1a3a5c] mb-6">6. Modificaciones</h2>
-                <p className="text-muted-foreground mb-8">
-                  Nos reservamos el derecho de modificar estos términos en cualquier momento. Las modificaciones entrarán en vigor inmediatamente después de su publicación en el sitio web.
-                </p>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <h2 className="font-sans text-3xl text-[#1a3a5c] mb-6">7. Ley Aplicable</h2>
-                <p className="text-muted-foreground mb-8">
-                  Estos términos se regirán e interpretarán de acuerdo con las leyes de la República del Ecuador.
-                </p>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <h2 className="font-sans text-3xl text-[#1a3a5c] mb-6">8. Contacto</h2>
-                <p className="text-muted-foreground mb-4">
-                  Para cualquier consulta sobre estos términos de uso, puede contactarnos en:
-                </p>
-                <div className="bg-[#3d9a8b]/10 rounded-xl p-6">
-                  <p className="text-foreground"><strong>Email:</strong> informacion@tameforlosrios.org</p>
-                  <p className="text-foreground"><strong>Teléfono:</strong> +593 96 9934651</p>
-                  <p className="text-foreground"><strong>Dirección:</strong> Quevedo, Los Ríos, Ecuador</p>
-                </div>
-              </motion.div>
+              <div className="w-8 h-1 bg-[#3d9a8b]" />
+              <span className="text-[#3d9a8b] font-semibold uppercase tracking-wider text-sm">
+                ¿Tienes Dudas?
+              </span>
+              <div className="w-8 h-1 bg-[#3d9a8b]" />
             </motion.div>
-          </div>
+
+            <motion.h2
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a3a5c] mb-6"
+              variants={itemVariants}
+            >
+              ¿Necesitas aclarar algo sobre{" "}
+              <span className="text-[#3d9a8b]">nuestros términos?</span>
+            </motion.h2>
+
+            <motion.p
+              className="text-[#1a3a5c]/70 text-lg mb-10 max-w-2xl mx-auto"
+              variants={itemVariants}
+            >
+              Nuestro equipo está disponible para resolver cualquier duda sobre los términos y condiciones de uso de nuestra plataforma.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              variants={itemVariants}
+            >
+              <Link href="/contacto">
+                <motion.button
+                  className="group inline-flex items-center gap-3 px-8 py-4 font-semibold text-white
+                             bg-gradient-to-r from-[#3d9a8b] to-[#2a7a6c]
+                             shadow-lg shadow-[#3d9a8b]/25 hover:shadow-[#3d9a8b]/50
+                             transition-shadow duration-300"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  Contáctanos Ahora
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                </motion.button>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </>
   )
 }
-//

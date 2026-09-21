@@ -221,3 +221,152 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ============================================================
+   Dynamic Design Utilities (TAMEFOR)
+   ============================================================ */
+
+/* Shine sweep across cards on hover */
+.shine-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.shine-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 60%
+  );
+  transform: translateX(-130%) skewX(-18deg);
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.shine-card:hover::before {
+  transform: translateX(130%) skewX(-18deg);
+}
+
+/* Floating background blobs */
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(3rem, -2.5rem) scale(1.1);
+  }
+  66% {
+    transform: translate(-2rem, 1.5rem) scale(0.94);
+  }
+}
+
+@keyframes blob-float-alt {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  35% {
+    transform: translate(-3.5rem, 2rem) scale(1.08);
+  }
+  70% {
+    transform: translate(2.5rem, -1.5rem) scale(0.95);
+  }
+}
+
+.animate-blob {
+  animation: blob-float 16s ease-in-out infinite;
+}
+
+.animate-blob-alt {
+  animation: blob-float-alt 22s ease-in-out infinite;
+}
+
+/* Animated gradient pan (background-position) */
+@keyframes gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-pan {
+  background-size: 200% 200%;
+  animation: gradient-pan 8s ease infinite;
+}
+
+/* Soft pulse (badges, glows) */
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2.8s ease-in-out infinite;
+}
+
+/* Gentle floating for hero badges */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float-y {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+/* Teal glow shadow for hover states */
+.glow-teal {
+  box-shadow:
+    0 0 0 1px rgba(61, 154, 139, 0.3),
+    0 20px 50px -12px rgba(61, 154, 139, 0.35);
+}
+
+/* Thin grid pattern for dark sections */
+.bg-grid-dark {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Banner marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

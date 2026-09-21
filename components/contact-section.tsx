@@ -1,6 +1,6 @@
 "use client"
 
-import { MapPin, Mail, Phone, Clock, ArrowRight } from "lucide-react"
+import { MapPin, Mail, Phone, Clock, ArrowRight, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -8,6 +8,7 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { validateForm, validationSchemas, getFieldError, type ValidationError } from "@/lib/formValidation"
 import { createMensajeContacto } from "@/lib/api/mensajes"
+import { SectionHeader } from "@/components/ui"
 
 export function ContactSection() {
   const [showModal, setShowModal] = useState(false)
@@ -126,31 +127,63 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-24 bg-white relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div 
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="w-12 h-[2px] bg-[#3d9a8b]" />
-            <span className="text-[#3d9a8b] font-semibold uppercase tracking-[0.2em] text-sm">Información de Contacto</span>
-            <div className="w-12 h-[2px] bg-[#3d9a8b]" />
-          </div>
-          <h2 className="font-sans text-4xl md:text-5xl text-[#1a3a5c] leading-tight font-bold mb-6">
-            Conecta<br />
-            <span className="text-[#3d9a8b]">Con Nosotros</span>
-          </h2>
-          <div className="w-24 h-1 bg-[#3d9a8b] mx-auto mb-6" />
-          <p className="text-[#1a3a5c]/70 max-w-2xl mx-auto text-lg">
-            Estamos listos para atender tus consultas y brindarte la información que necesites sobre nuestros servicios profesionales
-          </p>
-        </motion.div>
+    <section id="contact" className="contact-dynamic-bg py-24 relative overflow-hidden">
+      {/* Soft floating light for a dynamic feel */}
+      <div className="c-blob c-blob-a" />
+      <div className="c-blob c-blob-b" />
 
-        <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+      <style jsx global>{`
+        .contact-dynamic-bg {
+          background: linear-gradient(135deg, #1a3a5c 0%, #163250 50%, #0f2a45 100%);
+        }
+        .c-blob {
+          position: absolute;
+          border-radius: 9999px;
+          filter: blur(90px);
+          opacity: 0.35;
+          pointer-events: none;
+        }
+        .c-blob-a {
+          width: 32rem;
+          height: 32rem;
+          top: -10rem;
+          left: -8rem;
+          background: radial-gradient(circle at 30% 30%, #3d9a8b, transparent 70%);
+          animation: c-drift-a 24s ease-in-out infinite;
+        }
+        .c-blob-b {
+          width: 28rem;
+          height: 28rem;
+          bottom: -10rem;
+          right: -8rem;
+          background: radial-gradient(circle at 60% 40%, #2d5580, transparent 70%);
+          animation: c-drift-b 28s ease-in-out infinite;
+        }
+        @keyframes c-drift-a {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(3rem, 3rem) scale(1.1); }
+        }
+        @keyframes c-drift-b {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(-3rem, -3rem) scale(1.08); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .c-blob { animation: none; }
+        }
+      `}</style>
+
+      <div className="container-max relative z-10">
+        <SectionHeader
+          icon={MessageSquare}
+          subtitle="Información de Contacto"
+          title="Conecta"
+          titleHighlight="Con Nosotros"
+          description="Estamos listos para atender tus consultas y brindarte la información que necesites sobre nuestros servicios profesionales"
+          centered
+          dark
+        />
+
+        <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto mt-16">
           <motion.div 
             className="lg:col-span-1 space-y-8"
             initial="hidden"
@@ -161,7 +194,7 @@ export function ContactSection() {
             {contactItems.map((item, index) => (
               <motion.div 
                 key={index} 
-                className="flex items-start gap-6 bg-white p-6 border-l-4 border-[#3d9a8b]"
+                className="flex items-start gap-6 bg-white/95 backdrop-blur-sm p-6 border-l-4 border-[#3d9a8b] transition-all duration-300 hover:bg-white hover:-translate-y-1 hover:shadow-xl"
                 variants={itemVariants}
               >
                 <div className="w-16 h-16 bg-[#1a3a5c] flex items-center justify-center flex-shrink-0 border-t-4 border-[#3d9a8b]">
@@ -182,7 +215,7 @@ export function ContactSection() {
           </motion.div>
 
           <motion.div 
-            className="lg:col-span-2 bg-white p-10 border-l-4 border-[#3d9a8b]"
+            className="lg:col-span-2 bg-white/95 backdrop-blur-sm p-10 border-l-4 border-[#3d9a8b] shadow-2xl shadow-black/20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}

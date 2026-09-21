@@ -58,9 +58,9 @@ export const projectsData: Project[] = [
     client: 'Sector Industrial',
     area: '5 empresas participantes',
     images: [
-      'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1624893910627-f06f64ed2e48?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?w=800&h=600&fit=crop',
     ],
     objectives: [
       'Implementar sistema integral de gestión de residuos sólidos',
@@ -142,9 +142,9 @@ export const projectsData: Project[] = [
     client: 'Propietarios de Bosques Privados',
     area: '1,200 hectáreas bajo manejo',
     images: [
-      'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1511497584788-876760111969?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1473773508845-188df298d2d1?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1542273917363-1f3f7d24d0d5?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=800&h=600&fit=crop',
     ],
     objectives: [
       'Diseñar e implementar planes de manejo forestal sostenible',
@@ -226,9 +226,9 @@ export const projectsData: Project[] = [
     client: 'Gobierno Provincial',
     area: '350 hectáreas recuperadas',
     images: [
-      'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1486748019596-48c44d0296f4?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1440581572325-0bea30075d9d?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1507041957456-9c397ce39c97?w=800&h=600&fit=crop',
     ],
     objectives: [
       'Limpiar y sanear áreas forestales degradadas',
@@ -309,9 +309,9 @@ export const projectsData: Project[] = [
     client: 'Propietarios Privados y Comunidades',
     area: '200 hectáreas en plantación',
     images: [
-      'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1542202229-7d93c33f5d07?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop',
     ],
     objectives: [
       'Reforestar 200 hectáreas con especies nativas',

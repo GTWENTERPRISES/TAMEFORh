@@ -30,7 +30,11 @@ export function SectionHeader({
     >
       {Icon && (
         <motion.div
-          className={`inline-flex items-center justify-center w-12 h-12 bg-[#3d9a8b]/20 mb-4 ${centered ? "" : ""} ${dark ? "rounded-none" : "rounded-full"}`}
+          className={`inline-flex items-center justify-center w-12 h-12 mb-4 ${
+            dark 
+              ? "bg-[#3d9a8b]/20 border border-[#3d9a8b]/40 rounded-full" 
+              : "bg-[#3d9a8b]/20 rounded-full"
+          } ${centered ? "" : ""}`}
           whileHover={{ rotate: dark ? 0 : 360 }}
           transition={{ duration: 0.6 }}
         >

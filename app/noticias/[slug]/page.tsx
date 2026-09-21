@@ -1,3 +1,5 @@
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 import { getNewsBySlug, newsData } from "@/lib/newsData"
 import { NoticiaPageClient } from "@/components/pages/NoticiaPageClient"
 import { notFound } from "next/navigation"
@@ -33,5 +35,11 @@ export default async function NoticiaPage({ params }: { params: Promise<{ slug: 
     notFound()
   }
 
-  return <NoticiaPageClient article={article} />
+  return (
+    <main className="min-h-screen bg-background">
+      <Header />
+      <NoticiaPageClient article={article} />
+      <Footer />
+    </main>
+  )
 }

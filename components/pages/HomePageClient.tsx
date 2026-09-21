@@ -49,10 +49,10 @@ export function HomePageClient() {
         <HeroSection />
       </motion.div>
       <motion.div variants={itemVariants}>
-        <CongressSection />
+        <StatisticsSection />
       </motion.div>
       <motion.div variants={itemVariants}>
-        <StatisticsSection />
+        <CongressSection />
       </motion.div>
       <motion.div variants={itemVariants}>
         <AboutSection />

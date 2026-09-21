@@ -1,10 +1,11 @@
 "use client"
 
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Briefcase } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import { SectionHeader } from "@/components/ui"
 
 const projects = [
   {
@@ -51,69 +52,78 @@ export function ProjectsSection() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    hidden: (i: number) => ({ opacity: 0, y: 30, x: i % 2 === 0 ? -24 : 24 }),
+    visible: { opacity: 1, y: 0, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
   }
 
   return (
-    <section id="projects" className="py-24 bg-white relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#1a3a5c]/5 -mr-48 -mt-48" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#3d9a8b]/5 -ml-48 -mb-48" />
+    <section id="projects" className="section-padding bg-gradient-to-br from-[#1a3a5c] via-[#163250] to-[#0f2a45] relative overflow-hidden">
+      {/* Subtle gradient overlay only */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#3d9a8b]/8 via-transparent to-white/5" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
-        <motion.div 
-          className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-20"
-          initial={{ opacity: 0, y: -20 }}
+      <div className="container-max relative z-10">
+        <SectionHeader
+          icon={Briefcase}
+          subtitle="Proyectos Completados"
+          title="Explora Nuestros"
+          titleHighlight="Proyectos Destacados"
+          description="Soluciones ambientales integrales que demuestran nuestro compromiso con el desarrollo sostenible"
+          centered
+          dark
+        />
+
+        <motion.div
+          className="flex justify-center mt-8"
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
         >
-          <div>
-            <div className="flex items-center justify-center lg:justify-start gap-2 mb-6">
-              <div className="w-12 h-[2px] bg-[#3d9a8b]" />
-              <span className="text-[#3d9a8b] font-semibold uppercase tracking-[0.2em] text-sm">Proyectos Completados</span>
-              <div className="w-12 h-[2px] bg-[#3d9a8b]" />
-            </div>
-            <h2 className="font-sans text-4xl md:text-5xl lg:text-6xl text-[#1a3a5c] leading-tight font-bold text-center lg:text-left">
-              Explora Nuestros<br />
-              <span className="text-[#3d9a8b]">Proyectos Exitosos</span>
-            </h2>
-          </div>
-          <div className="mt-8 lg:mt-0 flex justify-center lg:justify-start">
-            <Link href="/proyectos">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button className="bg-[#1a3a5c] hover:bg-[#3d9a8b] text-white rounded-none px-10 py-4 font-semibold text-base transition-all duration-300 shadow-none border-2 border-[#1a3a5c] hover:border-[#3d9a8b]">
-                  Ver Todos los Proyectos
-                  <ArrowRight className="ml-3 h-4 w-4" />
-                </Button>
-              </motion.div>
-            </Link>
-          </div>
+          <Link href="/proyectos">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button className="bg-[#3d9a8b] hover:bg-white text-white hover:text-[#1a3a5c] rounded-none px-10 py-4 font-semibold text-base transition-all duration-300 shadow-none hover:shadow-lg border-2 border-[#3d9a8b]">
+                Ver Todos los Proyectos
+                <ArrowRight className="ml-3 h-4 w-4" />
+              </Button>
+            </motion.div>
+          </Link>
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mt-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
         >
-          {projects.map((project) => (
-            <motion.div 
+          {projects.map((project, index) => (
+            <motion.div
               key={project.number}
-              className="group relative"
+              className={`group relative ${index % 2 === 1 ? "lg:-translate-y-6" : ""}`}
               variants={itemVariants}
+              custom={index}
               whileHover={{ y: -8 }}
             >
               {/* Project Card */}
-              <div className="bg-gradient-to-br from-[#1a3a5c] via-[#163250] to-[#0f2a45] border border-[#3d9a8b]/30 transition-all duration-500 hover:shadow-xl h-full flex flex-col">
+              <div className="relative bg-white/95 backdrop-blur-sm border border-[#3d9a8b]/30 border-l-4 border-l-[#3d9a8b] transition-all duration-500 hover:shadow-xl hover:border-[#3d9a8b]/60 h-full flex flex-col overflow-hidden">
                 {/* Number Badge */}
-                <div className="absolute top-4 left-4 z-10 bg-white text-[#1a3a5c] px-4 py-2 text-sm font-bold border-t-4 border-[#3d9a8b]">
+                <motion.div
+                  className="absolute top-4 left-4 z-10 bg-[#1a3a5c] text-white px-4 py-2 text-sm font-bold border-t-4 border-[#3d9a8b]"
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.3 }}
+                >
                   No - {project.number}
-                </div>
+                </motion.div>
+
+                {/* Diagonal accent */}
+                <div
+                  className="absolute top-0 right-0 w-12 h-12 bg-[#3d9a8b] z-10 transition-transform duration-500 group-hover:scale-125"
+                  style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
+                />
+
+                {/* Bottom animated line */}
+                <div className="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-[#3d9a8b] to-[#5bc4b1] transition-all duration-500 z-10" />
 
                 {/* Image Container */}
                 <div className="relative h-52 overflow-hidden">
@@ -137,12 +147,15 @@ export function ProjectsSection() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-sans text-xl text-white mb-3 font-semibold leading-tight">
+                  <h3 className="font-sans text-xl text-[#1a3a5c] mb-2 font-semibold leading-tight">
                     {project.title}
                   </h3>
 
+                  {/* Animated underline */}
+                  <div className="h-0.5 w-0 bg-[#3d9a8b] group-hover:w-12 transition-all duration-500 mb-3" />
+
                   {/* Description */}
-                  <p className="text-white/70 text-sm leading-relaxed mb-6 flex-grow">
+                  <p className="text-[#1a3a5c]/70 text-sm leading-relaxed mb-6 flex-grow">
                     {project.description}
                   </p>
 

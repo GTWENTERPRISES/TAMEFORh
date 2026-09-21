@@ -27,10 +27,10 @@ export function ServiceCard({
   className,
   index = 0,
 }: ServiceCardProps) {
-  const content = (
+  return (
     <motion.div
       className={cn(
-        "group relative rounded-xl overflow-hidden bg-white border border-[#1a3a5c]/10 border-l-4 border-l-[#3d9a8b] shadow-sm hover:shadow-lg transition-all duration-300 h-full",
+        "group relative overflow-hidden bg-white border border-[#1a3a5c]/10 border-l-4 border-l-[#3d9a8b] shadow-sm hover:shadow-lg transition-all duration-300 h-full",
         className
       )}
       initial={{ opacity: 0, y: 30 }}
@@ -57,7 +57,6 @@ export function ServiceCard({
       <div className="relative z-10 p-7 h-full flex flex-col">
         {/* Header */}
         <div className="space-y-4 mb-6">
-          {/* Number Badge */}
           {number && (
             <div className="flex items-center gap-3">
               <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-[#3d9a8b]/10 text-[#3d9a8b] font-bold text-base">
@@ -104,6 +103,4 @@ export function ServiceCard({
       </div>
     </motion.div>
   )
-
-  return content
 }
